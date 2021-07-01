@@ -1,2 +1,8 @@
 - name: install awx-from-source 
   action: template src=dumpall.j2 dest=/tmp/ansible_dump.all
+
+-name: run awx setup install
+  ansible.builtin.command: /var/awx/venv/bin/python setup.py install
+  become: yes
+  args:
+    chdir:  /opt/awx
