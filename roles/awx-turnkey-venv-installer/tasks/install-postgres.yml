@@ -23,6 +23,27 @@
     cmd: /usr/pgsql-12/bin/postgresql-12-setup initdb
   become: True
 
+ - name: Ensure the PostgreSQL 12 service is running
+   service: name=postgresql-12 state=started enabled=yes
+
+- name:  run  create postgres user
+  ansible.builtin.shell:
+    cmd: createuser awx
+  become: True
+  become_user: postgres
+
+- name: create postgress db
+  ansible.builtin.shell:
+    cmd: createdb awx -O awx
+  become: True
+  become_user: postgres
+
+- name: set password 
+  ansible.builtin.shell:
+    cmd: psql -c "ALTER USER awx PASSWORD '{{ awx_db_password }}';"
+  become: True
+  become_user: postgres
+  
 - name: create postgress
   ansible.builtin.template:
     src: templates/pg_hba.conf.j2
@@ -40,9 +61,3 @@
     group: cloud-user
     mode: '0600'
   become: True
-
-- name: Connect to acme database, create django user, and grant access to database and products table
-  community.postgresql.postgresql_user:
-    db: awx
-    name: awx
-    password: "Demopasso"
