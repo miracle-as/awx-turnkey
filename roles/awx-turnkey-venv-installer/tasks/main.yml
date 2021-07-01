@@ -1,3 +1,9 @@
 - name: install awx with virtual invironment by miracle
-  import_tasks: install-awx-venv-single.yml
+  import_tasks: install-postgres.yml
+  import_tasks: install-redis.yml
+  import_tasks: install-awx-from-source.yml
+  import_tasks: setup-awx-services.yml
+
   
+
+#  import_tasks: install-awx-venv-single.yml
