@@ -6,7 +6,7 @@ DATABASES = {
        'ENGINE': 'awx.main.db.profiled_pg',
        'NAME': 'awx',
        'USER': 'awx',
-       'PASSWORD': """{{ awx_db_password }}"""
+       'PASSWORD': """{{ awx_db_password }}""",
        'HOST': '127.0.0.1',
        'PORT': '5432',
        'OPTIONS': { 'sslmode': 'prefer',
