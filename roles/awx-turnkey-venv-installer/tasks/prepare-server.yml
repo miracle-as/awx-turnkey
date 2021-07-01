@@ -52,7 +52,7 @@
   ansible.builtin.git:
     repo: 'https://github.com/ansible/awx.git'
     dest: /opt/awx
-    version: "{{ awx_image_version }}"
+    version: "{{ awxversion }}"
   become: True
 
 - name: Recursively change ownership of the directory
@@ -69,3 +69,4 @@
     requirements: /opt/awx/requirements/requirements.txt
     virtualenv: /var/awx/venv
     virtualenv_command: /usr/bin/python3 -m venv
+  become: True
