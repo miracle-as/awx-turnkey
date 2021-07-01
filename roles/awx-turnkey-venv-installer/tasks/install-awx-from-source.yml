@@ -18,3 +18,39 @@
   become: yes
   args:
     chdir:  /opt/awx
+
+- name: Creates tower
+  file:
+    path: /etc/tower/conf.d
+    state: directory
+    owner: cloud-user
+    group: cloud-user
+    mode: 0770
+    recurse: yes
+
+- name: create awx settings
+  ansible.builtin.template:
+    src: templates/settings.py
+    dest: /etc/tower/settings.py
+    owner: cloud-user
+    group: cloud-user
+    mode: '0600'
+  become: True
+
+- name: create awx secret
+  ansible.builtin.template:
+    src: templates/SECRET_KEY.j2
+    dest: /etc/tower/SECRET_KEY
+    owner: cloud-user
+    group: cloud-user
+    mode: '0600'
+  become: True
+
+- name: create awx postgres
+  ansible.builtin.template:
+    src: templates/postgres.py.j2
+    dest: /etc/tower/conf.d/postgres.py
+    owner: cloud-user
+    group: cloud-user
+    mode: '0600'
+  become: True
