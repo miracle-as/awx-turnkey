@@ -1,6 +1,5 @@
 ---
-- hosts: all
+- hosts: 
   gather_facts: yes
-  tasks:
-   - name: Dump all variables
-     action: template src=dumpall.j2 dest=/tmp/ansible_dump.all
+  roles:
+   - role: awx-turnkey-venv-installer
