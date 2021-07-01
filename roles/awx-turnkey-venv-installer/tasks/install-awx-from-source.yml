@@ -6,8 +6,14 @@
   become: yes
   args:
     chdir:  /opt/awx
-    
-- name: 
+
+- name: django-debug-toolbar 
+  ansible.builtin.command: /var/awx/venv/bin/pip install django-debug-toolbar
+  become: yes
+  args:
+    chdir:  /opt/awx
+
+- name: django-rest-swagger
   ansible.builtin.command: /var/awx/venv/bin/pip install django-rest-swagger
   become: yes
   args:
