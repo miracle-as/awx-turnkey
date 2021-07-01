@@ -1,3 +1,6 @@
+- name: Prepare server
+  import_tasks: prepare-server.yml 
+
 - name: install postgress
   import_tasks: install-postgres.yml 
 

@@ -1,0 +1,34 @@
+- name: Enable EPEL Repository on CentOS 8
+  dnf:
+    name: epel-release
+    state: latest
+  become: True
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- name: depend | Ensure dependencies are installed.
+  dnf:
+    pkg: [
+                'jq',
+                'redis',
+                'git',
+                'python3-virtualenv',
+                'gcc-c++',
+                'nodejs',
+                'device-mapper-persistent-data',
+                'lvm2',
+                'bzip2',
+                'python3-pip',
+                'ansible',
+                'gcc',
+                'openldap-devel'
+
+        ]
+  become: yes
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- name: adding existing user cloud-user to group sudo
+  user:
+    name: 'cloud-user'
+    groups: redis
+    append: yes
+  become: True
