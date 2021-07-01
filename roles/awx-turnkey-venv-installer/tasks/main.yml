@@ -1,8 +1,8 @@
 - name: install postgress
-  import_tasks: install-postgres.yml install-redis.yml
+  import_tasks: install-postgres.yml 
 
 - name: install redis
-  import_tasks: install-postgres.yml install-redis.yml
+  import_tasks: install-redis.yml 
 
 - name: install awx from source
   import_tasks: install-awx-from-source.yml
