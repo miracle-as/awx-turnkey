@@ -30,7 +30,7 @@
 
 - name: create awx settings
   ansible.builtin.template:
-    src: templates/settings.py
+    src: templates/settings.py.j2
     dest: /etc/tower/settings.py
     owner: cloud-user
     group: cloud-user
