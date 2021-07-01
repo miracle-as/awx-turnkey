@@ -26,9 +26,46 @@
   become: yes
   when: ansible_facts['os_family'] == 'RedHat'
 
-- name: adding existing user cloud-user to group sudo
-  user:
-    name: 'cloud-user'
-    groups: redis
-    append: yes
+- name: Install add  packages
+  yum:
+    name:
+      - xmlsec1-devel
+      - libtool-ltdl-devel
+      - mlocate
+      - libpq-devel
+
+    state: latest
+    enablerepo: "powertools"
   become: True
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- name: Create log dir
+  file:
+    path: /var/log/tower
+    owner: cloud-user
+    group: cloud-user
+    state: directory
+    mode: "u=rwx,g=rwx,o=r"
+  become: yes
+
+- name: Git checkout awx
+  ansible.builtin.git:
+    repo: 'https://github.com/ansible/awx.git'
+    dest: /opt/awx
+    version: "{{ awx_image_version }}"
+  become: True
+
+- name: Recursively change ownership of the directory
+  ansible.builtin.file:
+    path: /opt/awx
+    state: directory
+    recurse: yes
+    owner: cloud-user
+    group: cloud-user
+  become: True
+
+- name:  create venv
+  ansible.builtin.pip:
+    requirements: /opt/awx/requirements/requirements.txt
+    virtualenv: /var/awx/venv
+    virtualenv_command: /usr/bin/python3 -m venv

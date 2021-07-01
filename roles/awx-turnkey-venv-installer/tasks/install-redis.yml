@@ -1,3 +1,15 @@
 - name: install redis
   action: template src=dumpall.j2 dest=/tmp/ansible_dump.all
 
+- name: adding existing user cloud-user to group sudo
+  user:
+    name: 'cloud-user'
+    groups: redis
+    append: yes
+  become: True
+
+- name: Start service redis, if not started
+  ansible.builtin.service:
+    name: redis
+    state: started
+  become: True
