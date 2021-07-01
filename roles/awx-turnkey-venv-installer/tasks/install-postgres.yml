@@ -1,3 +1,44 @@
-- name: install postgress
-  action: template src=dumpall.j2 dest=/tmp/ansible_dump.all
+- name: Add pg12 repo
+  ansible.builtin.shell:
+    cmd: yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+  become: True
 
+- name:  disable pg module
+  ansible.builtin.shell:
+    cmd:  dnf -qy module disable postgresql
+  become: True
+
+- name:  disable pg module
+  ansible.builtin.shell:
+    cmd:  dnf -y install postgresql12 postgresql12-server
+  become: True
+
+- name: destroy database
+  ansible.builtin.shell:
+    cmd: rm -fr  /var/lib/pgsql/12/data/
+  become: True
+
+- name:  run initdb
+  ansible.builtin.shell:
+    cmd: /usr/pgsql-12/bin/postgresql-12-setup initdb
+  become: True
+
+- name: create postgress
+  ansible.builtin.template:
+    src: templates/pg_hba.conf.j2
+    dest: /var/lib/pgsql/12/data/pg_hba.conf
+    owner: postgres
+    group: postgres
+    mode: '0600'
+  become: True
+
+- name: create postgress credentials
+  ansible.builtin.template:
+    src: templates/credentials.py.j2
+    dest: /etc/tower/conf.d/postgres.py.j2
+    owner: cloud-user
+    group: cloud-user
+    mode: '0600'
+  become: True
+
+  
