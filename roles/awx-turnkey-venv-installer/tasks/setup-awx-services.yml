@@ -1,1 +1,3 @@
 - name: setup-awx-services 
+  action: template src=dumpall.j2 dest=/tmp/ansible_dump.all
+
