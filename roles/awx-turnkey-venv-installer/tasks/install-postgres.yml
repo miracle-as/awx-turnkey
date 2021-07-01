@@ -45,4 +45,4 @@
   community.postgresql.postgresql_user:
     db: awx
     name: awx
-    password: {{ awx_db_password }}
+    password: "Demopasso"
