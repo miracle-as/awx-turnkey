@@ -9,7 +9,7 @@
 
 
 - name: 
-  ansible.builtin.command: /var/awx/venv/bin/python pip install rest_framework_swagger
+  ansible.builtin.command: /var/awx/venv/bin/pip install rest_framework_swagger
   become: yes
   args:
     chdir:  /opt/awx
