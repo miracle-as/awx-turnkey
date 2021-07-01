@@ -41,4 +41,8 @@
     mode: '0600'
   become: True
 
-  
+- name: Connect to acme database, create django user, and grant access to database and products table
+  community.postgresql.postgresql_user:
+    db: awx
+    name: awx
+    password: {{ awx_db_password }}
