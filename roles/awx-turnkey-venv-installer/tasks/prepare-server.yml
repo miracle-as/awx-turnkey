@@ -91,7 +91,7 @@
 
 - name:  create venv
   ansible.builtin.pip:
-    requirements: /opt/awx/requirements/requirements.txt
+    requirements: /tmp/awx/requirements/requirements.txt
     virtualenv: /var/awx/venv
     virtualenv_command: /usr/bin/python3 -m venv
   become: True
