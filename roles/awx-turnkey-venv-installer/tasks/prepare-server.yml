@@ -39,6 +39,13 @@
   become: True
   when: ansible_facts['os_family'] == 'RedHat'
 
+- name: Add the group 'awx' with a specific gid and
+  ansible.builtin.group:
+    name: awx
+    comment: awx service accout group
+    gid: 1666
+  become: True
+
 - name: Add the user 'awx' with a specific uid and a primary group of 'awx'
   ansible.builtin.user:
     name: awx
