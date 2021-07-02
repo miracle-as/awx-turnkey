@@ -83,7 +83,6 @@
       when:
         - "config_dynamic_database == 'external'"
         - inventory_hostname in groups['database'] | default([])
-
     - role: postgres
       postgres_allowed_ipv4: "{{ _postgres_allowed_ipv4 | default('127.0.0.1/32') }}"
       postgres_allowed_ipv6: "{{ _postgres_allowed_ipv6 | default('::1/128') }}"

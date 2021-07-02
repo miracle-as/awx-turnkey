@@ -9,10 +9,10 @@ ADMINS = (
    #('Joe Admin', 'joeadmin@example.com'),
 )
 
-STATIC_ROOT = '/var/lib/awx/public/static'
-PROJECTS_ROOT = '/var/lib/awx/projects'
-AWX_ANSIBLE_COLLECTIONS_PATHS = '/var/lib/awx/vendor/awx_ansible_collections'
-JOBOUTPUT_ROOT = '/var/lib/awx/job_status'
+STATIC_ROOT = '{{ awx_home }}/public/static'
+PROJECTS_ROOT = '{{ awx_home }}/projects'
+AWX_ANSIBLE_COLLECTIONS_PATHS = '{{ awx_home }}/vendor/awx_ansible_collections'
+JOBOUTPUT_ROOT = '{{ awx_home }}/job_status'
 SECRET_KEY = open('/etc/tower/SECRET_KEY', 'rb').read().strip()
 ALLOWED_HOSTS = ['*']
 INTERNAL_API_URL = 'http://127.0.0.1:80'

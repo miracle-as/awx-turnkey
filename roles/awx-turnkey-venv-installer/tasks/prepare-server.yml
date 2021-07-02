@@ -39,11 +39,28 @@
   become: True
   when: ansible_facts['os_family'] == 'RedHat'
 
+- name: Add the user 'awx' with a specific uid and a primary group of 'awx'
+  ansible.builtin.user:
+    name: awx
+    comment: awx service accout
+    uid: 1666
+    group: awx
+  become: true 
+
 - name: Create log dir
   file:
     path: /var/log/tower
-    owner: cloud-user
-    group: cloud-user
+    owner: awx
+    group: awx
+    state: directory
+    mode: "u=rwx,g=rwx,o=r"
+  become: yes
+
+- name: Create log dir
+  file:
+    path: /var/lib/awx
+    owner: awx
+    group: awx
     state: directory
     mode: "u=rwx,g=rwx,o=r"
   become: yes
@@ -51,17 +68,18 @@
 - name: Git checkout awx
   ansible.builtin.git:
     repo: 'https://github.com/ansible/awx.git'
-    dest: /opt/awx
+    dest: /tmp/awx
     version: "{{ awx_image_version }}"
   become: True
+  become_user: awx
 
 - name: Recursively change ownership of the directory
   ansible.builtin.file:
-    path: /opt/awx
+    path: /tmp/awx
     state: directory
     recurse: yes
-    owner: cloud-user
-    group: cloud-user
+    owner: awx
+    group: awx
   become: True
 
 - name:  create venv

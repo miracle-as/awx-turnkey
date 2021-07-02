@@ -1,0 +1,8 @@
+$WorkDirectory {{ awx_home }}/rsyslog
+$MaxMessageSize 700000
+$IncludeConfig {{ awx_home }}/rsyslog/conf.d/*.conf
+main_queue(queue.spoolDirectory="{{ awx_home }}" queue.maxdiskspace="1g" queue.type="Disk" queue.filename="awx-external-logger-backlog")
+module(load="imuxsock" SysSock.Use="off")
+input(type="imuxsock" Socket="/var/run/awx-rsyslog/rsyslog.sock" unlink="on" RateLimit.Burst="0")
+template(name="awx" type="string" string="%rawmsg-after-pri%")
+action(type="omfile" file="/dev/null")
