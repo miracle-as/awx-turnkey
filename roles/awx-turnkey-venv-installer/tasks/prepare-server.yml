@@ -42,7 +42,7 @@
 - name: Add the group 'awx' with a specific gid and
   ansible.builtin.group:
     name: awx
-    comment: awx service accout group
+    state: present
     gid: 1666
   become: True
 
