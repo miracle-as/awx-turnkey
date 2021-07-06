@@ -82,6 +82,15 @@
 
 - name: Recursively change ownership of the directory
   ansible.builtin.file:
+    path: /etc/tower/conf.d
+    state: directory
+    recurse: yes
+    owner: awx
+    group: awx
+  become: True
+
+- name: Recursively change ownership of the directory
+  ansible.builtin.file:
     path: /tmp/awx
     state: directory
     recurse: yes
