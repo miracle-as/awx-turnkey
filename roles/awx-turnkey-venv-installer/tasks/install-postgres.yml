@@ -62,7 +62,7 @@
   ansible.builtin.template:
     src: templates/credentials.py.j2
     dest: /etc/tower/conf.d/postgres.py.j2
-    owner: cloud-user
-    group: cloud-user
+    owner: awx
+    group: awx 
     mode: '0600'
   become: True
