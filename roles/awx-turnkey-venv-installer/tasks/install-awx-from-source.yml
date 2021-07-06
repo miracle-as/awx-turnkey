@@ -187,7 +187,6 @@
 - name: Fetch the secret key from the primary node.
   slurp:
     src: /etc/tower/SECRET_KEY
-  when: inventory_hostname == groups['tower'][0]
   register: secret_key
   #  no_log: True
   become: True
