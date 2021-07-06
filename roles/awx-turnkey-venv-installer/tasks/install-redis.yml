@@ -3,7 +3,7 @@
 
 - name: adding existing user cloud-user to group sudo
   user:
-    name: 'cloud-user'
+    name: 'awx'
     groups: redis
     append: yes
   become: True
