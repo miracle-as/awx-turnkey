@@ -177,10 +177,6 @@
     owner: 'root'
     group: 'awx'
     mode: '0640'
-  when:
-    - inventory_hostname == groups['tower'][0]
-    - secret_key_override is defined
-    - previous_install_status.stat.exists == false
   no_log: False
   become: True
 
@@ -194,7 +190,6 @@
 - name: Fail play when grabbing SECRET_KEY fails
   fail:
     msg: "Failed to read /etc/tower/SECRET_KEY from primary tower node"
-  when: "hostvars[groups['tower'][0]]['secret_key'].content is not defined"
   become: True
 
 - name: Place the secret key on secondary nodes.
@@ -205,7 +200,6 @@
     mode: '0640'
     owner: root
     group: awx
-  when: inventory_hostname != groups['tower'][0]
   no_log: True
   become: True
 
@@ -304,7 +298,6 @@
   set_fact:
     awx_instance_groups: "{{ awx_instance_groups }} + [ '{{ item|regex_replace('^instance_group_','') }}' ]"
   with_items: "{{group_names}}"
-  when: item is match("(^tower|^instance_group_.+)$")
   become: True
 
 - name: Remove Tower rabbitmq settings
@@ -377,7 +370,6 @@
   become: True
   register: tower_migrate
   changed_when: "tower_migrate.stdout is defined and 'No migrations to apply' not in tower_migrate.stdout"
-  when: inventory_hostname == groups['tower'][0]
   become: True
 
 - name: Checking for RBAC migration log
@@ -435,7 +427,6 @@
   become: True
   ignore_errors: yes
   changed_when: super_check.rc > 0
-  when: inventory_hostname == groups['tower'][0]
 
 - name: create django super user if it does not exist
   shell: awx-manage createsuperuser --username={{ admin_username | quote }} --email={{ admin_email | quote }} --noinput
@@ -445,7 +436,6 @@
   become_user: awx
   become: True
   no_log: True
-  when: inventory_hostname == groups['tower'][0] and super_check.rc > 0
 
 - name: update django super user password
   shell: awx-manage update_password --username='{{ admin_username }}' --password='{{ awx_install_admin_password }}'
@@ -454,13 +444,11 @@
   no_log: True
   register: result
   changed_when: "'Password updated' in result.stdout"
-  when: awx_install_admin_password != '' and inventory_hostname == groups['tower'][0]
 
 - name: Collect static files for Tower.
   shell: umask 022 && awx-manage collectstatic --noinput --clear -v0
   become_user: root
   become: True
-  when: tower_package_name == "ansible-tower"
   # When using --clear, this command will *always* result in a change
   # register: awx_collectstatic
   # changed_when: "not awx_collectstatic.stdout_lines[-1].startswith('0 static files')"
