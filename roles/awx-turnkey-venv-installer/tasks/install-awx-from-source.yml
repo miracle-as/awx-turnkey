@@ -189,7 +189,7 @@
     src: /etc/tower/SECRET_KEY
   when: inventory_hostname == groups['tower'][0]
   register: secret_key
-  no_log: True
+  #  no_log: True
   become: True
 
 - name: Fail play when grabbing SECRET_KEY fails
