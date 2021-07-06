@@ -10,6 +10,7 @@
     pkg: [
                 'jq',
                 'redis',
+                'nginx',
                 'git',
                 'python3-virtualenv',
                 'gcc-c++',
