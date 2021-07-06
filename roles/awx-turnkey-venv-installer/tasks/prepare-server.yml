@@ -89,7 +89,7 @@
     group: awx
   become: True
 
-- name: Recursively change ownership of the directory
+- name: Recursirely change ownership of the directory
   ansible.builtin.file:
     path: /tmp/awx
     state: directory
