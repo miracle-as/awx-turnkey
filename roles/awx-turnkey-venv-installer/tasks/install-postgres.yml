@@ -23,6 +23,11 @@
     cmd: /usr/pgsql-12/bin/postgresql-12-setup initdb
   become: True
 
+- name:  start db
+  ansible.builtin.shell:
+    cmd: systemctl start postgresql-12
+  become: True
+
 
 - name: Start service postgres, if not started
   ansible.builtin.service:
