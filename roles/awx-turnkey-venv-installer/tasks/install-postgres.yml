@@ -24,11 +24,12 @@
   become: True
 
 
-- name: Start service httpd, if not started
+- name: Start service postgres, if not started
   ansible.builtin.service:
     name: postgresql-12 
     state: started
     enabled: yes
+  become: True   
 
 - name:  run  create postgres user
   ansible.builtin.shell:
