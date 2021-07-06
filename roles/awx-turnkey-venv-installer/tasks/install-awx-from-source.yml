@@ -186,17 +186,6 @@
   when: results.rc == 0
   become: True
 
-- name: Set database vars
-  set_fact:
-    awx_install_pg_database__: "{{ awx_install_pg_database }}"
-    awx_install_pg_username__: "{{ awx_install_pg_username }}"
-    awx_install_pg_password__: "{{ awx_install_pg_password }}"
-    awx_install_pg_host__: "{{ awx_install_pg_host }}"
-    awx_install_pg_port__: "{{ awx_install_pg_port }}"
-  no_log: True
-  when: results.rc != 0
-  become: True
-
 - name: Generate broadcast websocket secret
   set_fact:
     broadcast_websocket_secret: "{{ lookup('password', '/dev/null length=128') }}"
