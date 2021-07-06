@@ -193,31 +193,6 @@
   no_log: true
   become: True
 
-- name: Configure Towers channels settings.
-  template:
-    dest: /etc/tower/conf.d/channels.py
-    force: yes
-    src: channels.py.j2
-    mode: '0640'
-    owner: root
-    group: awx
-  notify:
-    - restart nginx
-    - restart supervisor
-  become: True
-
-- name: Configure the Insights URL
-  template:
-    dest: /etc/tower/conf.d/insights.py
-    force: yes
-    src: insights.py.j2
-    mode: '0640'
-    owner: root
-    group: awx
-  notify:
-    - restart nginx
-    - restart supervisor
-  become: True
 
 - name: Initialize instance groups for host
   set_fact:
@@ -257,20 +232,6 @@
     dest: /etc/tower/conf.d/container_groups.py
     force: yes
     src: container_groups.py.j2
-    mode: '0640'
-    owner: root
-    group: awx
-  notify:
-    - restart nginx
-    - restart supervisor
-  become: True
-
-- name: Install Tower's settings file if it doesn't already exist.
-  template:
-    dest: /etc/tower/settings.py
-    force: yes
-    backup: yes
-    src: settings.py.j2
     mode: '0640'
     owner: root
     group: awx
@@ -345,10 +306,6 @@
   become_user: root
   become: True
   with_items: "{{ configuration_files.stdout_lines }} + ['/etc/tower/settings.py']"
-
-- name: Set ACL rule for awx user to access rhsm.conf
-  shell: setfacl -m u:awx:r /etc/rhsm/rhsm.conf
-  become: True
 
 - name: Check for Tower Super users
   shell: echo "from django.contrib.auth.models import User; nsu = User.objects.filter(is_superuser=True).count(); exit(0 if nsu > 0 else 1)" | awx-manage shell
