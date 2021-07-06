@@ -197,17 +197,6 @@
   when: results.rc != 0
   become: True
 
-- name: Set database vars
-  set_fact:
-    awx_install_pg_database__: "{{ awx_install_pg_database or tower_db_settings.default.NAME }}"
-    awx_install_pg_username__: "{{ awx_install_pg_username or tower_db_settings.default.USER }}"
-    awx_install_pg_password__: "{{ awx_install_pg_password or tower_db_settings.default.PASSWORD }}"
-    awx_install_pg_host__: "{{ awx_install_pg_host or tower_db_settings.default.HOST }}"
-    awx_install_pg_port__: "{{ awx_install_pg_port or tower_db_settings.default.PORT }}"
-  no_log: True
-  when: results.rc == 0
-  become: True
-
 - name: Generate broadcast websocket secret
   set_fact:
     broadcast_websocket_secret: "{{ lookup('password', '/dev/null length=128') }}"
