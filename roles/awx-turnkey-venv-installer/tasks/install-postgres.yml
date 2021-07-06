@@ -31,6 +31,10 @@
     enabled: yes
   become: True   
 
+- name: sleep
+  pause: 
+    seconds: 5
+
 - name:  run  create postgres user
   ansible.builtin.shell:
     cmd: createuser awx
