@@ -181,7 +181,7 @@
     - inventory_hostname == groups['tower'][0]
     - secret_key_override is defined
     - previous_install_status.stat.exists == false
-  no_log: True
+  no_log: False
   become: True
 
 - name: Fetch the secret key from the primary node.
