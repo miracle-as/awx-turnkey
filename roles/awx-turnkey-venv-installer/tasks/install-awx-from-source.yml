@@ -36,10 +36,6 @@
     groups: nginx
   become: True
 
-- name: Configure the Tower settings directory.
-  file: path=/etc/tower state=directory owner=root group=awx mode=0755
-  become: True
-
 - name: Configure the Tower socket directory.
   file: path=/var/run/tower state=directory owner=nginx group=nginx mode=2775
   become: True
@@ -169,15 +165,15 @@
   register: previous_install_status
   become: True
 
-- name: Get tower db settings
-  shell: "awx-manage print_settings | grep '^DATABASES'"
-  become_user: awx
-  become: True
-  register: results
-  changed_when: False
-  failed_when: false
-  no_log: True
-  become: True
+  #- name: Get tower db settings
+  #shell: "awx-manage print_settings | grep '^DATABASES'"
+  #become_user: awx
+  #become: True
+  #register: results
+  #changed_when: False
+  #failed_when: false
+  #no_log: True
+  #become: True
 
 - name: Generate broadcast websocket secret
   set_fact:
