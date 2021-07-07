@@ -227,19 +227,6 @@
     state: absent
   become: True
 
-- name: Set default image for Container Groups
-  template:
-    dest: /etc/tower/conf.d/container_groups.py
-    force: yes
-    src: container_groups.py.j2
-    mode: '0640'
-    owner: root
-    group: awx
-  notify:
-    - restart nginx
-    - restart supervisor
-  become: True
-
 - name: Stop supervisor
   service:
     name: 'supervisord'
