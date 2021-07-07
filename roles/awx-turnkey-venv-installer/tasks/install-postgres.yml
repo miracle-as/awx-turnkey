@@ -30,17 +30,17 @@
     enabled: yes
   become: True   
 
-- name:  run  create postgres user
-  ansible.builtin.shell:
-    cmd: createuser awx
-  become: True
-  become_user: postgres
+  #- name:  run  create postgres user
+  #ansible.builtin.shell:
+  #  cmd: createuser awx
+  #become: True
+  #become_user: postgres
 
-- name: create postgress db
-  ansible.builtin.shell:
-    cmd: createdb awx -O awx
-  become: True
-  become_user: postgres
+- #name: create postgress db
+  #ansible.builtin.shell:
+  #  cmd: createdb awx -O awx
+  #become: True
+  #become_user: postgres
 
 - name: set password 
   ansible.builtin.shell:
