@@ -179,52 +179,11 @@
   no_log: True
   become: True
 
-- name: Ingest database settings
-  set_fact:
-    tower_db_settings: "{{ results.stdout | regex_replace('DATABASES\\s+= ', '') }}"
-  no_log: True
-  when: results.rc == 0
-  become: True
-
 - name: Generate broadcast websocket secret
   set_fact:
     broadcast_websocket_secret: "{{ lookup('password', '/dev/null length=128') }}"
   run_once: true
   no_log: true
-  become: True
-
-
-- name: Initialize instance groups for host
-  set_fact:
-    awx_instance_groups: []
-  become: True
-
-- name: Determine instance groups for host
-  set_fact:
-    awx_instance_groups: "{{ awx_instance_groups }} + [ '{{ item|regex_replace('^instance_group_','') }}' ]"
-  with_items: "{{group_names}}"
-  become: True
-
-- name: Remove Tower rabbitmq settings
-  file:
-    path: /etc/tower/conf.d/rabbitmq.py
-    state: absent
-  become: True
-
-- name: Configure Tower CLUSTER_HOST_ID setting
-  template:
-    dest: /etc/tower/conf.d/cluster_host_id.py
-    force: yes
-    src: cluster_host_id.py.j2
-    mode: '0640'
-    owner: root
-    group: awx
-  become: True
-
-- name: Remove Tower memcached settings
-  file:
-    path: /etc/tower/conf.d/caching.py
-    state: absent
   become: True
 
 - name: Stop supervisor
