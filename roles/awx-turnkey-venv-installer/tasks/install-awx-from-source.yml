@@ -283,17 +283,6 @@
   changed_when: false
   become: True
 
-- name: Clean up any poorly-permissioned Tower configuration files on upgrade
-  file:
-    path: "{{ item }}"
-    state: file
-    owner: root
-    group: awx
-    mode: 0640
-  become_user: root
-  become: True
-  with_items: "{{ configuration_files.stdout_lines }} + ['/etc/tower/settings.py']"
-
 - name: Check for Tower Super users
   shell: echo "from django.contrib.auth.models import User; nsu = User.objects.filter(is_superuser=True).count(); exit(0 if nsu > 0 else 1)" | awx-manage shell
   register: super_check
