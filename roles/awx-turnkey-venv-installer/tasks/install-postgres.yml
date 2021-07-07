@@ -13,28 +13,15 @@
     cmd:  dnf -y install postgresql12 postgresql12-server
   become: True
 
-- name: destroy database
-  ansible.builtin.shell:
-    cmd: rm -fr  /var/lib/pgsql/12/data/
-  become: True
+  #- name: destroy database
+  #ansible.builtin.shell:
+  #  cmd: rm -fr  /var/lib/pgsql/12/data/
+  #become: True
 
-- name:  run initdb
-  ansible.builtin.shell:
-    cmd: /usr/pgsql-12/bin/postgresql-12-setup initdb
-  become: True
-
-- name: sleep
-  pause: 
-    seconds: 5
-
-- name:  start db
-  ansible.builtin.shell:
-    cmd: systemctl start postgresql-12
-  become: True
-
-- name: sleep
-  pause: 
-    seconds: 5
+- #name:  run initdb
+  #ansible.builtin.shell:
+  #  cmd: /usr/pgsql-12/bin/postgresql-12-setup initdb
+  #become: True
 
 - name: Start service postgres, if not started
   ansible.builtin.service:
@@ -42,10 +29,6 @@
     state: started
     enabled: yes
   become: True   
-
-- name: sleep
-  pause: 
-    seconds: 5
 
 - name:  run  create postgres user
   ansible.builtin.shell:
