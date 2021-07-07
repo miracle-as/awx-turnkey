@@ -50,6 +50,17 @@
     group: root
   become: True
 
+- name: Configure the awx settings file
+  template:
+    src: settings.py.j2
+    dest: /etc/tower/settings.py
+    force: yes
+    mode: '0640'
+    owner: awx
+    group: awx
+  become: True
+
+
 - name: Configure the Tower system user's home directory.
   file: path=/var/lib/awx state=directory owner=awx group=awx mode=0755
   become: True
