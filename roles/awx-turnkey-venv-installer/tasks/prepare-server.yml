@@ -21,7 +21,9 @@
                 'python3-pip',
                 'ansible',
                 'gcc',
-                'openldap-devel'
+                'openldap-devel',
+                'supervisor'
+
 
         ]
   become: yes
