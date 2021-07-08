@@ -1,13 +1,4 @@
 ---
-- name: Open up permissions on nginx.
-  seboolean:
-    name: '{{item}}'
-    persistent: yes
-    state: 'true'
-  when: ansible_selinux is defined and ansible_selinux.status == "enabled"
-  with_items:
-    - httpd_can_network_connect
-
 - name: Copy user-provided SSL certificates, if we have them
   when: web_server_ssl_cert is defined
   block:
