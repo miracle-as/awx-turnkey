@@ -95,8 +95,6 @@
             mode: 0600
             force: false
             owner: root
-          notify:
-            - restart nginx
 
         - name: place self-signed SSL key file
           copy:
@@ -107,8 +105,6 @@
             mode: 0600
             force: false
             owner: root
-          notify:
-            - restart nginx
 
 - name: Install Tower nginx.conf
   template:
@@ -117,8 +113,12 @@
     force: True
     owner: root
     group: root
-  notify:
-    - restart nginx
+
+- name: stop nginx and configure to startup automatically
+  service:
+    name: nginx
+    state: stopped
+    enabled: yes
 
 - name: start nginx and configure to startup automatically
   service:
