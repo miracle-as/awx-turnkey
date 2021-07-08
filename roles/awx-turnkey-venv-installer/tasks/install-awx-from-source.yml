@@ -187,4 +187,5 @@
     mode: '0640'
     owner: root
     group: root
+  become: True
 
