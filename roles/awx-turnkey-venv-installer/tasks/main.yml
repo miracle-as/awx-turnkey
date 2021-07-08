@@ -8,7 +8,7 @@
 #  import_tasks: install-redis.yml 
 
 - name: install awx from source
-  import_tasks: install-awx-from-source.yml
+  import_tasks: nginx.yml
 
   #- name: setup awx services
   # import_tasks: setup-awx-services.yml
