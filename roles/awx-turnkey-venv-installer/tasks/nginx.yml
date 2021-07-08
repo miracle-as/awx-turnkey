@@ -28,8 +28,6 @@
   block:
 
     - name: Create the self-signed cert on the first tower host
-      when: inventory_hostname == groups['tower'][0]
-
       block:
 
         - name: Create temporary directory for openssl config
