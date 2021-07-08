@@ -43,6 +43,7 @@
             group: awx
             owner: root
             mode: 0600
+          become: True
 
         - name: create self signed SSL certificates
           command: openssl req -x509 -nodes -sha256 -days 824 -newkey rsa:2048 -keyout /etc/tower/tower.key -out /etc/tower/tower.cert -config {{ tempfile_results.path }}/openssl.cnf
@@ -50,6 +51,7 @@
             creates: /etc/tower/tower.cert
           notify:
             - restart nginx
+          become: True
 
         - name: set permissions on self-signed SSL certificate
           file:
@@ -61,6 +63,7 @@
           with_items:
           - /etc/tower/tower.cert
           - /etc/tower/tower.key
+          become: True
 
         - name: slurp self-signed SSL certificate
           slurp:
