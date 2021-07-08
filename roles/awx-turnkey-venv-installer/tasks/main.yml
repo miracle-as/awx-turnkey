@@ -1,16 +1,16 @@
-- name: Prepare server
-  import_tasks: prepare-server.yml 
+#- name: Prepare server
+#  import_tasks: prepare-server.yml 
 
-- name: install postgress
-  import_tasks: install-postgres.yml 
+#- name: install postgress
+# import_tasks: install-postgres.yml 
 
-- name: install redis
-  import_tasks: install-redis.yml 
+#- name: install redis
+#  import_tasks: install-redis.yml 
 
-- name: install awx from source
-  import_tasks: install-awx-from-source.yml
+#- name: install awx from source
+#  import_tasks: install-awx-from-source.yml
 
-- name: setup awx services½
+- name: setup awx services
   import_tasks: setup-awx-services.yml
 
 #  import_tasks: install-awx-venv-single.yml
