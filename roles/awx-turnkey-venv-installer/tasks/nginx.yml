@@ -83,29 +83,6 @@
             state: absent
           when: tempfile_results is defined and tempfile_results.path is defined
 
-    - name: Copy the cert we just created to additional hosts
-      block:
-
-        - name: place self-signed SSL certificates
-          copy:
-            content: "{{ hostvars[groups['tower'][0]]['tower_cert']['content'] | b64decode }}"
-            dest: /etc/tower/tower.cert
-            group: awx
-            follow: yes
-            mode: 0600
-            force: false
-            owner: root
-
-        - name: place self-signed SSL key file
-          copy:
-            content: "{{ hostvars[groups['tower'][0]]['tower_key']['content'] | b64decode }}"
-            dest: /etc/tower/tower.key
-            group: awx
-            follow: yes
-            mode: 0600
-            force: false
-            owner: root
-
 - name: Install Tower nginx.conf
   template:
     src: nginx.conf
