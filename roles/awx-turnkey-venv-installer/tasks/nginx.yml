@@ -83,7 +83,6 @@
           when: tempfile_results is defined and tempfile_results.path is defined
 
     - name: Copy the cert we just created to additional hosts
-      when: inventory_hostname != groups['tower'][0]
       block:
 
         - name: place self-signed SSL certificates
