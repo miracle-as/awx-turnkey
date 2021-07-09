@@ -178,6 +178,7 @@
 
 - name: Configure the Rsyslog socket directory.
   file: path=/var/run/awx-rsyslog state=directory owner=awx group=awx mode=0750
+  become: True
 
 - name: Create tmpfiles.d entry for rsyslog socket directory
   template:
