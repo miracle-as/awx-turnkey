@@ -29,6 +29,10 @@
   when: dir_files.matched|int != 0
   become: True
 
+- name: Pause for 5 seconds to settle
+  pause:
+    seconds: 5
+
 - name: Start service postgres, if not started
   ansible.builtin.service:
     name: postgresql-12 
