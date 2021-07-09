@@ -68,16 +68,19 @@
     force: True
     owner: root
     group: root
+  become: True
 
 - name: stop nginx and configure to startup automatically
   service:
     name: nginx
     state: stopped
     enabled: yes
+  become: True
 
 - name: start nginx and configure to startup automatically
   service:
     name: nginx
     state: started
     enabled: yes
+  become: True
 
