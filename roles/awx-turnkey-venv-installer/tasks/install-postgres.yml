@@ -40,7 +40,7 @@
     enabled: yes
   become: True   
 
-  - name:  run  create postgres user
+- name:  run  create postgres user
   ansible.builtin.shell:
     cmd: createuser awx
   when: dir_files.matched|int != 0
