@@ -17,10 +17,16 @@
   #ansible.builtin.shell:
   #  cmd: rm -fr  /var/lib/pgsql/12/data/
   #become: True
+  #
+  #
+- name: "are we new"
+  find: paths=/var/lib/pgsql/12/data/ file_type=directory patterns="*"
+  register: dir_files
 
 - name:  run initdb
   ansible.builtin.shell:
     cmd: /usr/pgsql-12/bin/postgresql-12-setup initdb
+  when: dir_files.matched|int != 0
   become: True
 
 - name: Start service postgres, if not started
