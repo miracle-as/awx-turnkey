@@ -8,4 +8,4 @@
 - hosts:  awx-turnkey-k8s
   gather_facts: yes
   roles:
-   - role: awx-turnkey-venv-installer
+   - role: awx-turnkey-k8s-installer
