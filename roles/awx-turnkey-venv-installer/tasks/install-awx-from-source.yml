@@ -189,3 +189,9 @@
     group: root
   become: True
 
+
+- name: Collect static files for Tower.
+  shell: umask 022 && awx-manage collectstatic --noinput --clear -v0
+  become_user: root
+  become: True
+

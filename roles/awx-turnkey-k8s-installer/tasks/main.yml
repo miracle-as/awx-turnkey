@@ -1,0 +1,114 @@
+
+- name: Enable EPEL Repository on CentOS 8
+  dnf:
+    name: epel-release
+    state: latest
+  become: True
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- name: depend | Ensure dependencies are installed.
+  dnf:
+    pkg: [      
+                'jq',
+                'git',
+                'gcc-c++',
+                'nodejs',
+                'device-mapper-persistent-data',
+                'lvm2',
+                'bzip2',
+                'python3-pip',
+                'ansible',
+                'gcc',
+                'libvirt',
+                'qemu-kvm',
+                'virt-install', 
+                'virt-top', 
+                'libguestfs-tools',
+                'bridge-utils'
+        ]
+  become: yes
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- name: Reload service libvirtd, in all cases
+  ansible.builtin.service:
+    name: libvirtd
+    state: reloaded
+  become: yes
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- name: Enable service libvirtd, and not touch the state
+  ansible.builtin.service:
+    name: libvirtd
+    enabled: yes
+  become: yes
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- name: adding existing user cloud-user to group libvirt
+  user:
+    name: cloud-user
+    groups: libvirt
+    append: yes
+  become: True
+
+- name: Copy kubectl downloader
+  ansible.builtin.copy:
+    src: files/getkubectl.sh
+    dest: /usr/bin/getkubectl.sh
+    owner: root
+    group: root
+    mode: '0755'
+  become: True
+
+- name: Copy libvirt config
+  ansible.builtin.copy:
+    src: files/libvirtd.conf 
+    dest: /etc/libvirt/libvirtd.conf
+    owner: root
+    group: root
+    mode: '0644'
+  become: True
+
+- name: Start service libvirtd, if not started
+  ansible.builtin.service:
+    name: libvirtd
+    state: started
+  become: yes
+  when: ansible_facts['os_family'] == 'RedHat'
+
+
+- name: Download minikube
+  get_url:
+    url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    dest: /usr/bin/minikube
+    owner: root
+    group: root
+    mode: '0755'
+  become: True
+
+- name:  run kubectl collecter
+  ansible.builtin.shell:
+    cmd: /usr/bin/getkubectl.sh
+  become: True
+
+- name:  run minicube
+  ansible.builtin.shell:
+    cmd: minikube start --addons=ingress --cpus=8 --cni=flannel --install-addons=true  --kubernetes-version=stable --memory=14g
+
+- name:  run awx operator
+  ansible.builtin.shell:
+    cmd: kubectl apply -f https://raw.githubusercontent.com/ansible/awx-operator/{{ awx_operator }}/deploy/awx-operator.yaml
+
+
+- name: create awx server yaml
+  ansible.builtin.template:
+    src: templates/awxserver.yml.j2
+    dest: /opt/awxserver.yml
+    owner: root
+    group: root
+    mode: '0755'
+  become: True
+
+- name:  run deploy awx server
+  ansible.builtin.shell:
+    cmd: kubectl apply -f /opt/awxserver.yml
+
