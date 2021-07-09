@@ -2,7 +2,7 @@
   import_tasks: prepare-server.yml 
 
 - name: install postgress
- import_tasks: install-postgres.yml 
+  import_tasks: install-postgres.yml 
 
 - name: install redis
   import_tasks: install-redis.yml 
