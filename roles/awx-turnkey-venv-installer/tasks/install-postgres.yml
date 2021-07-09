@@ -43,18 +43,21 @@
 - name:  run  create postgres user
   ansible.builtin.shell:
     cmd: createuser awx
+  when: dir_files.matched|int != 0
   become: True
   become_user: postgres
 
 - name: create postgress db
   ansible.builtin.shell:
     cmd: createdb awx -O awx
+  when: dir_files.matched|int != 0
   become: True
   become_user: postgres
 
 - name: set password 
   ansible.builtin.shell:
     cmd: psql -c "ALTER USER awx PASSWORD '{{ awx_db_password }}';"
+  when: dir_files.matched|int != 0
   become: True
   become_user: postgres
   
