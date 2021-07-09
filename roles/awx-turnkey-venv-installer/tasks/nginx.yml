@@ -61,24 +61,6 @@
           - /etc/tower/tower.key
           become: True
 
-        - name: slurp self-signed SSL certificate
-          slurp:
-            src: /etc/tower/tower.cert
-          register: tower_cert
-          no_log: True
-
-        - name: slurp self-signed SSL key
-          slurp:
-            src: /etc/tower/tower.key
-          register: tower_key
-          no_log: True
-      always:
-        - name: Remove the temporary openssl config directory and file
-          file:
-            path: "{{ tempfile_results.path }}"
-            state: absent
-          when: tempfile_results is defined and tempfile_results.path is defined
-
 - name: Install Tower nginx.conf
   template:
     src: nginx.conf
