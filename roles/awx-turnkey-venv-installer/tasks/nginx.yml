@@ -10,8 +10,6 @@
         owner: root
         group: awx
         mode: 0600
-      notify:
-        - restart nginx
 
     - name: Copy SSL private key
       copy:
@@ -20,8 +18,6 @@
         owner: root
         group: awx
         mode: 0600
-      notify:
-        - restart nginx
 
 - name: Set up self-signed SSL certificate, if the user did not provide one
   when: web_server_ssl_cert is not defined
