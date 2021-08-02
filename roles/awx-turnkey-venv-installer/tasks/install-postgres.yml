@@ -20,7 +20,7 @@
     enabled: yes
   become: True   
 
-  - name: destroy database
+- name: destroy database
   ansible.builtin.shell:
     cmd: rm -fr  /var/lib/pgsql/12/data/
   become: True
