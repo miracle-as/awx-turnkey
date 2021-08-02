@@ -13,12 +13,19 @@
     cmd:  dnf -y install postgresql12 postgresql12-server
   become: True
 
-  #- name: destroy database
-  #ansible.builtin.shell:
-  #  cmd: rm -fr  /var/lib/pgsql/12/data/
-  #become: True
-  #
-  #
+- name: Stop service postgres, if not stopped
+  ansible.builtin.service:
+    name: postgresql-12 
+    state: stopped
+    enabled: yes
+  become: True   
+
+  - name: destroy database
+  ansible.builtin.shell:
+    cmd: rm -fr  /var/lib/pgsql/12/data/
+  become: True
+  
+  
 - name: "are we new"
   find: paths=/var/lib/pgsql/12/data/ file_type=directory patterns="*"
   register: dir_files
@@ -44,14 +51,14 @@
 - name:  run  create postgres user
   ansible.builtin.shell:
     cmd: createuser awx
-  when: dir_files.matched|int != 0
+  when: dir_files.matched|int == 0
   become: True
   become_user: postgres
 
 - name: create postgress db
   ansible.builtin.shell:
     cmd: createdb awx -O awx
-  when: dir_files.matched|int != 0
+  when: dir_files.matched|int == 0
   become: True
   become_user: postgres
 
