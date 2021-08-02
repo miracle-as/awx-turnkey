@@ -65,7 +65,7 @@
 - name: set password 
   ansible.builtin.shell:
     cmd: psql -c "ALTER USER awx PASSWORD '{{ awx_db_password }}';"
-  when: dir_files.matched|int != 0
+  when: dir_files.matched|int == 0
   become: True
   become_user: postgres
   
