@@ -78,6 +78,13 @@
     mode: '0600'
   become: True
 
+- name: Restart service postgres, if not restarted
+  ansible.builtin.service:
+    name: postgresql-12 
+    state: restarted
+    enabled: yes
+  become: True   
+
 - name: create postgress credentials
   ansible.builtin.template:
     src: templates/credentials.py.j2
