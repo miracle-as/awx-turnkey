@@ -215,7 +215,7 @@
     grouy: awx
   become: True
 
-- name: Change kubeconfig file permission
+- name: Change file permission on var lib awx
   file:
     path: /var/lib/awx
     owner: "awx"
@@ -223,8 +223,63 @@
     recurse: yes
   become: True
 
+- name: configure tower run socket dir
+  file: path=/var/run/tower  state=directory owner=awx group=awx mode=0770
+  become: True
+
 - name: Collect static files for Tower.
   shell: /usr/local/bin/collect_static_files.sh
   become_user: awx
   become: True
 
+- name: Create systemd service cbreceiver
+  template:
+    src:  awx-cbreceiver.service.j2
+    dest: /usr/lib/systemd/system/awx-cbreceiver.service
+    force: yes
+    mode: '0644'
+    owner: root
+    group: root
+  become: True
+
+
+- name: Create systemd service awx-channels-worker.service
+  template:
+    src:  awx-channels-worker.service.j2
+    dest: /usr/lib/systemd/system/awx-channels-worker.service
+    force: yes
+    mode: '0644'
+    owner: root
+    group: root
+  become: True
+
+
+- name: Create systemd service  awx-daphne.service
+  template:
+    src:  awx-daphne.service.j2
+    dest: /usr/lib/systemd/system/awx-daphne.service
+    force: yes
+    mode: '0644'
+    owner: root
+    group: root
+  become: True
+
+- name: Create systemd service  awx-web
+  template:
+    src:  awx-web.service.j2
+    dest: /usr/lib/systemd/system/awx-web.service
+    force: yes
+    mode: '0644'
+    owner: root
+    group: root
+  become: True
+
+- name: Create systemd service  dispather
+  template:
+    src:  awx-dispatcher.service.j2
+    dest: /usr/lib/systemd/system/awx-dispather.service
+    force: yes
+    mode: '0644'
+    owner: root
+    group: root
+  become: True
