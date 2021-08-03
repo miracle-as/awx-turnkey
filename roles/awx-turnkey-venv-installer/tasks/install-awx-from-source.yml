@@ -212,9 +212,15 @@
     force: yes
     mode: '0750'
     owner: awx
-    group: awx
+    grouy: awx
   become: True
 
+- name: Change kubeconfig file permission
+  file:
+    path: /var/lib/awx/public/static
+    owner: "awx"
+    group: "awx"
+  become: True
 
 - name: Collect static files for Tower.
   shell: /usr/local/bin/collect_static_files.sh
