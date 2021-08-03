@@ -213,7 +213,7 @@
 
 
 - name: Collect static files for Tower.
-  shell: source /var/awx/venv/bin/activate && umask 022 && awx-manage collectstatic --noinput --clear -v0
-  become_user: root
+  shell: /usr/local/bin/collect_static_files.sh
+  become_user: awx
   become: True
 
