@@ -10,3 +10,7 @@ else
     echo "Static files export failed"
     exit 1
 fi 
+
+echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'root@localhost', 'password')" | GIT_PYTHON_REFRESH=quiet awx-manage shell
+GIT_PYTHON_REFRESH=quiet awx-manage provision_instance --hostname=$(hostname)
+GIT_PYTHON_REFRESH=quiet awx-manage register_queue --queuename=tower --hostnames=$(hostname)
