@@ -196,6 +196,17 @@
     grouy: awx
   become: True
 
+- name: create run-manage script
+  template:
+    src: run_awx-manage.sh.j2
+    dest: /usr/local/bin/run_awx-manage.sh
+    force: yes
+    mode: '0770'
+    owner: awx
+    grouy: awx
+  become: True
+
+
 - name: Change file permission on var lib awx
   file:
     path: /var/lib/awx
