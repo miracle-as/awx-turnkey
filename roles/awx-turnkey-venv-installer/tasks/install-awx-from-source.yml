@@ -201,6 +201,17 @@
   become: True
 
 
+- name: create export script
+  template:
+    src: collect_static_files.sh.j2
+    dest: /usr/local/bin/collect_static_files.sh
+    force: yes
+    mode: '0750'
+    owner: awx
+    group: awx
+  become: True
+
+
 - name: Collect static files for Tower.
   shell: source /var/awx/venv/bin/activate && umask 022 && awx-manage collectstatic --noinput --clear -v0
   become_user: root

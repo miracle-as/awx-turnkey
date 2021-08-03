@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+source {{ awx_venv}}/bin/activate &&  umask 022 && awx-manage collectstatic --noinput --clear -v0
+if [[ $? == 0 ]];
+then
+    echo "Static files exported"
+    exit 0
+else
+    echo "Static files export failed"
+    exit 1
+fi 
