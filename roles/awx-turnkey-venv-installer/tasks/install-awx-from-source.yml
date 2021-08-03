@@ -224,17 +224,6 @@
   become: True
 
 
-- name: Create systemd service awx-channels-worker.service
-  template:
-    src:  awx-channels-worker.service.j2
-    dest: /usr/lib/systemd/system/awx-channels-worker.service
-    force: yes
-    mode: '0644'
-    owner: root
-    group: root
-  become: True
-
-
 - name: Create systemd service  awx-daphne.service
   template:
     src:  awx-daphne.service.j2
