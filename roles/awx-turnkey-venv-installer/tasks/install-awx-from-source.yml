@@ -129,15 +129,6 @@
 
 # When running with an external database, we need to remove 'postgresql' from
 # the list of tower managed services.
-- name: Update ansible-tower systemd configuration
-  template:
-    src: ansible-tower.service.j2
-    dest: '/lib/systemd/system/ansible-tower.service'
-    owner: root
-    group: root
-    mode: '0644'
-  become: True
-
 - name: Update dependent service configuration
   file:
     path: "/etc/systemd/system/{{ item }}.service.d"
