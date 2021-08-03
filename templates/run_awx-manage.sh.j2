@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+source {{ awx_venv}}/bin/activate &&  umask 022 && awx-manage $1
