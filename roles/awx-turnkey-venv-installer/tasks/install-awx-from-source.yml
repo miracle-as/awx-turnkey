@@ -200,6 +200,10 @@
     group: root
   become: True
 
+#Something needs to be done to calculate the path
+- name: configure tower static file directory
+  file: path=/var/awx/venv/lib64/python3.6/site-packages/awx-19.1.0-py3.6.egg/awx/ui_next/build/static  state=directory owner=awx group=awx mode=0750 recurse=yes
+  become: True
 
 - name: create export script
   template:
