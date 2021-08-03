@@ -254,6 +254,26 @@
     group: root
   become: True
 
+- name: Create systemd service cbreceiver
+  template:
+    src:  awx-cbreceiver.service.j2
+    dest: /usr/lib/systemd/system/awx-cbreceiver.service
+    force: yes
+    mode: '0644'
+    owner: root
+    group: root
+  become: True
+
+- name: Create systemd service awx-wsbroadcast.service 
+  template:
+    src:  awx-wsbroadcast.service.j2
+    dest: /usr/lib/systemd/system/awx-wsbroadcast.service
+    force: yes
+    mode: '0644'
+    owner: root
+    group: root
+  become: True
+
 - name: Create systemd service  awx
   template:
     src:  awx.service.j2
