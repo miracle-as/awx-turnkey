@@ -217,9 +217,10 @@
 
 - name: Change kubeconfig file permission
   file:
-    path: /var/lib/awx/public/static
+    path: /var/lib/awx
     owner: "awx"
     group: "awx"
+    recurse: yes
   become: True
 
 - name: Collect static files for Tower.
