@@ -193,7 +193,7 @@
     force: yes
     mode: '0750'
     owner: awx
-    grouy: awx
+    group: awx
   become: True
 
 - name: create run-manage script
@@ -203,7 +203,7 @@
     force: yes
     mode: '0770'
     owner: awx
-    grouy: awx
+    group: awx
   become: True
 
 
