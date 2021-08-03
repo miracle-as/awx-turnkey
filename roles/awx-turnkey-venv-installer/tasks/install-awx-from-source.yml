@@ -50,6 +50,16 @@
     group: root
   become: True
 
+- name: generate the secret key 
+  template:
+    src: SECRET_KEY.j2
+    dest: /etc/tower/SECRET_KEY
+    force: yes
+    mode: '0640'
+    owner: awx
+    group: awx
+  become: True
+
 - name: Configure the awx settings file
   template:
     src: settings.py.j2
