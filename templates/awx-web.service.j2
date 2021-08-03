@@ -7,9 +7,10 @@ After=awx.service
 [Service]
 EnvironmentFile=-/etc/sysconfig/awx
 Environment=AWX_SETTINGS_FILE=/etc/tower/settings.py
-Environment=PATH=/opt/awx/bin:/bin:/sbin:/usr/bin:/usr/sbin
+Environment=PATH=/bin:/sbin:/usr/bin:/usr/sbin:/var/awx/venv/bin
 
-ExecStart=/usr/bin/uwsgi \
+
+ExecStart={{ awx_venv }}/bin/uwsgi \
         --socket 127.0.0.1:8050 \
         --module=awx.wsgi:application \
         --logto=/var/log/tower/web.log \
