@@ -117,16 +117,6 @@
     mode: '0744'
   become: True
 
-# Update service configuration information for the ansible-tower-service script
-- name: Update ansible-tower-service configuration
-  template:
-    src: ansible-tower.sysconfig.j2
-    dest: '/etc/sysconfig/ansible-tower'
-    owner: root
-    group: root
-    mode: '0644'
-  become: True
-
 # When running with an external database, we need to remove 'postgresql' from
 # the list of tower managed services.
 - name: Update dependent service configuration
