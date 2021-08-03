@@ -283,3 +283,13 @@
     owner: root
     group: root
   become: True
+
+- name: Create systemd service  awx
+  template:
+    src:  awx.service.j2
+    dest: /usr/lib/systemd/system/awx.service
+    force: yes
+    mode: '0644'
+    owner: root
+    group: root
+  become: True
