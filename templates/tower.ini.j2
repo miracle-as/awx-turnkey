@@ -57,7 +57,7 @@ stdout_logfile_maxbytes = 10MB
 stdout_logfile_backups = 10
 
 [program:awx-daphne]
-command = {{ awx_virtual_environment }}/bin/daphne -u /var/run/tower/daphne.sock awx.asgi:channel_layer
+command = {{ awx_virtual_environment }}/bin/daphne 
 directory = {{ awx_home }}
 user = {{ awx_user }}
 autostart = true
