@@ -8,6 +8,17 @@
     append: yes
   become: True
 
+- name: enable socket in redist
+  template:
+    src:  redis.conf.j2
+    dest: /etc/redus.conf
+    force: yes
+    mode: '0644'
+    owner: root
+    group: root
+  become: True
+
+
 - name: Start service redis, if not started
   ansible.builtin.service:
     name: redis
