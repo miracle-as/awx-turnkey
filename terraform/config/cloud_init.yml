@@ -1,0 +1,25 @@
+#cloud-config
+# vim: syntax=yaml
+# examples:
+# https://cloudinit.readthedocs.io/en/latest/topics/examples.html
+bootcmd:
+  - echo 192.168.0.1 gw.homedns.xyz >> /etc/hosts
+runcmd:
+ - [ ls, -l, / ]
+ - [ sh, -xc, "echo $(date) ': hello world!'" ]
+ssh_pwauth: true
+disable_root: false
+chpasswd:
+  list: |
+     root:password
+  expire: false
+users:
+  - name: cloud-user
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users, admin
+    home: /home/cloud-user
+    shell: /bin/bash
+    lock_passwd: false
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCqcOOjgs0Gqpkqtcnmvp7dgxicxi3qHX6Fz/3RDzREQFwCt0HumDs9I5D0Bx0NIGqcW78bHjsn1l9OFqIahD4SF9vNYya3chG4oR1NTDCHwVyLq9eaODmGF915BXensi/jW2qKQInCG8t2d+LyoE0xNq09TH2Hhkms+PmPIK3Nm7iP/0U7XqaiUx8sZmn/NciVeBDfjAICRTM6etYweSExd+yB5HJddd62kpexg4mLCzF1oaQScrD+V2rSxYyYU6dDBKQgkUYnrXFtYMaPZkw5YntFDCTVo4rRPF/bOjL6KBDmIWjKA7aFE/0FQ0KlW/88OKp8cW6QMCTADbzQza8GgX8fvFjWC5ufJ9z/K0v5vnigUGbueRfUmAjZP5BQPOXX40/2VycTnIcMpcifGuq3ZuqFMOvEcHscEDba+odHfb0aZrks9zoQBbFndUIZQjLigK7u5p1StNONKNaFTK1Q3AT+jRZqiSOdW5sUaXME66kkLDc4otXFZnwdjDG3rgE= jho@massmaster
+final_message: "The system is finally up, after $UPTIME seconds"

@@ -155,12 +155,6 @@
   command: systemctl daemon-reload
   become: True
 
-- name: Enable the ansible-tower service
-  service:
-    name: ansible-tower
-    enabled: true
-  become: True
-
 - name: Check if this is a fresh installation
   stat:
     path: /var/lib/awx/.tower_version
@@ -255,10 +249,10 @@
     group: root
   become: True
 
-- name: Create systemd service  dispather
+- name: Create systemd service  dispatcher
   template:
     src:  awx-dispatcher.service.j2
-    dest: /usr/lib/systemd/system/awx-dispather.service
+    dest: /usr/lib/systemd/system/awx-dispatcher.service
     force: yes
     mode: '0644'
     owner: root
@@ -293,4 +287,8 @@
     mode: '0644'
     owner: root
     group: root
+  become: True
+
+- name: Reload systemd configuration
+  command: systemctl daemon-reload
   become: True
