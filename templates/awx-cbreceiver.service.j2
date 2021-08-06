@@ -10,7 +10,7 @@ Group=awx
 EnvironmentFile=-/etc/sysconfig/awx
 Environment=AWX_SETTINGS_FILE=/etc/tower/settings.py
 Environment=PATH=/bin:/sbin:/usr/bin:/usr/sbin:/var/awx/venv/bin
-ExecStart={{ awx_venv }}/bin/awx-manage run_callback_receiver
+ExecStart=/var/awx/venv/bin/awx-manage run_callback_receiver
 Restart=on-failure
 RestartSec=2s
 

@@ -9,7 +9,7 @@ Group=awx
 EnvironmentFile=-/etc/sysconfig/awx
 Environment=AWX_SETTINGS_FILE=/etc/tower/settings.py
 Environment=PATH=/bin:/sbin:/usr/bin:/usr/sbin:/var/awx/venv/bin
-ExecStart={{ awx_venv }}/bin/daphne -b 127.0.0.1 -p 8051 -b 127.0.0.1 -p 8051 --websocket_timeout -1 awx.asgi:channel_layer
+ExecStart=/var/awx/venv/bin/daphne -u /var/run/tower/daphne.sock awx.asgi:channel_layer
 Restart=on-failure
 RestartSec=2s
 
