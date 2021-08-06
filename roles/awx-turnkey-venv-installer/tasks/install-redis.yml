@@ -11,7 +11,7 @@
 - name: enable socket in redist
   template:
     src:  redis.conf.j2
-    dest: /etc/redus.conf
+    dest: /etc/redis.conf
     force: yes
     mode: '0644'
     owner: root
