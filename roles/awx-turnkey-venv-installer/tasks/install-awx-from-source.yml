@@ -210,6 +210,10 @@
   become: True
 
 - name: configure tower run socket dir
+  file: path=/var/run/redis  state=directory owner=redis group=awx mode=0770
+  become: True
+
+- name: configure tower run socket dir
   file: path=/var/run/tower  state=directory owner=awx group=awx mode=0770
   become: True
 
@@ -291,4 +295,11 @@
 
 - name: Reload systemd configuration
   command: systemctl daemon-reload
+  become: True
+
+- name: Enable awx service and ensure it is not masked
+  ansible.builtin.systemd:
+    name:   awx
+    enabled: yes
+    masked: no
   become: True
