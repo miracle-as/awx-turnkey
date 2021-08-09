@@ -22,7 +22,8 @@
                 'ansible',
                 'gcc',
                 'openldap-devel',
-                'xmlsec1-openssl'
+                'xmlsec1-openssl',
+                '@Development Tools'
         ]
   become: yes
   when: ansible_facts['os_family'] == 'RedHat'
