@@ -31,7 +31,7 @@
   ansible.builtin.git:
     repo: 'https://github.com/nodejs/node.git'
     dest: /tmp/nodejs
-    version: {{ nodejs_version }}
+    version: {{ nodejsversion }}
 
 - name: Configure nodejs
   ansible.builtin.command: ./configure
