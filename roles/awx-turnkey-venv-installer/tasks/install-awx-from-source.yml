@@ -1,20 +1,3 @@
-- name: install awx-from-source 
-  action: template src=dumpall.j2 dest=/tmp/ansible_dump.all
-
-#- name: run awx setup install
-#  ansible.builtin.command: /var/awx/venv/bin/python setup.py install
-#  become: yes
-#  args:
-#    chdir:  /tmp/awx
-
-# install nodejs
-
-
-
-#make sdist
-#egg install
-
-
 - name: django-debug-toolbar 
   ansible.builtin.command: /var/awx/venv/bin/pip install django-debug-toolbar
   become: yes
@@ -31,7 +14,7 @@
   ansible.builtin.git:
     repo: 'https://github.com/nodejs/node.git'
     dest: /tmp/nodejs
-    version: {{ nodejsversion }}
+    version: '{{ nodejsversion }}'
 
 - name: Configure nodejs
   ansible.builtin.command: ./configure
