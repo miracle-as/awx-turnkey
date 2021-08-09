@@ -14,7 +14,7 @@
                 'git',
                 'python3-virtualenv',
                 'gcc-c++',
-                'nodejs',
+                'npm',
                 'device-mapper-persistent-data',
                 'lvm2',
                 'bzip2',
