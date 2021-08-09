@@ -210,7 +210,7 @@
   become: True
 
 - name: configure tower run socket dir
-  file: path=/var/run/redis  state=directory owner=redis group=awx mode=0770
+  file: path=/var/run/redis  state=directory owner=awx group=awx mode=0770
   become: True
 
 - name: configure tower run socket dir
