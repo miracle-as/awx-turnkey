@@ -34,8 +34,8 @@ resource "libvirt_cloudinit_disk" "commoninit" {
 
 resource "libvirt_domain" "domain-centos" {
   name   = var.vm_hostname
-  memory = "512"
-  vcpu   = 1
+  memory = "8192"
+  vcpu   = 8
 
   cloudinit = libvirt_cloudinit_disk.commoninit.id
 
