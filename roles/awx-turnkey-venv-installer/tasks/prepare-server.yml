@@ -110,7 +110,7 @@
     virtualenv_command: /usr/bin/python3 -m venv
   become: True
 
-- name: create run-manage script
+- name: create checkplatform script
   template:
     src: checkplatform.sh.j2
     dest: /usr/local/bin/checkplatform.sh
