@@ -15,7 +15,7 @@ variable "vm_hostname_scl" {
 
 variable "vm_hostname" {
   description = "vm hostname"
-  default     = "terraform-kvm-centos"
+  default     = "awx"
 }
 
 variable "ssh_username" {
