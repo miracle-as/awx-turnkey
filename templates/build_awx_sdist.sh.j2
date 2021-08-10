@@ -2,3 +2,8 @@
 
 source /var/awx/venv/bin/activate
 make sdist
+MYWD=`pwd`
+
+cd /opt
+tar xvzf ${MYWD}/dist/awx-{{ awx_image_version }}.tar.gz
+
