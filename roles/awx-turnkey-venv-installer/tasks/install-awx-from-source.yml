@@ -31,6 +31,24 @@
   args:
     chdir:  /tmp/nodejs
   become: True
+
+- name: Copy the build script
+  template:
+    src: build_awx_sdist.sh.j2
+    dest: /usr/local/bin/build_awx_sdist.sh
+    force: yes
+    mode: '0700'
+    owner: root
+    group: root
+  become: True
+
+
+- name: Build AWX sdist
+  ansible.builtin.command: /usr/local/bin/build_awx_sdist.sh
+  args:
+    chdir:  /tmp/awx
+  become: True
+  
   
 
 - name: Creates tower
