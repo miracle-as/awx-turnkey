@@ -7,3 +7,9 @@ MYWD=`pwd`
 cd /opt
 tar xvzf ${MYWD}/dist/awx-{{ awx_image_version }}.tar.gz
 
+
+cd /opt/awx-{{ awx_image_version}}
+source /var/awx/venv/bin/activate
+
+python setup.py install
+
