@@ -228,13 +228,13 @@
   become: True
 
 
-- name: Change file permission on var lib awx
-  file:
-    path: /var/lib/awx
-    owner: "awx"
-    group: "awx"
-    recurse: yes
-  become: True
+#- name: Change file permission on var lib awx
+#  file:
+#    path: /var/lib/awx
+#    owner: "awx"
+#    group: "awx"
+#    recurse: yes
+#  become: True
 
 - name: configure tower run socket dir
   file: path=/var/run/redis  state=directory owner=awx group=awx mode=0770
