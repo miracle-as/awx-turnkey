@@ -1,8 +1,7 @@
 ---
-- name: Copy user-provided SSL certificates, if we have them
+- name: use provided SSL certificates - if it exists
   when: web_server_ssl_cert is defined
   block:
-
     - name: Copy SSL certificate
       copy:
         src: "{{ web_server_ssl_cert }}"
@@ -11,7 +10,7 @@
         group: awx
         mode: 0600
 
-    - name: Copy SSL private key
+    - name: Copy provided SSL private key
       copy:
         src: "{{ web_server_ssl_key }}"
         dest: /etc/tower/tower.key
@@ -59,7 +58,7 @@
           - /etc/tower/tower.key
           become: True
 
-- name: Install Tower nginx.conf
+- name: Install awxrpm nginx.conf
   template:
     src: nginx.conf
     dest: '/etc/nginx/nginx.conf'
@@ -68,14 +67,14 @@
     group: root
   become: True
 
-- name: stop nginx and configure to startup automatically
+- name: Stop nginx and set autostart
   service:
     name: nginx
     state: stopped
     enabled: yes
   become: True
 
-- name: start nginx and configure to startup automatically
+- name: Start nginx and set autostart
   service:
     name: nginx
     state: started
