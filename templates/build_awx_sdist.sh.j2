@@ -7,9 +7,8 @@ MYWD=`pwd`
 cd /opt
 tar xvzf ${MYWD}/dist/awx-{{ awx_image_version }}.tar.gz
 
+ln -s /opt/awx-{{ awx_image_version}}/awx/static /var/lib/awx/public/static
+ln -s /opt/awx-{{ awx_image_version}}/awx/templates /var/lib/awx/public/templates
 
-cd /opt/awx-{{ awx_image_version}}
-source /var/awx/venv/bin/activate
-
-python setup.py install
+chown -R awx:awx  /var/lib/awx
 

@@ -119,8 +119,8 @@
   file: path=/var/lib/awx/job_status state=directory owner=awx group=awx mode=0750
   become: True
 
-- name: Configure the Tower static directory.
-  file: path=/var/lib/awx/public/static state=directory owner=root group=awx mode=0755 recurse=yes
+- name: Configure the Tower job public directory.
+  file: path=/var/lib/awx/public state=directory owner=awx group=awx mode=0750
   become: True
 
 - name: Add Towers `conf.d` directory.
@@ -205,11 +205,6 @@
     mode: '0640'
     owner: root
     group: root
-  become: True
-
-#Something needs to be done to calculate the path
-- name: configure tower static file directory
-  file: path=/var/awx/venv/lib64/python3.6/site-packages/awx-19.1.0-py3.6.egg/awx/ui_next/build/static  state=directory owner=awx group=awx mode=0750 recurse=yes
   become: True
 
 - name: create export script
