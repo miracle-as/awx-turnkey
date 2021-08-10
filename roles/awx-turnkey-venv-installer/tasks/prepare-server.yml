@@ -85,7 +85,7 @@
   become: True
   become_user: awx
 
-- name: Recursively change ownership of the directory
+- name: Recursively change ownership of the directory /etc/tower/conf.d
   ansible.builtin.file:
     path: /etc/tower/conf.d
     state: directory
@@ -94,7 +94,7 @@
     group: awx
   become: True
 
-- name: Recursirely change ownership of the directory
+- name: Recursirely change ownership of the directory /tmp/awx
   ansible.builtin.file:
     path: /tmp/awx
     state: directory
@@ -109,3 +109,14 @@
     virtualenv: /var/awx/venv
     virtualenv_command: /usr/bin/python3 -m venv
   become: True
+
+- name: create run-manage script
+  template:
+    src: checkplatform.sh.j2
+    dest: /usr/local/bin/checkplatform.sh
+    force: yes
+    mode: '0770'
+    owner: awx
+    group: awx
+  become: True
+

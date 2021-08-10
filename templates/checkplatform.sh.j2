@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+echo "`date`: Checkplatform for {{ CLUSTER_HOST_ID }}"
+
+
+
+echo "  awx_image_version: "{{ awx_image_version }}"
+echo "  postgres_host:       127.0.0.1"
+echo "  postgres_post:       "
+echo "  awx database:        "
+echo "  awx name:            "
+echo "  awx redis name:      "
+echo "  awx host:            "
+echo "  nginx disable https: {{ nginx_disable_https }} "
+echo "  nginx disable hsts:  {{ nginx_disable_hsts }}"
+echo "  nginx port:          {{ nginx_http_port }}"
+echo "  awx_operator:        {{ awx_operator }}"
+echo "  postgreshost:        {{ postgreshost"
+echo "  postgresport:        {{ postgres_port }}"
+echo "  awx_venv:            {{ awx_venv }}"
+echo "  node.js version:     {{ nodejsversion }}"
+echo "  Cluster host id:     {{ CLUSTER_HOST_ID }}"
+
+
+systemctl status awx-dispatcher
+systemctl status awx-cbreceiver
+systemctl status awx-daphne
+systemctl status awx-wsbroadcast
+systemctl status awx-web
+
