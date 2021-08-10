@@ -45,8 +45,6 @@
           command: openssl req -x509 -nodes -sha256 -days 824 -newkey rsa:2048 -keyout /etc/tower/tower.key -out /etc/tower/tower.cert -config {{ tempfile_results.path }}/openssl.cnf
           args:
             creates: /etc/tower/tower.cert
-          notify:
-            - restart nginx
           become: True
 
         - name: set permissions on self-signed SSL certificate
