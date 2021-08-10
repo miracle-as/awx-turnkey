@@ -4,11 +4,15 @@ source /var/awx/venv/bin/activate
 make sdist
 MYWD=`pwd`
 
-cd /opt
 tar xvzf ${MYWD}/dist/awx-{{ awx_image_version }}.tar.gz
 
 ln -s /opt/awx-{{ awx_image_version}}/awx/static /var/lib/awx/public/static
 ln -s /opt/awx-{{ awx_image_version}}/awx/templates /var/lib/awx/public/templates
 
 chown -R awx:awx  /var/lib/awx
+
+cd /opt/awx-{{ awx_image_version }}
+
+python setup.py install
+
 
