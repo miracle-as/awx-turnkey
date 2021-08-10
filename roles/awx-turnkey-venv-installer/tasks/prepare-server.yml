@@ -67,7 +67,7 @@
     mode: "u=rwx,g=rwx,o=r"
   become: yes
 
-- name: Create log dir
+- name: Create awx home
   file:
     path: /var/lib/awx
     owner: awx
