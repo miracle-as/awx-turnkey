@@ -79,6 +79,7 @@
     repo: 'https://github.com/ansible/awx.git'
     dest: /tmp/awx
     version: "{{ awx_image_version }}"
+    force: True
   become: True
   become_user: awx
 

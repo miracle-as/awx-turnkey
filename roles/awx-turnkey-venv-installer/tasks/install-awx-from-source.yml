@@ -26,6 +26,13 @@
   args:
     chdir:  /tmp/nodejs
 
+- name: Copy node binary
+  ansible.builtin.command: cp node /usr/bin/node
+  args:
+    chdir:  /tmp/nodejs
+  become: True
+  
+
 - name: Creates tower
   file:
     path: /etc/tower/conf.d
