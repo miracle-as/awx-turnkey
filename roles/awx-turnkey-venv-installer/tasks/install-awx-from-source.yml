@@ -324,14 +324,14 @@
   command: systemctl daemon-reload
   become: True
 
-- name: Enable service {{ item }}, and not touch the state
+- name: Enable services  and set state started
   ansible.builtin.service:
-    name: {{ item }}
+    name: "{{ item }}"
     enabled: yes
     state: started
   with_items:
     - awx-cbreceiver
-    - awx-daphne.
+    - awx-daphne
     - awx-dispatcher
     - awx-web
     - awx-wsbroadcast
