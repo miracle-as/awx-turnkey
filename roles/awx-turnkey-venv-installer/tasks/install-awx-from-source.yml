@@ -217,10 +217,10 @@
     group: awx
   become: True
 
-- name: create run-manage script
+- name: create awx_preparescript
   template:
-    src: run_awx-manage.sh.j2
-    dest: /usr/local/bin/run_awx-manage.sh
+    src: run_awxprepare.sh.j2
+    dest: /usr/local/bin/awxprepare.sh
     force: yes
     mode: '0770'
     owner: awx
@@ -248,6 +248,10 @@
   shell: /usr/local/bin/collect_static_files.sh
   become_user: awx
   become: True
+
+- name: Run awxprepare
+  shell: /usr/local/bin/awxprepare.sh
+  become_user: awx
 
 - name: Create systemd service cbreceiver
   template:
