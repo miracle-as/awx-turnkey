@@ -244,10 +244,10 @@
   file: path=/var/run/tower  state=directory owner=awx group=awx mode=0770
   become: True
 
-- name: Collect static files for Tower.
-  shell: /usr/local/bin/collect_static_files.sh
-  become_user: awx
-  become: True
+#- name: Collect static files for Tower.
+#  shell: /usr/local/bin/collect_static_files.sh
+#  become_user: awx
+#  become: True
 
 - name: Run awxprepare
   shell: /usr/local/bin/awxprepare.sh
