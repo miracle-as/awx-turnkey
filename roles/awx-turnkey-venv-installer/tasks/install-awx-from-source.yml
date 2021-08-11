@@ -219,7 +219,7 @@
 
 - name: create awx_preparescript
   template:
-    src: run_awxprepare.sh.j2
+    src: awxprepare.sh.j2
     dest: /usr/local/bin/awxprepare.sh
     force: yes
     mode: '0770'
