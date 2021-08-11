@@ -11,8 +11,8 @@ EnvironmentFile=-/etc/sysconfig/awx
 Environment=AWX_SETTINGS_FILE=/etc/tower/settings.py
 Environment=PATH=/bin:/sbin:/usr/bin:/usr/sbin:/var/awx/venv/bin
 PermissionsStartOnly=true
-ExecStartpre=mkdir /var/run/tower
-ExecStartpre=mkdir chown awx:awx /var/run/tower
+ExecStartpre=if [ ! -d /var/run/tower ]; then mkdir /var/run/tower; fi
+ExecStartpre=chown awx:awx /var/run/tower
 ExecStart={{ awx_venv }}/bin/awx-manage run_wsbroadcast
 Restart=on-failure
 RestartSec=2s
