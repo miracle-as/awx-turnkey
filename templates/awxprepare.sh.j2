@@ -1,4 +1,4 @@
-#!/usr/bin/env/password
+#!/usr/bin/env bash
 
 echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'root@localhost', 'password')" | GIT_PYTHON_REFRESH=quiet /var/awx/venv/bin/awx-manage shell 
 GIT_PYTHON_REFRESH=quiet /var/awx/venv/bin/awx-manage provision_instance --hostname=$(hostname)
