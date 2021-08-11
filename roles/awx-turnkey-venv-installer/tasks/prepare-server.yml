@@ -104,6 +104,15 @@
     group: awx
   become: True
 
+
+- name: set owener /run/tower
+  ansible.builtin.file:
+    path: /run/tower
+    state: directory
+    owner: awx
+    group: nginx
+  become: True
+
 - name: Recursirely change ownership of the directory /tmp/awx
   ansible.builtin.file:
     path: /tmp/awx
