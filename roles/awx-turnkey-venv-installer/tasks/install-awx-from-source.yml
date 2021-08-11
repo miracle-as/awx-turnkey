@@ -324,9 +324,14 @@
   command: systemctl daemon-reload
   become: True
 
-- name: Enable awx service and ensure it is not masked
-  ansible.builtin.systemd:
-    name:   awx
+- name: Enable service {{ item }}, and not touch the state
+  ansible.builtin.service:
+    name: {{ item }}
     enabled: yes
-    masked: no
-  become: True
+    state: started
+  with_items:
+    - awx-cbreceiver
+    - awx-daphne.
+    - awx-dispatcher
+    - awx-web
+    - awx-wsbroadcast
