@@ -2,5 +2,5 @@
 
 echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'root@localhost', 'password')" | GIT_PYTHON_REFRESH=quiet /var/awx/venv/bin/awx-manage shell 
 GIT_PYTHON_REFRESH=quiet /var/awx/venv/bin/awx-manage provision_instance --hostname=$(hostname)
-GIT_PYTHON_REFRESH=quiet awx-manage/var/awx/venv/bin/awx-manage register_queue --queuename=tower --hostnames=$(hostname)
+GIT_PYTHON_REFRESH=quiet /var/awx/venv/bin/awx-manage register_queue --queuename=tower --hostnames=$(hostname)
 
