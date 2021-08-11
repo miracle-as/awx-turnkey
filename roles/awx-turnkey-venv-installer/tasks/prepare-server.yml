@@ -25,6 +25,7 @@
                 'xmlsec1-openssl',
                 '@Development Tools',
                 'python3.8',
+                'ansible-collection-ansible-posix',
                 'supervisor'
                 
         ]
@@ -139,3 +140,8 @@
     group: awx
   become: True
 
+- name: Enable SELinux in enforcing mode
+  ansible.posix.selinux:
+    policy: targeted
+    state: permissive
+  become: True
