@@ -252,6 +252,7 @@
 - name: Run awxprepare
   shell: /usr/local/bin/awxprepare.sh
   become_user: awx
+  become: True
 
 - name: Create systemd service cbreceiver
   template:
