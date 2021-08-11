@@ -67,6 +67,15 @@
     mode: "u=rwx,g=rwx,o=r"
   become: yes
 
+- name: Create  /var/lib/awx/rsyslog
+  file:
+    path: /var/lib/awx/rsyslog
+    owner: awx
+    group: awx
+    state: directory
+    mode: "u=rwx,g=rwx,o=r"
+  become: yes
+
 - name: Create awx home
   file:
     path: /var/lib/awx
