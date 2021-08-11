@@ -329,7 +329,7 @@
   command: systemctl daemon-reload
   become: True
 
-- name: Enable services  and set state stopped
+- name: Enable services  and set state started
   ansible.builtin.service:
     name: "{{ item }}"
     enabled: yes
