@@ -151,3 +151,4 @@
     name: nginx
     groups: awx
     append: yes
+  become: True
