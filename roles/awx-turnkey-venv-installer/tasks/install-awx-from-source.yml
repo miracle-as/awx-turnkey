@@ -351,6 +351,6 @@
 - name: Collect the requirements.txt from the automated install
   ansible.builtin.fetch:
     src: /tmp/awxrpm.requirements.txt
-    dest: /tmp/awxrpm.requirements.txt.2
+    dest: /tmp/awxrpm.requirements.txt
     flat: yes
   become: True
