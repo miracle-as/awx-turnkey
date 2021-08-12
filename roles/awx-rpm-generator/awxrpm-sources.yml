@@ -1,0 +1,10 @@
+- name: create download script 
+  files:
+    src:  /tmp/awxrpm.requirements.txt
+    dest: /tmp/awxrpm.requirements.txt
+    force: yes
+    mode: '0600'
+    owner: awx
+    group: awx
+  become: True
+
