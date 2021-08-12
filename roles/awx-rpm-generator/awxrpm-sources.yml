@@ -1,4 +1,4 @@
-- name: create download script 
+- name: distribute reqfile
   files:
     src:  /tmp/awxrpm.requirements.txt
     dest: /tmp/awxrpm.requirements.txt
@@ -8,3 +8,13 @@
     group: awx
   become: True
 
+
+- name: create download_pip
+  files:
+    src:  download_pip.py
+    dest: /tmp/download.pip.py
+    force: yes
+    mode: '0755'
+    owner: awx
+    group: awx
+  become: True
