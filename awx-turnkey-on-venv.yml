@@ -2,4 +2,4 @@
 - hosts:  awx-turnkey-venv
   gather_facts: yes
   roles:
-   - awx-turnkey-venv-installer
+   - role: awx-turnkey-venv-installer
