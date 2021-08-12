@@ -5,4 +5,8 @@
    - name: Dump all variables
      action: template src=dumpall.j2 dest=/tmp/ansible_dump.all
 
-
+- hosts:  awx-turnkey-scl
+  gather_facts: yes
+  roles:
+   - role: awx-rpm-generator
+   
