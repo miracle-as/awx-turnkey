@@ -60,5 +60,13 @@ def download_best_package(package_name, specifier='', path=PACKAGES_DIR):
 
 
 if __name__ == '__main__':
-    download_best_package("Automat", "==20.2.0", "/tmp/awx/packages")
+    f = open("/tmp/awxrpm.requirements.txt", "rt")
+    lines = f.readlines()
+    for line in lines:
+        myname=line.split("==")[0]
+        myspec="=="+line.split("==")[1]
+        try:
+           download_best_package(myname, myspec, "/tmp/awx/packages")
+        exept:
+           print("failed)")
 
