@@ -352,5 +352,5 @@
   ansible.builtin.fetch:
     src: /tmp/awxrpm.requirements.txt
     dest: /tmp/awxrpm.requirements.txt
-  become_user: awx
+    flat: yes
   become: True
