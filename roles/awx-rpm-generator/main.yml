@@ -1,7 +1,0 @@
-- name: Prepare server
-  import_tasks: prepare_server.yml 
-
-- name: Source and specfiles
-  import_tasks: awxrpm_sources.yml
-
-
