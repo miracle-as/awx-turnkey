@@ -1,5 +1,5 @@
 ---
-- hosts:  awx-turnkey-scl
+- hosts:  all
   gather_facts: no
   roles:
    - role: awx-rpm-generator
