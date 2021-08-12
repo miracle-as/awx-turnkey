@@ -145,3 +145,9 @@
     policy: targeted
     state: permissive
   become: True
+
+- name: adding nginx to group awx
+  user:
+    name: nginx
+    groups: awx
+    append: yes
