@@ -1,0 +1,51 @@
+- name: Enable EPEL Repository on CentOS 8
+  dnf:
+    name: epel-release
+    state: latest
+  become: True
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- name: depend | Ensure dependencies are installed.
+  dnf:
+    pkg: [
+                'jq',
+                'git',
+                'python3-virtualenv',
+                'gcc-c++',
+                'lvm2',
+                'bzip2',
+                'python3-pip',
+                'ansible',
+                'gcc',
+                'openldap-devel',
+                'xmlsec1-openssl',
+                '@Development Tools',
+                'python3.8',
+                'rpm-build',
+                'rpm-build-libs',
+                'python3-requests', 
+                'postgresql-devel'
+        ]
+  become: yes
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- name: Install add  packages
+  yum:
+    name:
+      - xmlsec1-devel
+      - libtool-ltdl-devel
+      - mlocate
+      - libpq-devel
+    state: latest
+    enablerepo: "powertools"
+  become: True
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- name: Add the group 'awx' with a specific gid and
+  ansible.builtin.group:
+    name: awx
+    state: present
+    gid: 1666
+  become: True
+  
+
