@@ -344,13 +344,13 @@
 
 
 - name: Run pip freeze
-  shell: /var/awx/venv/bin/pip freeze >/var/awx/awxrpm.requirements.txt
+  shell: /var/awx/venv/bin/pip freeze >/tmp/awxrpm.requirements.txt
   become_user: awx
   become: True
 
 - name: Collect the requirements.txt from the automated install
   ansible.builtin.fetch:
-    src: /var/awx/awxrpm.requirements.txt
+    src: /tmp/awxrpm.requirements.txt
     dest: /tmp/awxrpm.requirements.txt
   become_user: awx
   become: True

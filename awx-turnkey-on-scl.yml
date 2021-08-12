@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: awx-turnkey-scl
   gather_facts: yes
   tasks:
    - name: Dump all variables
