@@ -4,10 +4,6 @@
     dest: /tmp/awxrpm.requirements.txt
     force: yes
     mode: '0600'
-    owner: awx
-    group: awx
-  become: True
-
 
 - name: create download_pip
   files:
@@ -15,6 +11,3 @@
     dest: /tmp/download.pip.py
     force: yes
     mode: '0755'
-    owner: awx
-    group: awx
-  become: True
