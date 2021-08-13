@@ -21,6 +21,8 @@
                 'xmlsec1-openssl',
                 '@Development Tools',
                 'python3.8',
+                'python3.8-devel',
+                'python38-cryptography',
                 'rpm-build',
                 'rpm-build-libs',
                 'python3-requests', 
@@ -49,5 +51,14 @@
     state: present
     gid: 1666
   become: True
+
+- name: Git checkout awx
+  ansible.builtin.git:
+    repo: 'https://github.com/ansible/awx.git'
+    dest: /tmp/awx
+    version: "{{ awx_image_version }}"
+    force: True
+  become: True
+  become_user: awx
   
 

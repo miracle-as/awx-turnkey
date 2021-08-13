@@ -38,7 +38,6 @@ pkgs_dir = args.pkgs_dir
 
 def generate_spec_for(package_name, reqs_data, build_reqs_data, pkgs_dir):
     pkg_dir = glob.glob(f'{pkgs_dir}/{package_name}/*/')[0]
-
     pkg_deps = ' '.join([dep['name']+dep['specifier']+dep['version'] for dep in reqs_data[package_name]['dependencies']])
     pkg_build_deps = ' '.join([dep['name']+dep['specifier']+dep['version'] for dep in build_reqs_data[package_name]['buildrequires']])
     print(pkg_dir)
