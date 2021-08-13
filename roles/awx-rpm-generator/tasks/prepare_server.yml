@@ -24,6 +24,8 @@
                 'rpm-build',
                 'rpm-build-libs',
                 'python3-requests', 
+                'libffi-devel',
+                'gcc',
                 'postgresql-devel'
         ]
   become: yes
