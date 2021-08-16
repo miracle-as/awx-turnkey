@@ -60,7 +60,15 @@
     force: True
   become: True
   become_user: awx
-  
+
+- name: Create scl dir
+  file:
+    path: /var/awxrpm/scl
+    owner: root
+    group: root
+    state: directory
+    mode: "u=rwx,g=rwx,o=r"
+  become: yes 
 
 - name: create define_scl_dependcy.sh
   template:
@@ -68,6 +76,27 @@
     dest: /usr/local/bin/define_scl_dependcy.sh
     force: yes
     mode: '0770'
+    owner: root
+    group: root
+  become: True
+
+
+- name: create build_awx_sdist.sh.j2 
+  template:
+    src: build_awx_sdist.sh.j2
+    dest: /usr/local/bin/build_awx_sdist.sh
+    force: yes
+    mode: '0770'
+    owner: root
+    group: root
+  become: True
+
+- name: create master awxrpm.scl.spec
+  template:
+    src: awxrpm.scl.spec.j2
+    dest: /var/awxrpm/scl/awxrpm.scl.spec
+    force: yes
+    mode: '0660'
     owner: root
     group: root
   become: True
