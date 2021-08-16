@@ -21,5 +21,4 @@
 
 - name: create symlinks
   shell: ln -fsv /usr/include/python3.8/* /usr/include/
-  become_user: awx
   become: True
