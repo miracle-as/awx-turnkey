@@ -29,7 +29,7 @@
                 'libffi-devel',
                 '@Development Tools',
                 'gcc',
-                'scl-utilsi',
+                'scl-utils',
                 'scl-utils-build',
                 'postgresql-devel'
         ]
