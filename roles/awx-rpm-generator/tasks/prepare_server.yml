@@ -63,7 +63,7 @@
 - name: Git checkout awx
   ansible.builtin.git:
     repo: 'https://github.com/ansible/awx.git'
-    dest: /tmp/awx
+    dest: /var/tmp/awx
     version: "{{ awx_image_version }}"
     force: True
   become: True
