@@ -27,7 +27,10 @@
                 'rpm-build-libs',
                 'python3-requests', 
                 'libffi-devel',
+                '@Development Tools',
                 'gcc',
+                'scl-utilsi',
+                'scl-utils-build',
                 'postgresql-devel'
         ]
   become: yes
