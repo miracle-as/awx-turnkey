@@ -62,3 +62,12 @@
   become_user: awx
   
 
+- name: create define_scl_dependcy.sh
+  template:
+    src: define_scl_dependcy.sh.j2
+    dest: /usr/local/bin/define_scl_dependcy.sh
+    force: yes
+    mode: '0770'
+    owner: root
+    group: root
+  become: True

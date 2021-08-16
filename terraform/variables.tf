@@ -8,6 +8,11 @@ variable "centos_8_img_url" {
   default     = "/home/jho/iso/CentOS-8-GenericCloud-8.4.2105-20210603.0.x86_64.qcow2"
 }
 
+variable "vm_hostname_vanilla" {
+  description = "vm hostname"
+  default     = "centos8vanilla"
+}
+
 variable "vm_hostname_scl" {
   description = "vm hostname"
   default     = "centos8scl"

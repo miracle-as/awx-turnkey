@@ -1,0 +1,1965 @@
+{
+    "adal": {
+        "name": "adal",
+        "definite_version": "1.2.2",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "asciichartpy": {
+        "name": "asciichartpy",
+        "definite_version": "1.5.25",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "aiohttp": {
+        "name": "aiohttp",
+        "definite_version": "3.6.2",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "aioredis": {
+        "name": "aioredis",
+        "definite_version": "1.3.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "ansible-runner": {
+        "name": "ansible-runner",
+        "definite_version": "1.4.6",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "ansiconv": {
+        "name": "ansiconv",
+        "definite_version": "1.0.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "asgiref": {
+        "name": "asgiref",
+        "definite_version": "3.2.5",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "async-timeout": {
+        "name": "async-timeout",
+        "definite_version": "3.0.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "attrs": {
+        "name": "attrs",
+        "definite_version": "19.3.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "autobahn": {
+        "name": "autobahn",
+        "definite_version": "20.3.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "automat": {
+        "name": "automat",
+        "definite_version": "20.2.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-setuptools_scm", 
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-m2r",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "azure-common": {
+        "name": "azure-common",
+        "definite_version": "1.1.25",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "azure-keyvault": {
+        "name": "azure-keyvault",
+        "definite_version": "1.1.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "azure-nspkg": {
+        "name": "azure-nspkg",
+        "definite_version": "3.0.2",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "cachetools": {
+        "name": "cachetools",
+        "definite_version": "4.0.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "cffi": {
+        "name": "cffi",
+        "definite_version": "1.14.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+	    {
+	    	"name": "libffi-devel",
+	    	"version": "",
+	    	"specifier": ""
+	    }
+        ]
+    },
+    "channels-redis": {
+        "name": "channels-redis",
+        "definite_version": "3.1.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "channels": {
+        "name": "channels",
+        "definite_version": "2.4.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "chardet": {
+        "name": "chardet",
+        "definite_version": "3.0.4",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+	    {
+	        "name": "python3-pytest",
+	        "version": "",
+	        "specifier": ""
+	    },
+	    {
+	       "name": "python3-hypothesis",
+	       "version": "",
+	       "specifier": ""
+	    }
+        ]
+    },
+    "constantly": {
+        "name": "constantly",
+        "definite_version": "15.1.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "cryptography": {
+        "name": "cryptography",
+        "definite_version": "2.8",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+	    {
+	        "name": "python3-cffi",
+	        "version": "1.8",
+	        "specifier": ">="
+	    },
+	    {
+	       "name": "openssl-devel",
+	       "version": "",
+	       "specifier": ""
+	    }
+        ]
+    },
+    "daphne": {
+        "name": "daphne",
+        "definite_version": "2.4.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+	    {
+	       "name": "python3-pytest-runner",
+	       "version": "",
+	       "specifier": ""
+	    }
+        ]
+    },
+    "defusedxml": {
+        "name": "defusedxml",
+        "definite_version": "0.6.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "dictdiffer": {
+        "name": "dictdiffer",
+        "definite_version": "0.8.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+	    {
+	       "name": "python3-pytest-runner",
+	       "version": "2.7",
+	       "specifier": ">="
+	    },
+	    {
+	       "name": "python3-setuptools_scm",
+	       "version": "3.1.0",
+	       "specifier": ">="
+	    }
+        ]
+    },
+    "django-auth-ldap": {
+        "name": "django-auth-ldap",
+        "definite_version": "2.1.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "django-cors-headers": {
+        "name": "django-cors-headers",
+        "definite_version": "3.2.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "django-crum": {
+        "name": "django-crum",
+        "definite_version": "0.7.5",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+	    {
+	       "name": "python3-pytest-runner",
+	       "version": "",
+	       "specifier": ""
+	    }
+        ]
+    },
+    "django-extensions": {
+        "name": "django-extensions",
+        "definite_version": "2.2.9",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "django-jsonfield": {
+        "name": "django-jsonfield",
+        "definite_version": "1.2.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "django-oauth-toolkit": {
+        "name": "django-oauth-toolkit",
+        "definite_version": "1.1.3",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "django-pglocks": {
+        "name": "django-pglocks",
+        "definite_version": "1.0.4",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "django-polymorphic": {
+        "name": "django-polymorphic",
+        "definite_version": "2.1.2",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "django-qsstats-magic": {
+        "name": "django-qsstats-magic",
+        "definite_version": "1.1.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "django-radius": {
+        "name": "django-radius",
+        "definite_version": "1.3.3",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "django-redis": {
+        "name": "django-redis",
+        "definite_version": "4.5.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "django-solo": {
+        "name": "django-solo",
+        "definite_version": "1.1.3",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "django-split-settings": {
+        "name": "django-split-settings",
+        "definite_version": "1.0.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "django-taggit": {
+        "name": "django-taggit",
+        "definite_version": "1.2.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "django": {
+        "name": "django",
+        "definite_version": "2.2.16",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+	    {
+	        "name": "python36",
+                "version": "",
+                "specifier": ""
+	    },
+	    {
+	        "name": "python3-setuptools",
+                "version": "",
+                "specifier": ""
+	    }
+        ]
+    },
+    "djangorestframework-yaml": {
+        "name": "djangorestframework-yaml",
+        "definite_version": "1.0.3",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "djangorestframework": {
+        "name": "djangorestframework",
+        "definite_version": "3.12.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "docutils": {
+        "name": "docutils",
+        "definite_version": "0.16",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "future": {
+        "name": "future",
+        "definite_version": "0.16.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "gitdb": {
+        "name": "gitdb",
+        "definite_version": "4.0.2",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "gitpython": {
+        "name": "gitpython",
+        "definite_version": "3.1.7",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "google-auth": {
+        "name": "google-auth",
+        "definite_version": "1.11.3",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "hiredis": {
+        "name": "hiredis",
+        "definite_version": "1.0.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "hyperlink": {
+        "name": "hyperlink",
+        "definite_version": "19.0.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "idna-ssl": {
+        "name": "idna-ssl",
+        "definite_version": "1.1.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-pytest-runner",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "idna": {
+        "name": "idna",
+        "definite_version": "2.9",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "importlib-metadata": {
+        "name": "importlib-metadata",
+        "definite_version": "1.5.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-wheel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-setuptools_scm",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "importlib-resources": {
+        "name": "importlib-resources",
+        "definite_version": "1.4.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-toml",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-setuptools_scm",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "incremental": {
+        "name": "incremental",
+        "definite_version": "17.5.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "irc": {
+        "name": "irc",
+        "definite_version": "18.0.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-setuptools_scm",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "isodate": {
+        "name": "isodate",
+        "definite_version": "0.6.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "jaraco.classes": {
+        "name": "jaraco.classes",
+        "definite_version": "3.1.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-setuptools_scm",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "jaraco.text": {
+        "name": "jaraco.text",
+        "definite_version": "3.2.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-setuptools_scm",
+                "version": "",
+                "specifier": ""
+            }
+        ]
+    },
+    "jaraco.collections": {
+        "name": "jaraco.collections",
+        "definite_version": "3.0.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-setuptools_scm",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "jaraco.functools": {
+        "name": "jaraco.functools",
+        "definite_version": "3.0.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-setuptools_scm",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "jaraco.logging": {
+        "name": "jaraco.logging",
+        "definite_version": "3.0.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-setuptools_scm",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "jaraco.stream": {
+        "name": "jaraco.stream",
+        "definite_version": "3.0.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-setuptools_scm",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "jinja2": {
+        "name": "jinja2",
+        "definite_version": "2.11.2",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "jsonschema": {
+        "name": "jsonschema",
+        "definite_version": "3.2.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-setuptools_scm",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "kubernetes": {
+        "name": "kubernetes",
+        "definite_version": "11.0.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "lockfile": {
+        "name": "lockfile",
+        "definite_version": "0.12.2",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-pbr",
+                "version": "1.8",
+                "specifier": ">="
+            }
+	]
+    },
+    "lxml": {
+        "name": "lxml",
+        "definite_version": "4.5.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "libxml2-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "libxslt-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "markdown": {
+        "name": "markdown",
+        "definite_version": "3.2.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "markupsafe": {
+        "name": "markupsafe",
+        "definite_version": "1.1.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "more-itertools": {
+        "name": "more-itertools",
+        "definite_version": "8.2.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "msgpack": {
+        "name": "msgpack",
+        "definite_version": "1.0.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "msrest": {
+        "name": "msrest",
+        "definite_version": "0.6.11",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "msrestazure": {
+        "name": "msrestazure",
+        "definite_version": "0.6.3",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "multidict": {
+        "name": "multidict",
+        "definite_version": "4.7.5",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "netaddr": {
+        "name": "netaddr",
+        "definite_version": "0.7.19",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "oauthlib": {
+        "name": "oauthlib",
+        "definite_version": "3.1.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "openshift": {
+        "name": "openshift",
+        "definite_version": "0.11.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "pexpect": {
+        "name": "pexpect",
+        "definite_version": "4.7.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "pkgconfig": {
+        "name": "pkgconfig",
+        "definite_version": "1.5.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "prometheus-client": {
+        "name": "prometheus-client",
+        "definite_version": "0.7.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "psutil": {
+        "name": "psutil",
+        "definite_version": "5.7.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "psycopg2": {
+        "name": "psycopg2",
+        "definite_version": "2.8.4",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "postgresql-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+	
+    },
+    "ptyprocess": {
+        "name": "ptyprocess",
+        "definite_version": "0.6.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "pyasn1-modules": {
+        "name": "pyasn1-modules",
+        "definite_version": "0.2.8",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "pyasn1": {
+        "name": "pyasn1",
+        "definite_version": "0.4.8",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "pycparser": {
+        "name": "pycparser",
+        "definite_version": "2.20",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "pygerduty": {
+        "name": "pygerduty",
+        "definite_version": "0.38.2",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "pyhamcrest": {
+        "name": "pyhamcrest",
+        "definite_version": "2.0.2",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "pyjwt": {
+        "name": "pyjwt",
+        "definite_version": "1.7.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-pytest-runner",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "pyopenssl": {
+        "name": "pyopenssl",
+        "definite_version": "19.1.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-cryptography",
+                "version": "2.8",
+                "specifier": ">="
+            },
+            {
+                "name": "python3-six",
+                "version": "1.5.2",
+                "specifier": ">="
+            },
+            {
+                "name": "python3-sphinx",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-certifi",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-urllib3",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-idna",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-chardet",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-sphinx_rtd_theme",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "pyparsing": {
+        "name": "pyparsing",
+        "definite_version": "2.4.6",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "pyrad": {
+        "name": "pyrad",
+        "definite_version": "2.3",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "pyrsistent": {
+        "name": "pyrsistent",
+        "definite_version": "0.15.7",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-six",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "python-daemon": {
+        "name": "python-daemon",
+        "definite_version": "2.2.4",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-docutils",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-twine",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-wheel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-importlib_metadata",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-keyring",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-tqdm",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-requests",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-requests-toolbelt",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-readme_renderer",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-pkginfo",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-zipp",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-secretstorage",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-entrypoints",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-certifi",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-urllib3",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-idna",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-chardet",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-jeepney",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-cryptography",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "python-dateutil": {
+        "name": "python-dateutil",
+        "definite_version": "2.8.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-wheel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-setuptools_scm",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "python-ldap": {
+        "name": "python-ldap",
+        "definite_version": "3.3.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "openldap-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "python-radius": {
+        "name": "python-radius",
+        "definite_version": "1.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "python-string-utils": {
+        "name": "python-string-utils",
+        "definite_version": "1.0.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-wheel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "python3-openid": {
+        "name": "python3-openid",
+        "definite_version": "3.1.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "python3-saml": {
+        "name": "python3-saml",
+        "definite_version": "1.9.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "pytz": {
+        "name": "pytz",
+        "definite_version": "2019.3",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "pyyaml": {
+        "name": "pyyaml",
+        "definite_version": "5.3.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "redis": {
+        "name": "redis",
+        "definite_version": "3.4.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "requests-oauthlib": {
+        "name": "requests-oauthlib",
+        "definite_version": "1.3.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "requests": {
+        "name": "requests",
+        "definite_version": "2.23.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "rsa": {
+        "name": "rsa",
+        "definite_version": "4.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-pyasn1",
+                "version": "0.4.8",
+                "specifier": ">="
+            }
+	]
+    },
+    "ruamel.yaml.clib": {
+        "name": "ruamel.yaml.clib",
+        "definite_version": "0.2.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "ruamel.yaml": {
+        "name": "ruamel.yaml",
+        "definite_version": "0.16.10",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "schedule": {
+        "name": "schedule",
+        "definite_version": "0.6.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "service-identity": {
+        "name": "service-identity",
+        "definite_version": "18.1.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "six": {
+        "name": "six",
+        "definite_version": "1.14.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "slackclient": {
+        "name": "slackclient",
+        "definite_version": "1.1.2",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-websocket-client",
+                "version": "0.35",
+                "specifier": ">="
+            },
+            {
+                "name": "python3-requests",
+                "version": "2.11",
+                "specifier": ">="
+            },
+            {
+                "name": "python3-six",
+                "version": "1.10",
+                "specifier": ">="
+            }
+	]
+    },
+    "smmap": {
+        "name": "smmap",
+        "definite_version": "3.0.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "social-auth-app-django": {
+        "name": "social-auth-app-django",
+        "definite_version": "3.1.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "social-auth-core": {
+        "name": "social-auth-core",
+        "definite_version": "3.3.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-cryptography",
+                "version": "2.1.1",
+                "specifier": ">="
+            },
+            {
+                "name": "python3-requests",
+                "version": "2.9.1",
+                "specifier": ">="
+            },
+            {
+                "name": "python3-oauthlib",
+                "version": "1.0.3",
+                "specifier": ">="
+            },
+            {
+                "name": "python3-requests-oauthlib",
+                "version": "0.6.1",
+                "specifier": ">="
+            },
+            {
+                "name": "python3-six",
+                "version": "1.10.0",
+                "specifier": ">="
+            },
+            {
+                "name": "python3-python-jose",
+                "version": "3.0.0",
+                "specifier": ">="
+            },
+            {
+                "name": "python3-pyjwt",
+                "version": "1.7.1",
+                "specifier": ">="
+            },
+            {
+                "name": "python3-defusedxml",
+                "version": "0.5.0rc1",
+                "specifier": ">="
+            },
+            {
+                "name": "python3-python3-openid",
+                "version": "3.0.10",
+                "specifier": ">="
+            },
+            {
+                "name": "python3-python3-saml",
+                "version": "1.2.1",
+                "specifier": ">="
+            }
+	]
+    },
+    "sqlparse": {
+        "name": "sqlparse",
+        "definite_version": "0.3.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "tacacs_plus": {
+        "name": "tacacs_plus",
+        "definite_version": "1.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-pytest-runner",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "tempora": {
+        "name": "tempora",
+        "definite_version": "2.1.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-wheel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-setuptools_scm",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "twilio": {
+        "name": "twilio",
+        "definite_version": "6.37.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "twisted": {
+        "name": "twisted",
+        "definite_version": "20.3.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-incremental",
+                "version": "16.10.1",
+                "specifier": ">="
+            },
+            {
+                "name": "python3-pyOpenSSL",
+                "version": "16.0.0",
+                "specifier": ">="
+            },
+            {
+                "name": "python3-service-identity",
+                "version": "18.1.0",
+                "specifier": ">="
+            },
+            {
+                "name": "python3-idna",
+                "version": "0.6",
+                "specifier": ">="
+            }
+	]
+    },
+    "txaio": {
+        "name": "txaio",
+        "definite_version": "20.1.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "typing-extensions": {
+        "name": "typing-extensions",
+        "definite_version": "3.7.4.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "urllib3": {
+        "name": "urllib3",
+        "definite_version": "1.25.8",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "uwsgi": {
+        "name": "uwsgi",
+        "definite_version": "2.0.18",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "uwsgitop": {
+        "name": "uwsgitop",
+        "definite_version": "0.11",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "websocket-client": {
+        "name": "websocket-client",
+        "definite_version": "0.57.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "xmlsec": {
+        "name": "xmlsec",
+        "definite_version": "1.3.3",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-lxml",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-wheel",
+                "version": "0.24.0",
+                "specifier": ">="
+            },
+            {
+                "name": "python3-pkgconfig",
+                "version": "1.5.0",
+                "specifier": ">="
+            },
+            {
+                "name": "xmlsec1",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "xmlsec1-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "libtool-ltdl-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-setuptools",
+                "version": "40.9.0",
+                "specifier": ">="
+            }
+	]
+    },
+    "yarl": {
+        "name": "yarl",
+        "definite_version": "1.4.2",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "zipp": {
+        "name": "zipp",
+        "definite_version": "3.1.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-setuptools_scm",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-wheel",
+                "version": "",
+                "specifier": ""
+            },
+            {
+                "name": "python3-toml",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "zope.interface": {
+        "name": "zope.interface",
+        "definite_version": "5.0.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "pip": {
+        "name": "pip",
+        "definite_version": "19.3.1",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "setuptools": {
+        "name": "setuptools",
+        "definite_version": "41.6.0",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "azure-keyvault-certificates": {
+        "name": "azure-keyvault-certificates",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "azure-keyvault-secrets": {
+        "name": "azure-keyvault-secrets",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "azure-keyvault-keys": {
+        "name": "azure-keyvault-keys",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "certifi": {
+        "name": "certifi",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    },
+    "azure-core": {
+        "name": "azure-core",
+        "buildrequires": [
+            {
+                "name": "python36-devel",
+                "version": "",
+                "specifier": ""
+            }
+	]
+    }
+}
+
