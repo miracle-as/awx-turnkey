@@ -11,3 +11,9 @@
     dest: /tmp/download.pip.py
     force: yes
     mode: '0755'
+
+- name:  create venv
+  ansible.builtin.pip:
+    virtualenv: /var/awx/venv
+    virtualenv_command: /usr/bin/python3 -m venv
+  become: True
