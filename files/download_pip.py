@@ -91,7 +91,7 @@ if __name__ == '__main__':
     f = open("/tmp/awxrpm.requirements.txt", "rt")
     lines = f.readlines()
     for line in lines:
-        myname=line.split("==")[0]
+        myname=line.split("==")[0].lower()
         myspec="=="+line.split("==")[1]
         try:
            download_best_package(myname, myspec, "/tmp/awx/packages")
