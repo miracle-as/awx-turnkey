@@ -25,17 +25,6 @@ PREFIX = 'awxrpm'
 PACKAGER = 'automates <info@miracle.dk>'
 PACKAGES_DIR="/tmp/packages"
 
-parser = argparse.ArgumentParser(description='Generate spec files for AWX packages.')
-parser.add_argument('build_requires', metavar='build_requires_json', type=str)
-parser.add_argument('requires', metavar='requires_json', type=str)
-parser.add_argument('pkgs_dir', metavar='packages_directory', type=str)
-parser.add_argument('--parse-single', metavar='package_name', type=str)
-args = parser.parse_args()
-
-reqs = args.requires
-build_reqs = args.build_requires
-pkgs_dir = args.pkgs_dir
-
 def generate_spec_for(package_name, reqs_data, build_reqs_data, pkgs_dir):
     pkg_dir = glob.glob(f'{pkgs_dir}/{package_name}/*/')[0]
     pkg_deps = ' '.join([dep['name']+dep['specifier']+dep['version'] for dep in reqs_data[package_name]['dependencies']])
@@ -109,6 +98,5 @@ if __name__ == '__main__':
         except:
            print("failed)")
 
-        generate_spec_for(package)
 
 
