@@ -52,6 +52,14 @@
     gid: 1666
   become: True
 
+- name: Add the user 'awx' with a specific uid and a primary group of 'awx'
+  ansible.builtin.user:
+    name: awx
+    comment: awx service accout
+    uid: 1666
+    group: awx
+  become: true 
+
 - name: Git checkout awx
   ansible.builtin.git:
     repo: 'https://github.com/ansible/awx.git'
