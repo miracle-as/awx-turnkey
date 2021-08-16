@@ -18,3 +18,8 @@
     virtualenv: /var/awx/venv
     virtualenv_command: /usr/bin/python3 -m venv
   become: True
+
+- name: create symlinks
+  shell: ln -sv /usr/include/python3.6m/* /usr/include/
+  become_user: awx
+  become: True
