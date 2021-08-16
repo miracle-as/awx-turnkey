@@ -14,6 +14,7 @@
 
 - name:  create venv
   ansible.builtin.pip:
+    name: requirements-parser
     virtualenv: /var/awx/venv
     virtualenv_command: /usr/bin/python3 -m venv
   become: True
