@@ -118,13 +118,6 @@
     group: awx
   become: True
 
-- name:  create venv
-  ansible.builtin.pip:
-    requirements: /tmp/awx/requirements/requirements.txt
-    virtualenv: /var/awx/venv
-    virtualenv_command: /usr/bin/python3 -m venv
-  become: True
-
 - name: create checkplatform script
   template:
     src: checkplatform.sh.j2
