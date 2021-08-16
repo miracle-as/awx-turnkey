@@ -106,7 +106,7 @@ if __name__ == '__main__':
         myspec="=="+line.split("==")[1]
         try:
            download_best_package(myname, myspec, "/tmp/awx/packages")
-        exept:
+        except:
            print("failed)")
 
         generate_spec_for(package)
