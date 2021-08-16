@@ -21,7 +21,7 @@
                 'xmlsec1-openssl',
                 '@Development Tools',
                 'python3.8',
-                'python3.8-devel',
+                'python3-devel',
                 'python38-cryptography',
                 'rpm-build',
                 'rpm-build-libs',
