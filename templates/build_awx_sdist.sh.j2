@@ -41,6 +41,10 @@ do
 			else
 		                echo "$COUNT `date`: $PACKAGE ERROR: rpm failed" >/dev/null 2>&1
 			fi
+		else	
+
+		    echo "`date`: $PACKAGE Error: No spec file" >/dev/null 2>&1
 		fi
+
 	done
 done
