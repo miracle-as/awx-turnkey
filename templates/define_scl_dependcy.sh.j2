@@ -1,5 +1,11 @@
 #!/usr/bin/bash
 
+
+# Create the metapackage
+
+rpmbuild -ba /var/awxrpm/scl/awxrpm.scl.spec 
+yum install -y awxrpm-runtime 
+
 PACKAGEDIR="/tmp/awx/packages"
 
 PACKAGES=`ls -1 ${PACKAGEDIR} | tr 'A-Z' 'a-z'`
@@ -155,10 +161,15 @@ do
 		exit
 	fi
 	# use the SPEC file
-	ls -l ${PACKAGEDIR}/${PACKAGE}/${PACKAGEINFO}/dist/${PACKAGE}.spec
-	if [[ $? == 0 ]];
+	pip install --upgrade pip
+	pip install spec2scl
+	SPECFILE="${PACKAGEDIR}/${PACKAGE}/${PACKAGEINFO}/dist/${PACKAGE}.spec"
+	SCLSPECFILE="${PACKAGEDIR}/${PACKAGE}/${PACKAGEINFO}/dist/${PACKAGE}.scl.spec"
+	if [[ -f $SPECFILE ]];
 	then
         echo "$COUNT `date`: $PACKAGE OK: specfile exists" >/dev/null 2>&1
+		spec2scl > ${SCLSPECFILE}
+		rpmbuild -ba $SCLSPECFILE --define "scl awxrpm"
 	else
         echo "$COUNT `date`: $PACKAGE ERROR: specfile missing" 
 	fi
