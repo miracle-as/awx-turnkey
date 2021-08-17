@@ -5,9 +5,11 @@ PACKAGEDIR="/tmp/awx/packages"
 PACKAGES=`ls -1 ${PACKAGEDIR} | tr 'A-Z' 'a-z'`
 COUNT=0
 LOOP="TRUE"
+#Continue to extract dependencies by installing packages
 while [[ $LOOP == "TRUE" ]];
 do	
 	LOOP="FALSE"
+	#Run throug all packages 
 	for PACKAGE in $PACKAGES
 	do
 		cd ${PACKAGEDIR}/${PACKAGE}
@@ -27,6 +29,7 @@ do
 		then
 					echo "$COUNT `date`: $PACKAGE : cached" >/dev/null 2>&1
 		else
+			#Refresh the environment in order to make a clean install
 			/usr/bin/rm -r /tmp/testvenv >/dev/null 2>&1	
 			python3.8 -m venv /tmp/testvenv
 			source /tmp/testvenv/bin/activate >/dev/null 2>&1
@@ -42,20 +45,21 @@ do
 					exit
 				fi
 			done
+			#install the python package with pip
 			pip install . >/dev/null 2>&1
 			if [[ $? == 0 ]];
 			then
+				#If we succeed we have a pip freeze with package dep
 				echo "`date`: $PACKAGE pip install succeeded"
 				pip freeze > ${PACKAGEDIR}/${PACKAGE}/pipfreeze.virgin.txt
 			else
-			
- 
-				
+				#Try with setup.py install	
 				python setup.py install   >/dev/null 2>&1
 				python setup.py install  >  ${PACKAGEDIR}/${PACKAGE}/$PACKAGE.build.log 2>${PACKAGEDIR}/${PACKAGE}/$PACKAGE.build.err
 				if [[ $? == 0 ]];
 				then
 					echo "`date`: $PACKAGE build succeeded"
+				#If we succeed we have a pip freeze with package dep
 					pip freeze > ${PACKAGEDIR}/${PACKAGE}/pipfreeze.virgin.txt
 				else
 					echo "$COUNT `date`: $PACKAGE : build failed"
@@ -64,12 +68,14 @@ do
 					echo "--------------------------------------------------------------------------------"
 					rm ${PACKAGEDIR}/${PACKAGE}/pipfreeze.virgin.txt >/dev/null 2>&1
 					cat ${PACKAGEDIR}/${PACKAGE}/$PACKAGE.build.err |grep "No module named" |awk -F"'" '{ print $2 }'  |sort -u >> ${PACKAGEDIR}/${PACKAGE}/$PACKAGE.build.dep
+					#append dependent packages if the stderr reveils them
 
 					grep "No such file or directory" ${PACKAGEDIR}/${PACKAGE}/$PACKAGE.build.err >/dev/null 2>&1
 					if [[ $? == 0 ]];
 					then
 						FILENAME=`grep "No such file or directory" ${PACKAGEDIR}/${PACKAGE}/$PACKAGE.build.err  |awk -F"'" '{ print $2 }'`
 						touch  $FILENAME
+						#Hack to create "things that should not have been forgotten"
 					fi
 
 
@@ -81,7 +87,6 @@ do
 					fi
 
 					cat ${PACKAGEDIR}/${PACKAGE}/$PACKAGE.build.dep  |sort -u >${PACKAGEDIR}/${PACKAGE}/$PACKAGE.build.dep.new
-
 					mv ${PACKAGEDIR}/${PACKAGE}/$PACKAGE.build.dep.new ${PACKAGEDIR}/${PACKAGE}/$PACKAGE.build.dep
 					LOOP="TRUE"
 					#tail ${PACKAGEDIR}/${PACKAGE}/$PACKAGE.build.err
@@ -93,7 +98,8 @@ do
 done
 
 
-
+#at this step alle packages are installed
+#Create a list of dependent packages for each file
 for PACKAGE in $PACKAGES
 do
 	cd ${PACKAGEDIR}/${PACKAGE}
@@ -111,7 +117,6 @@ do
 		do
 			echo $DEPPKG
 		done
-	
 	fi
 done
 
@@ -120,13 +125,15 @@ for PACKAGE in $PACKAGES
 do
         cd ${PACKAGEDIR}/${PACKAGE}
         PACKAGEINFO=`find . -type d -path './*' -prune -print |cut -c 3-`
-	cd ${PACKAGEDIR}/${PACKAGE}/${PACKAGEINFO}
+	    cd ${PACKAGEDIR}/${PACKAGE}/${PACKAGEINFO}
         NAME=`echo $PACKAGEINFO | awk -F'-' '{ print $1 }'`
         VERS=`echo $PACKAGEINFO | awk -F'-' '{ print $2 }'`
+		#Ensure we have a fresh and clean installation environment
         /usr/bin/rm -r /tmp/testvenv >/dev/null 2>&1
         python3.8 -m venv /var/lib/awxrpm
         source /var/lib/awxrpm/bin/activate >/dev/null 2>&1
         touch ${PACKAGEDIR}/${PACKAGE}/$PACKAGE.build.dep
+		#only install dependent packages
         for DEP in `cat ${PACKAGEDIR}/${PACKAGE}/$PACKAGE.build.dep`
         do
              pip install $DEP >/dev/null 2>&1
@@ -138,15 +145,25 @@ do
                     exit
              fi
         done
-	#python setup.py bdist _
+	#Build a package
+	python setup.py bdist >/tmp/$PACKAGE.bdist.out 2>/tmp/$PACKAGE.bdist.err 
+	if [[ $? == 0 ]];
+	then	
+        echo "$COUNT `date`: $PACKAGE OK: rpm created" >/dev/null 2>&1
+	else
+        echo "$COUNT `date`: $PACKAGE OK: rpm creation failed" >/dev/null 2>&1
+		exit
+	fi
+	# use the SPEC file
 	ls dist/*.src.rpm >/dev/null 2>&1
 	if [[ $? == 0 ]];
 	then
-                echo "$COUNT `date`: $PACKAGE OK: rpm exists" >/dev/null 2>&1
+        echo "$COUNT `date`: $PACKAGE OK: rpm exists" >/dev/null 2>&1
 		RPM=`ls -1 dist |grep src 2>/dev/null`
-		rpmbuild -rp  dist/$RPM >/dev/null 2>&1
+		rpmbuild -rp  dist/$RPM 
 	else
-                echo "$COUNT `date`: $PACKAGE ERROR: rpm missing" 
+        echo "$COUNT `date`: $PACKAGE ERROR: rpm missing" 
+		exit
 	fi
 done
 
