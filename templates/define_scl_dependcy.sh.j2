@@ -146,7 +146,7 @@ do
              fi
         done
 	#Build a package
-	python setup.py bdist >/tmp/$PACKAGE.bdist.out 2>/tmp/$PACKAGE.bdist.err 
+	python setup.py bdist_rpm --spec-only >/tmp/$PACKAGE.bdist.out 2>/tmp/$PACKAGE.bdist.err 
 	if [[ $? == 0 ]];
 	then	
         echo "$COUNT `date`: $PACKAGE OK: rpm created" >/dev/null 2>&1
@@ -155,14 +155,12 @@ do
 		exit
 	fi
 	# use the SPEC file
-	ls dist/*.src.rpm >/dev/null 2>&1
+	ls -l ${PACKAGEDIR}/${PACKAGE}/${PACKAGEINFO}/dist/${PACKAGE}.spec
 	if [[ $? == 0 ]];
 	then
-        echo "$COUNT `date`: $PACKAGE OK: rpm exists" >/dev/null 2>&1
-		RPM=`ls -1 dist |grep src 2>/dev/null`
-		rpmbuild -rp  dist/$RPM 
+        echo "$COUNT `date`: $PACKAGE OK: specfile exists" >/dev/null 2>&1
 	else
-        echo "$COUNT `date`: $PACKAGE ERROR: rpm missing" 
+        echo "$COUNT `date`: $PACKAGE ERROR: specfile missing" 
 	fi
 done
 
