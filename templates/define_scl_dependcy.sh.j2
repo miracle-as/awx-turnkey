@@ -1,5 +1,6 @@
 #!/usr/bin/bash
-
+PREFIX="awxrpm"
+ARCH="linux-x86_64"
 
 # Create the metapackage
 
@@ -131,7 +132,7 @@ for PACKAGE in $PACKAGES
 do
         cd ${PACKAGEDIR}/${PACKAGE}
         PACKAGEINFO=`find . -type d -path './*' -prune -print |cut -c 3-`
-	    cd ${PACKAGEDIR}/${PACKAGE}/${PACKAGEINFO}
+	cd ${PACKAGEDIR}/${PACKAGE}/${PACKAGEINFO}
         NAME=`echo $PACKAGEINFO | awk -F'-' '{ print $1 }'`
         VERS=`echo $PACKAGEINFO | awk -F'-' '{ print $2 }'`
 		#Ensure we have a fresh and clean installation environment
@@ -163,15 +164,31 @@ do
 	# use the SPEC file
 	pip install --upgrade pip
 	pip install spec2scl
+	 
+	TOPDIR="${PACKAGEDIR}/${PACKAGE}"
 	SPECFILE="${PACKAGEDIR}/${PACKAGE}/${PACKAGEINFO}/dist/${PACKAGE}.spec"
 	SCLSPECFILE="${PACKAGEDIR}/${PACKAGE}/${PACKAGEINFO}/dist/${PACKAGE}.scl.spec"
+	SRCFILE=${NAME}-${VERS}.tar.gz
+	DSTFILE=${PREFIX}-${NAME}-${VERS}.tar.gz
+	echo "%packager miracle" > ${HOME}/.rpmmacros
+	echo "%_topdir ${TOPDIR}" >> ${HOME}/.rpmmacros
 	if [[ -f $SPECFILE ]];
 	then
-        echo "$COUNT `date`: $PACKAGE OK: specfile exists" >/dev/null 2>&1
-		spec2scl ${SPECFILE}> ${SCLSPECFILE}
-		rpmbuild -ba $SCLSPECFILE --define "scl awxrpm"
+        	echo "$COUNT `date`: $PACKAGE OK: specfile exists" >/dev/null 2>&1
+		spec2scl ${SPECFILE} > ${SCLSPECFILE}
+	        cp ${TOPDIR}/$SRCFILE ${TOPDIR}/SOURCES/${DSTFILE}
+		cd ${TOPDIR}/SOURCES
+		rpmbuild -ba $SCLSPECFILE --define "scl awxrpm" #>/dev/null 2>&1
+		if [[ $? == 0 ]];
+		then
+        		echo "`date`: $PACKAGE OK: rpm scl build succeeded " 
+		else
+        		echo "`date`: $PACKAGE ERROR: rpm scl build failed " 
+
+			exit
+		fi
 	else
-        echo "$COUNT `date`: $PACKAGE ERROR: specfile missing" 
+        	echo "`date`: $PACKAGE ERROR: specfile missing" 
 	fi
 done
 
