@@ -31,7 +31,8 @@
                 'gcc',
                 'scl-utils',
                 'scl-utils-build',
-                'postgresql-devel'
+                'postgresql-devel',
+                'createrepo'
         ]
   become: yes
   when: ansible_facts['os_family'] == 'RedHat'
