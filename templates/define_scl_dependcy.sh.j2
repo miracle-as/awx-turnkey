@@ -168,7 +168,7 @@ do
 	if [[ -f $SPECFILE ]];
 	then
         echo "$COUNT `date`: $PACKAGE OK: specfile exists" >/dev/null 2>&1
-		spec2scl > ${SCLSPECFILE}
+		spec2scl ${SPECFILE}> ${SCLSPECFILE}
 		rpmbuild -ba $SCLSPECFILE --define "scl awxrpm"
 	else
         echo "$COUNT `date`: $PACKAGE ERROR: specfile missing" 
