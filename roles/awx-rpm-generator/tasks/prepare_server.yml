@@ -137,3 +137,13 @@
     policy: targeted
     state: permissive
   become: True
+
+- name: create checkplatform script
+  template:
+    src: awxrpmlocal.repo.j2
+    dest: /etc/yum.repos.d/awxrpmlocal.repo
+    force: yes
+    mode: '0770'
+    owner: root
+    group: root
+  become: True
