@@ -12,10 +12,10 @@
     force: yes
     mode: '0755'
 
-- name:  create venv
+- name:  create build venv
   ansible.builtin.pip:
-    name: requirements-parser
-    virtualenv: /var/awx/venv
+    requirements: /tmp/awxrpm.requirements.txt
+    virtualenv: /var/awx/buildvenv
     virtualenv_command: /usr/bin/python3 -m venv
   become: True
 
