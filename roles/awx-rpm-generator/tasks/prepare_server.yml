@@ -147,20 +147,3 @@
     owner: root
     group: root
   become: True
-
-- name: Create systemd service cbreceiver
-  template:
-    src:  sclbuildrequirements.txt.j2
-    dest: /usr/lib/systemd/system/awx-cbreceiver.service
-    force: yes
-    mode: '0644'
-    owner: root
-    group: root
-  become: True
-
-- name:  create venv
-  ansible.builtin.pip:
-    requirements: /etc/sclbuildrequirements.txt
-    virtualenv: /var/awx/builder
-    virtualenv_command: /usr/bin/python3 -m venv
-  become: True
