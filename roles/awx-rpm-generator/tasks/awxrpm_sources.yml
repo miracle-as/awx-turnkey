@@ -28,5 +28,5 @@
   become: True
 
 - name: download sources
-  shell: /var/awx/buildvenv/bin/python download.pip.py
+  shell: /var/awx/buildvenv/bin/python /tmp/download.pip.py
   become: True
