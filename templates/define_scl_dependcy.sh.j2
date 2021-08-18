@@ -175,15 +175,15 @@ do
 		spec2scl ${SPECFILE} > ${SCLSPECFILE}
 	        cp ${PACKAGEDIR}/${PACKAGE}/${SRCFILE} ${TOPDIR}/SOURCES/${DSTFILE}
 		cd ${TOPDIR}/SOURCES
-		tar xvf ${TOPDIR}/SOURCES/${DSTFILE}
-		/usr/bin/rm -r ${PREFIX}-${NAME}-${VERS}
-		mv ${NAME}-${VERS} ${PREFIX}-${NAME}-${VERS}
-		rm ${TOPDIR}/SOURCES/${DSTFILE}
-		tar czf ${TOPDIR}/SOURCES/${DSTFILE} ./${PREFIX}-${NAME}-${VERS}
+		tar xf ${TOPDIR}/SOURCES/${DSTFILE}  >/dev/null 2>&1
+		/usr/bin/rm -r ${PREFIX}-${NAME}-${VERS} >/dev/null 2>&1
+		mv ${NAME}-${VERS} ${PREFIX}-${NAME}-${VERS} >/dev/null 2>&1
+		rm ${TOPDIR}/SOURCES/${DSTFILE} >/dev/null 2>&1 
+		tar czf ${TOPDIR}/SOURCES/${DSTFILE} ./${PREFIX}-${NAME}-${VERS} >/dev/null 2>&1
 		echo rpmbuild -ba $SCLSPECFILE --define \"scl awxrpm\" >> /tmp/builder.sh
 		if [[ $? == 0 ]];
 		then
-        		echo "`date`: $PACKAGE OK: rpm scl build succeeded " 
+        		echo "`date`: $PACKAGE OK: rpm scl build prep succeeded " 
 		else
         		echo "`date`: $PACKAGE ERROR: rpm scl build failed " 
 		fi
