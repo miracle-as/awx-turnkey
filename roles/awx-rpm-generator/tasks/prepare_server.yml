@@ -162,6 +162,6 @@
 
 - name: download sources
   ansible.builtin.shell:
-    cmd: createrepo
+    cmd: createrepo .
     chdir: /root/rpmbuild/RPMS
   become: True
