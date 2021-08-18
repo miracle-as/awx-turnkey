@@ -34,7 +34,8 @@
                 'postgresql-devel',
                 'createrepo',
                 'rpm-build',
-                'rpm-build-libs' 
+                'rpm-build-libs',
+                'createrepo_c' 
         ]
   become: yes
   when: ansible_facts['os_family'] == 'RedHat'
@@ -153,5 +154,5 @@
 
 - name: download sources
   shell: 
-  chdir: /root/rpmbuild
+  chdir: /root/rpmbuild/RPMS
   become: True
