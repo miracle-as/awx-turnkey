@@ -180,7 +180,7 @@ do
 		mv ${NAME}-${VERS} ${PREFIX}-${NAME}-${VERS} >/dev/null 2>&1
 		rm ${TOPDIR}/SOURCES/${DSTFILE} >/dev/null 2>&1 
 		tar czf ${TOPDIR}/SOURCES/${DSTFILE} ./${PREFIX}-${NAME}-${VERS} >/dev/null 2>&1
-		echo rpmbuild -ba $SCLSPECFILE --define \"scl awxrpm\" >> /tmp/builder.sh
+		echo "rpmbuild -ba $SCLSPECFILE --define \"scl awxrpm\" >/dev/null 2>/tmp/${NAME}.${vers}.err  ">> /tmp/builder.sh
 		if [[ $? == 0 ]];
 		then
         		echo "`date`: $PACKAGE OK: rpm scl build prep succeeded " 
