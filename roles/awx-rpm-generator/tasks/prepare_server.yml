@@ -32,7 +32,9 @@
                 'scl-utils',
                 'scl-utils-build',
                 'postgresql-devel',
-                'createrepo'
+                'createrepo',
+                'rpm-build',
+                'rpm-build-libs' 
         ]
   become: yes
   when: ansible_facts['os_family'] == 'RedHat'
@@ -146,4 +148,10 @@
     mode: '0770'
     owner: root
     group: root
+  become: True
+
+
+- name: download sources
+  shell: 
+  chdir: /root/rpmbuild
   become: True
