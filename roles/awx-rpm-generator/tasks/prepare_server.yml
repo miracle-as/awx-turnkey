@@ -151,14 +151,17 @@
     group: root
   become: True
 
-- name: Create RPMS dir
+- name: Create RPM dirs
   file:
-    path: /root/rpmbuild/RPMS
+    path: /root/rpmbuild/{{ item }}
     owner: root
     group: root
     state: directory
     mode: "u=rwx,g=rwx,o=r"
   become: yes
+  with_items:
+    - SOURCES
+    - RPMS
 
 - name: download sources
   ansible.builtin.shell:
