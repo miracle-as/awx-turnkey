@@ -138,7 +138,7 @@ do
         VERS=`echo $PACKAGEINFO | awk -F'-' '{ print $2 }'`
 		#Ensure we have a fresh and clean installation environment
         /usr/bin/rm -r /tmp/testvenv >/dev/null 2>&1
-        python3.8 -m venv /var/lib/awxrpm
+        python3.8 -m venv /var/lib/awxrpm >/dev/null 2>&1
         source /var/lib/awxrpm/bin/activate >/dev/null 2>&1
         touch ${PACKAGEDIR}/${PACKAGE}/$PACKAGE.build.dep
 		#only install dependent packages
@@ -153,7 +153,7 @@ do
                     exit
              fi
         done
-	#Build a package
+	#Build a package specfile
 	python setup.py bdist_rpm --spec-only >/tmp/$PACKAGE.bdist.out 2>/tmp/$PACKAGE.bdist.err 
 	if [[ $? == 0 ]];
 	then	
@@ -162,8 +162,8 @@ do
         echo "$COUNT `date`: $PACKAGE OK: rpm creation failed" >/dev/null 2>&1
 	fi
 	# use the SPEC file
-	pip install --upgrade pip
-	pip install spec2scl
+	pip install --upgrade pip >/dev/null 2>&1
+	pip install spec2scl >/dev/null 2>&1
 	TOPDIR="/root/rpmbuild" 
 	SPECFILE="${PACKAGEDIR}/${PACKAGE}/${PACKAGEINFO}/dist/${PACKAGE}.spec"
 	SCLSPECFILE="${PACKAGEDIR}/${PACKAGE}/${PACKAGEINFO}/dist/${PACKAGE}.scl.spec"
