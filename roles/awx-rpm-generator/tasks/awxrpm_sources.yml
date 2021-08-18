@@ -22,3 +22,11 @@
 - name: create symlinks
   shell: ln -fsv /usr/include/python3.8/* /usr/include/
   become: True
+
+- name: upgrade pip in build env
+  shell: /var/awx/buildvenv/bin/pip install  --upgrade pip
+  become: True
+
+- name: download sources
+  shell: /var/awx/buildvenv/bin/python download.pip.py
+  become: True
