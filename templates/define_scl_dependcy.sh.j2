@@ -8,6 +8,9 @@ rpmbuild -ba /var/awxrpm/scl/awxrpm.scl.spec
 createrepo /root/rpmbuild/RPMS/
 yum clean all
 yum install -y awxrpm-runtime 
+mkdir -p /opt/miracle/awxrpm/miracle-awxrpm
+ln -s /opt/rh/miracle-awxrpm/enable /opt/miracle/awxrpm/miracle-awxrpm/enable
+
 
 PACKAGEDIR="/tmp/awx/packages"
 
@@ -174,7 +177,7 @@ do
 	if [[ -f $SPECFILE ]];
 	then
         echo "$COUNT `date`: $PACKAGE OK: specfile exists" >/dev/null 2>&1
-		spec2scl ${SPECFILE} | sed "s#%install#%installLINEBREAKpython3 -m venv /opt/rh/miracle-awxrpmLINEBREAKsource  /opt/rh/awxrpm/bin/activate#" |sed "s/LINEBREAK/\n/g" > ${SCLSPECFILE}
+		spec2scl ${SPECFILE}  > ${SCLSPECFILE}
 
 	    cp ${PACKAGEDIR}/${PACKAGE}/${SRCFILE} ${TOPDIR}/SOURCES/${DSTFILE}
 		cd ${TOPDIR}/SOURCES
