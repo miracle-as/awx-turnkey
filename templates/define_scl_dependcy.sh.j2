@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-PREFIX="awxrpm"
+PREFIX="miracle-awxrpm"
 ARCH="linux-x86_64"
 
 # Create the metapackage
@@ -135,7 +135,7 @@ for PACKAGE in $PACKAGES
 do
         cd ${PACKAGEDIR}/${PACKAGE}
         PACKAGEINFO=`find . -type d -path './*' -prune -print |cut -c 3-`
-	cd ${PACKAGEDIR}/${PACKAGE}/${PACKAGEINFO}
+	    cd ${PACKAGEDIR}/${PACKAGE}/${PACKAGEINFO}
         NAME=`echo $PACKAGEINFO | awk -F'-' '{ print $1 }'`
         VERS=`echo $PACKAGEINFO | awk -F'-' '{ print $2 }'`
 		#Ensure we have a fresh and clean installation environment
