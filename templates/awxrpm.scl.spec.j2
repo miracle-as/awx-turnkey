@@ -1,10 +1,16 @@
-%global scl miracle-awxrpm
+%global scl_name_prefix miracle-
+%global scl_vendor miracle
+%global scl_name_base awxrpm
+%global scl_name_version ""
+%global _scl_root /opt/%{scl_vendor}/%{scl_name_prefix}%{scl_name_base}/root/
+
+%global scl %{scl_name_prefix}%{scl_name_base}
 
 # Optional but recommended: define nfsmountable
 %global nfsmountable 1
 
 %scl_package %scl
-%global _scl_prefix /opt/rh
+%global _scl_prefix /opt/miracle
 
 
 Summary: Package that installs %scl
@@ -12,9 +18,7 @@ Name: %scl_name
 Version: 1
 Release: 1%{?dist}
 License: GPLv2+
-Requires: %{scl_prefix}less
 BuildRequires: scl-utils-build
-
 %description
 This is the main package for %scl Software Collection.
 
