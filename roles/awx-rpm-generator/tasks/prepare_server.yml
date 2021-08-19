@@ -47,6 +47,8 @@
       - libtool-ltdl-devel
       - mlocate
       - libpq-devel
+      - libcmocka-devel
+      - rpm-devel
     state: latest
     enablerepo: "powertools"
   become: True
