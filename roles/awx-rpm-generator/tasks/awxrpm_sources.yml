@@ -5,6 +5,13 @@
 #    force: yes
 #    mode: '0600'
 #  become: True
+- name: create download_pip
+  ansible.builtin.copy:
+    src:  awxbuildrequirements.txt
+    dest: /tmp/awxrpm.requirements.txt
+    force: yes
+    mode: '0644'
+  become: True
 
 - name: create download_pip
   ansible.builtin.copy:
