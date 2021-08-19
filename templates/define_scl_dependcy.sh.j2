@@ -5,6 +5,8 @@ ARCH="linux-x86_64"
 # Create the metapackage
 
 rpmbuild -ba /var/awxrpm/scl/awxrpm.scl.spec 
+createrepo /root/rpmbuild/RPMS/
+yum clean all
 yum install -y awxrpm-runtime 
 
 PACKAGEDIR="/tmp/awx/packages"
