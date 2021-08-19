@@ -176,10 +176,18 @@ do
 	DSTFILE=${PREFIX}-${NAME}-${VERS}.tar.gz
 	if [[ -f $SPECFILE ]];
 	then
-        echo "$COUNT `date`: $PACKAGE OK: specfile exists" >/dev/null 2>&1
+        	echo "$COUNT `date`: $PACKAGE OK: specfile exists" >/dev/null 2>&1
 		spec2scl ${SPECFILE}| sed "s#%build#%buildLINEBREAKpython3 -m venv /opt/miracle/miracle-awxLINEBREAKsource /opt/miracle/miracle-awx/bin/activate#"|sed "s/LINEBREAK/\n/g"  > ${SCLSPECFILE}
-
-	    cp ${PACKAGEDIR}/${PACKAGE}/${SRCFILE} ${TOPDIR}/SOURCES/${DSTFILE}
+		echo ${PACKAGEDIR}/${PACKAGE}/${SRCFILE}
+		echo $VERS
+	    	cp ${PACKAGEDIR}/${PACKAGE}/${SRCFILE} ${TOPDIR}/SOURCES/${DSTFILE}
+		if [[ $? == 0 ]];
+		then
+        		echo "`date`: $PACKAGE OK: rpm scl build prep succeeded " 
+		else
+	    		ls -lrt
+			exit
+		fi
 		cd ${TOPDIR}/SOURCES
 		tar xf ${TOPDIR}/SOURCES/${DSTFILE}  >/dev/null 2>&1
 		/usr/bin/rm -r ${PREFIX}-${NAME}-${VERS} >/dev/null 2>&1
@@ -197,6 +205,7 @@ do
         	echo "`date`: $PACKAGE ERROR: specfile missing" 
 	fi
 done
+
 
 
 
