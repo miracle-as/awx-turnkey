@@ -5,10 +5,19 @@
 #    force: yes
 #    mode: '0600'
 #  become: True
+
 - name: create download_pip
   ansible.builtin.copy:
-    src:  awxbuildrequirements.txt
+    src:  awxrpm.requirements.txt
     dest: /tmp/awxrpm.requirements.txt
+    force: yes
+    mode: '0644'
+  become: True
+
+- name: create download_pip
+  ansible.builtin.copy:
+    src:  awxbuild.requirements.txt
+    dest: /tmp/awxbuild.requirements.txt
     force: yes
     mode: '0644'
   become: True
@@ -22,7 +31,7 @@
 
 - name:  create build venv
   ansible.builtin.pip:
-    requirements: /tmp/awxrpm.requirements.txt
+    requirements: /tmp/awxbuild.requirements.txt
     virtualenv: /var/awx/buildvenv
     virtualenv_command: /usr/bin/python3 -m venv
   become: True
