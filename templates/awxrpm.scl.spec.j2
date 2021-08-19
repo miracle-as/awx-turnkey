@@ -45,7 +45,7 @@ packages depending on %scl Software Collection.
 %install
 %scl_install
 
-mkdir -p  %{buildroot}/opt/awxrpm
+mkdir -p  %{buildroot}/opt/miracle/awxrpm
 cat >> %{buildroot}%{_scl_scripts}/enable << EOF
 export PATH="%{_bindir}:%{_sbindir}\${PATH:+:\${PATH}}"
 export LD_LIBRARY_PATH="%{_libdir}\${LD_LIBRARY_PATH:+:\${LD_LIBRARY_PATH}}"
