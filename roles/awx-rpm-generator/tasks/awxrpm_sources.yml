@@ -1,10 +1,10 @@
-#- name: distribute reqfile
-#  ansible.builtin.copy:
-#    src: /tmp/awxrpm.requirements.txt
-#    dest: /tmp/awxrpm.requirements.txt
-#    force: yes
-#    mode: '0600'
-#  become: True
+- name: distribute reqfile
+  ansible.builtin.copy:
+    src: /tmp/awxrpm.requirements.txt
+    dest: /tmp/awxrpm.requirements.txt
+    force: yes
+    mode: '0600'
+  become: True
 
 - name: create download_pip
   ansible.builtin.copy:
