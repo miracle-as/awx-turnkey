@@ -174,7 +174,7 @@ do
 	if [[ -f $SPECFILE ]];
 	then
         echo "$COUNT `date`: $PACKAGE OK: specfile exists" >/dev/null 2>&1
-		spec2scl ${SPECFILE} | sed "s#%install#%installLINEBREAKpython3 -m venv /opt/rh/awxrpmLINEBREAKsource  /opt/rh/awxrpm/bin/activate#" |sed "s/LINEBREAK/\n/g" > ${SCLSPECFILE}
+		spec2scl ${SPECFILE} | sed "s#%install#%installLINEBREAKpython3 -m venv /opt/rh/miracle-awxrpmLINEBREAKsource  /opt/rh/awxrpm/bin/activate#" |sed "s/LINEBREAK/\n/g" > ${SCLSPECFILE}
 
 	    cp ${PACKAGEDIR}/${PACKAGE}/${SRCFILE} ${TOPDIR}/SOURCES/${DSTFILE}
 		cd ${TOPDIR}/SOURCES
@@ -183,7 +183,7 @@ do
 		mv ${NAME}-${VERS} ${PREFIX}-${NAME}-${VERS} >/dev/null 2>&1
 		rm ${TOPDIR}/SOURCES/${DSTFILE} >/dev/null 2>&1 
 		tar czf ${TOPDIR}/SOURCES/${DSTFILE} ./${PREFIX}-${NAME}-${VERS} >/dev/null 2>&1
-		echo "rpmbuild -ba $SCLSPECFILE --define \"scl awxrpm\" >/dev/null 2>/tmp/${NAME}.${VERS}.err  ">> /tmp/builder.sh
+		echo "rpmbuild -ba $SCLSPECFILE --define \"scl miracle-awxrpm\" >/dev/null 2>/tmp/${NAME}.${VERS}.err  ">> /tmp/builder.sh
 		if [[ $? == 0 ]];
 		then
         		echo "`date`: $PACKAGE OK: rpm scl build prep succeeded " 
