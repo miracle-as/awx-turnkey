@@ -177,7 +177,7 @@ do
 	if [[ -f $SPECFILE ]];
 	then
         echo "$COUNT `date`: $PACKAGE OK: specfile exists" >/dev/null 2>&1
-		spec2scl ${SPECFILE}| ed "s#%build#%buildLINEBREAKpython3 -m venv /opt/miracle/miracle-awxLINEBREAKsource /opt/miracle/miracle-awx/bin/activate#"|sed "s/LINEBREAK/\n/g"  > ${SCLSPECFILE}
+		spec2scl ${SPECFILE}| sed "s#%build#%buildLINEBREAKpython3 -m venv /opt/miracle/miracle-awxLINEBREAKsource /opt/miracle/miracle-awx/bin/activate#"|sed "s/LINEBREAK/\n/g"  > ${SCLSPECFILE}
 
 	    cp ${PACKAGEDIR}/${PACKAGE}/${SRCFILE} ${TOPDIR}/SOURCES/${DSTFILE}
 		cd ${TOPDIR}/SOURCES
