@@ -2,18 +2,17 @@
 PREFIX="miracle-awxrpm"
 ARCH="linux-x86_64"
 
-# Create the metapackage
-
+# Create the metapackage and install it
 rpmbuild -ba /var/awxrpm/scl/awxrpm.scl.spec 
 createrepo /root/rpmbuild/RPMS/
 yum clean all
 yum install -y awxrpm-runtime 
-mkdir -p /opt/miracle/awxrpm/miracle-awxrpm
-ln -s /opt/rh/miracle-awxrpm/enable /opt/miracle/awxrpm/miracle-awxrpm/enable
 
-
+#The placeholder for our downloaded source files
 PACKAGEDIR="/tmp/awx/packages"
 
+
+#Create a list of packages and save it
 PACKAGES=`ls -1 ${PACKAGEDIR} | tr 'A-Z' 'a-z'`
 COUNT=0
 LOOP="TRUE"
@@ -26,6 +25,7 @@ do
 	do
 		cd ${PACKAGEDIR}/${PACKAGE}
 		PACKAGEINFO=`find . -type d -path './*' -prune -print |cut -c 3-`  
+		echo "DEBUG: $PACKAGEINFO :::::::::::::::::::"
 		NAME=`echo $PACKAGEINFO | awk -F'-' '{ print $1 }'`
 		VERS=`echo $PACKAGEINFO | awk -F'-' '{ print $2 }'`
 		cd ${PACKAGEDIR}/${PACKAGE}/${PACKAGEINFO}
@@ -177,7 +177,7 @@ do
 	if [[ -f $SPECFILE ]];
 	then
         	echo "$COUNT `date`: $PACKAGE OK: specfile exists" >/dev/null 2>&1
-		spec2scl ${SPECFILE}| sed "s#%build#%buildLINEBREAKpython3 -m venv /opt/miracle/miracle-awxLINEBREAKsource /opt/miracle/miracle-awx/bin/activate#"|sed "s/LINEBREAK/\n/g"  > ${SCLSPECFILE}
+		spec2scl ${SPECFILE}| sed "s#%build#%buildLINEBREAKpython3 -m venv /opt/miracle/miracle-awxrpmLINEBREAKsource /opt/miracle/miracle-awxrpm/bin/activate#"|sed "s/LINEBREAK/\n/g"  > ${SCLSPECFILE}
 		echo ${PACKAGEDIR}/${PACKAGE}/${SRCFILE}
 		echo $VERS
 	    	cp ${PACKAGEDIR}/${PACKAGE}/${SRCFILE} ${TOPDIR}/SOURCES/${DSTFILE}
