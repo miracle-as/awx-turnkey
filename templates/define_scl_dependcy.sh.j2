@@ -6,7 +6,7 @@ ARCH="linux-x86_64"
 rpmbuild -ba /var/awxrpm/scl/awxrpm.scl.spec 
 createrepo /root/rpmbuild/RPMS/
 yum clean all
-yum install -y awxrpm-runtime 
+yum install -y miracle-awxrpm-runtime 
 
 #The placeholder for our downloaded source files
 PACKAGEDIR="/tmp/awx/packages"
@@ -176,7 +176,7 @@ do
 	DSTFILE=${PREFIX}-${NAME}-${VERS}.tar.gz
 	if [[ -f $SPECFILE ]];
 	then
-        	echo "$COUNT `date`: $PACKAGE OK: specfile exists" >/dev/null 2>&1
+        echo "$COUNT `date`: $PACKAGE OK: specfile exists" >/dev/null 2>&1
 		grep "python3 setup.py install" ${SCLSPECFILE}
 		exit
 		spec2scl ${SPECFILE}| sed "s#%build#%buildLINEBREAKpython3 -m venv /opt/miracle/miracle-awxrpmLINEBREAKsource \
