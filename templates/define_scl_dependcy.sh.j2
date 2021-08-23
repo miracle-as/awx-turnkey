@@ -177,10 +177,9 @@ do
 	if [[ -f $SPECFILE ]];
 	then
         echo "$COUNT `date`: $PACKAGE OK: specfile exists" >/dev/null 2>&1
-		grep "python3 setup.py install" ${SCLSPECFILE}
-		exit
-		spec2scl ${SPECFILE}| sed "s#%build#%buildLINEBREAKpython3 -m venv /opt/miracle/miracle-awxrpmLINEBREAKsource \
-		/opt/miracle/miracle-awxrpm/bin/activate#"|sed "s/LINEBREAK/\n/g"  > ${SCLSPECFILE}
+		INSTCMD`grep "python3 setup.py install" ${SCLSPECFILE}`
+		spec2scl ${SPECFILE}| sed "s#%build#%buildLINEBREAKpython3 \
+		 -m venv /opt/miracle/miracle-awxrpmLINEBREAKsource /opt/miracle/miracle-awxrpm/bin/activateLINEBREAK${INSTCMD}LINEBREAK#" |sed "s/LINEBREAK/\n/g"  > ${SCLSPECFILE}
 		echo ${PACKAGEDIR}/${PACKAGE}/${SRCFILE}
 		echo $VERS
 	    	cp ${PACKAGEDIR}/${PACKAGE}/${SRCFILE} ${TOPDIR}/SOURCES/${DSTFILE}
