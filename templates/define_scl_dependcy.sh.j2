@@ -2,18 +2,86 @@
 PREFIX="miracle-awxrpm"
 ARCH="linux-x86_64"
 
-# Create the metapackage and install it
-rpmbuild -ba /var/awxrpm/scl/awxrpm.scl.spec 
-createrepo /root/rpmbuild/RPMS/
-yum clean all
-yum install -y miracle-awxrpm-runtime 
+# Create the metapackage
+yum info miracle-awxrpm-runtime --installed
+if [[ $? == 0 ]];
+then
+	echo "`date`: $PACKAGE scl already installed"
+else
+	echo "`date`: $PACKAGE scl install"
+	rpmbuild -ba /var/awxrpm/scl/awxrpm.scl.spec  >/dev/null 2>&1
+	createrepo /root/rpmbuild/RPMS/
+	yum clean all
+	yum install -y miracle-awxrpm-runtime 
+fi
 
-#The placeholder for our downloaded source files
 PACKAGEDIR="/tmp/awx/packages"
-
-
 #Create a list of packages and save it
-PACKAGES=`ls -1 ${PACKAGEDIR} | tr 'A-Z' 'a-z'`
+cd $PACKAGEDIR
+############################################################
+# Dirty hack to be changed
+############################################################
+mv channels-redis channels_redis >/dev/null 2>&1
+mv importlib-metadata importlib_metadata >/dev/null 2>&1
+mv importlib-resources importlib_resources >/dev/null 2>&1
+mv prometheus-client prometheus_client >/dev/null 2>&1
+mv service-identity service_identity  >/dev/null 2>&1
+mv tacacs-plus tacacs_plus >/dev/null 2>&1
+mv twisted/Twisted-20.3.0 twisted/twisted-20.3.0 >/dev/null 2>&1
+mv typing-extensions typing_extensions
+PACKAGES=`ls -1 ${PACKAGEDIR} | tr 'A-Z' 'a-z' ` 
+for PACKAGE in $PACKAGES
+do	
+        cd ${PACKAGEDIR}/${PACKAGE}
+	PACKAGEINFO=`find . -type d -path './*' -prune -print |cut -c 3-`  
+	VERS=`echo $PACKAGEINFO |rev  |awk -F'-' '{ print $1 }'|rev `
+	NAME=`echo $PACKAGEINFO | awk -F"-${VERS}" '{ print $1 }'`
+	TGZFILE=`ls -1 | grep tar.gz 2>/dev/null `
+	if [[ $? == 0 ]];
+	then
+		echo "`date`: $PACKAGE OK: copy tar file "
+		cp ${TGZFILE} ${NAME}-${VERS}.tar.gz >/dev/null 2>&1
+	else
+		echo "`date`: $PACKAGE ERROR: tar file missing"
+		tar cvf ${NAME}-${VERS}.tar.gz ${NAME}-${VERS}
+	fi
+	THENAME=`cat $NAME-$VERS.PKG-INFO  |grep "Name: ${NAME}"`
+	if [[ $? == 0 ]];
+	then
+		echo "`date`: $PACKAGE OK: PKG-INFO FILE checked" 
+	else
+		echo "`date`: $PACKAGE ERROR: PKG-INFO check failed"
+		THENAME=`cat $NAME-$VERS.PKG-INFO  |grep "^Name: " |awk '{ print $2 }'` 
+		sed "s/Name: ${THENAME}/Name: ${NAME}/" $NAME-$VERS.PKG-INFO > $NAME-$VERS.PKG-INFO.new
+		mv $NAME-$VERS.PKG-INFO.new $NAME-$VERS.PKG-INFO
+		cat $NAME-$VERS.PKG-INFO |head -3
+		THENAME=`cat $NAME-$VERS.PKG-INFO  |grep "Name: ${NAME}"`
+		if [[ $? == 0 ]];
+		then
+			echo "`date`: $PACKAGE OK: PKG-INFO FILE checked again" 
+		else
+			echo "`date`: $PACKAGE ERROR: PKG-INFO FILE faild 2.nd time also " 
+			exit 
+		fi
+	fi
+		
+	if [[ $PACKAGE == $NAME ]];
+	then
+		echo "`date`: $PACKAGE OK: name is correct"
+	else
+		echo "`date`: $PACKAGE ERROR: Name is incorrect"
+		cd $PACKAGEDIR
+		mv $PACKAGE $NAME
+	fi
+done
+
+
+############################################################
+# Dirty hack to be changed END
+############################################################
+
+PACKAGES=`ls -1 ${PACKAGEDIR} | tr 'A-Z' 'a-z' ` 
+cd $PACKAGEDIR
 COUNT=0
 LOOP="TRUE"
 #Continue to extract dependencies by installing packages
@@ -25,9 +93,26 @@ do
 	do
 		cd ${PACKAGEDIR}/${PACKAGE}
 		PACKAGEINFO=`find . -type d -path './*' -prune -print |cut -c 3-`  
-		echo "DEBUG: $PACKAGEINFO :::::::::::::::::::"
-		NAME=`echo $PACKAGEINFO | awk -F'-' '{ print $1 }'`
-		VERS=`echo $PACKAGEINFO | awk -F'-' '{ print $2 }'`
+		VERS=`echo $PACKAGEINFO | rev  |awk -F'-' '{ print $1 }'|rev `
+		NAME=`echo $PACKAGEINFO | awk -F"-${VERS}" '{ print $1 }'`
+		############################################################
+		# Dirty hack to be changed
+		############################################################
+		############################################################
+		# repackage zipped files
+		############################################################
+		ls -1 |grep -i "\.zip$" >/dev/null 2>&1
+		if [[ $? == 0 ]];
+		then
+			SRCFILE=${NAME}-${VERS}.tar.gz
+			tar czf $SRCFILE $PACKAGEINFO
+		fi
+		############################################################
+		
+		############################################################
+		# Dirty hack to be changed
+		############################################################
+
 		cd ${PACKAGEDIR}/${PACKAGE}/${PACKAGEINFO}
 		ls  |grep  PKG-INFO >/dev/null 2>&1
 		if [[ $? == 0 ]];
@@ -75,9 +160,6 @@ do
 					pip freeze > ${PACKAGEDIR}/${PACKAGE}/pipfreeze.virgin.txt
 				else
 					echo "$COUNT `date`: $PACKAGE : build failed"
-					echo "--------------------------------------------------------------------------------"
-					cat ${PACKAGEDIR}/${PACKAGE}/$PACKAGE.build.err
-					echo "--------------------------------------------------------------------------------"
 					rm ${PACKAGEDIR}/${PACKAGE}/pipfreeze.virgin.txt >/dev/null 2>&1
 					cat ${PACKAGEDIR}/${PACKAGE}/$PACKAGE.build.err |grep "No module named" |awk -F"'" '{ print $2 }'  |sort -u >> ${PACKAGEDIR}/${PACKAGE}/$PACKAGE.build.dep
 					#append dependent packages if the stderr reveils them
@@ -116,56 +198,62 @@ for PACKAGE in $PACKAGES
 do
 	cd ${PACKAGEDIR}/${PACKAGE}
 	PACKAGEINFO=`find . -type d -path './*' -prune -print |cut -c 3-`  
-	NAME=`echo $PACKAGEINFO | awk -F'-' '{ print $1 }'`
-	VERS=`echo $PACKAGEINFO | awk -F'-' '{ print $2 }'`
+	VERS=`echo $PACKAGEINFO |rev  |awk -F'-' '{ print $1 }'|rev `
+	NAME=`echo $PACKAGEINFO | awk -F"-${VERS}" '{ print $1 }'`
 	cat *txt  |grep -iv "${PACKAGE}==" |wc -l |grep "^0$" >/dev/null 2>&1
 	if [[ $? == 0 ]];
 	then
-		echo "$COUNT `date`: $PACKAGE : no dependencies" >/dev/null 2>&1
+		echo "`date`: $PACKAGE : no dependencies" >/dev/null 2>&1
 	else
 		DEPEND_ON=`cat *txt  |grep -v "${PACKAGE}==" |tr '\n' ','| tr -d ' ' `
-		echo "$COUNT `date`: $PACKAGE : depends on $DEPEND_ON"
-		for DEPPKG in `echo $DEPEND_ON|tr ',' '\n'`
-		do
-			echo $DEPPKG
-		done
+		echo "`date`: $PACKAGE : depends on $DEPEND_ON"
 	fi
 done
-
 echo "#!/usr/bin/env bash" > /tmp/builder.sh
-
 for PACKAGE in $PACKAGES
 do
         cd ${PACKAGEDIR}/${PACKAGE}
         PACKAGEINFO=`find . -type d -path './*' -prune -print |cut -c 3-`
-	    cd ${PACKAGEDIR}/${PACKAGE}/${PACKAGEINFO}
-        NAME=`echo $PACKAGEINFO | awk -F'-' '{ print $1 }'`
-        VERS=`echo $PACKAGEINFO | awk -F'-' '{ print $2 }'`
-		#Ensure we have a fresh and clean installation environment
+	cd ${PACKAGEDIR}/${PACKAGE}/${PACKAGEINFO}
+	VERS=`echo $PACKAGEINFO |rev  |awk -F'-' '{ print $1 }'|rev `
+	NAME=`echo $PACKAGEINFO | awk -F"-${VERS}" '{ print $1 }'`
+	#Ensure we have a fresh and clean installation environment
         /usr/bin/rm -r /tmp/testvenv >/dev/null 2>&1
         python3.8 -m venv /var/lib/awxrpm >/dev/null 2>&1
         source /var/lib/awxrpm/bin/activate >/dev/null 2>&1
         touch ${PACKAGEDIR}/${PACKAGE}/$PACKAGE.build.dep
-		#only install dependent packages
+	#only install dependent packages
         for DEP in `cat ${PACKAGEDIR}/${PACKAGE}/$PACKAGE.build.dep`
         do
              pip install $DEP >/dev/null 2>&1
              if [[ $? == 0 ]];
              then
-                    echo "$COUNT `date`: $PACKAGE dependend on $DEP : installed"
+                    echo "$COUNT `date`: $PACKAGE OK: dependend on $DEP : installed"
              else
                     echo "$COUNT `date`: $DEP ERROR: failed to install"
                     exit
              fi
         done
+
 	#Build a package specfile
 	python setup.py bdist_rpm --spec-only >/tmp/$PACKAGE.bdist.out 2>/tmp/$PACKAGE.bdist.err 
 	if [[ $? == 0 ]];
 	then	
-        echo "$COUNT `date`: $PACKAGE OK: rpm created" >/dev/null 2>&1
+        	echo "$COUNT `date`: $PACKAGE OK: rpm created" >/dev/null 2>&1
+		SRCFILE=`cat /tmp/${PACKAGE}.bdist.out |grep -i ${NAME}  |grep dist  |awk -F"'" '{ print $2 }'`
+		cp  ${SRCFILE} dist/${NAME}.spec >/dev/null 2>&1
+		if [[ $? == 0 ]];
+		then
+        		echo "`date`: $PACKAGE OK: spec file copied" >/dev/null 2>&1	
+		else
+        		echo "`date`: $PACKAGE OK: The file is already ok" >/dev/null 2>&1	
+		fi
 	else
-        echo "$COUNT `date`: $PACKAGE OK: rpm creation failed" >/dev/null 2>&1
+        	echo "`date`: $PACKAGE ERROR: rpm creation failed" >/dev/null 2>&1
+		exit
 	fi
+
+
 	# use the SPEC file
 	pip install --upgrade pip >/dev/null 2>&1
 	pip install spec2scl >/dev/null 2>&1
@@ -176,19 +264,38 @@ do
 	DSTFILE=${PREFIX}-${NAME}-${VERS}.tar.gz
 	if [[ -f $SPECFILE ]];
 	then
-        echo "$COUNT `date`: $PACKAGE OK: specfile exists" >/dev/null 2>&1
-		INSTCMD`grep "python3 setup.py install" ${SCLSPECFILE}`
-		spec2scl ${SPECFILE}| sed "s#%build#%buildLINEBREAKpython3 \
-		 -m venv /opt/miracle/miracle-awxrpmLINEBREAKsource /opt/miracle/miracle-awxrpm/bin/activateLINEBREAK${INSTCMD}LINEBREAK#" |sed "s/LINEBREAK/\n/g"  > ${SCLSPECFILE}
-		echo ${PACKAGEDIR}/${PACKAGE}/${SRCFILE}
-		echo $VERS
-	    	cp ${PACKAGEDIR}/${PACKAGE}/${SRCFILE} ${TOPDIR}/SOURCES/${DSTFILE}
+        	echo "$COUNT `date`: $PACKAGE OK: specfile exists" >/dev/null 2>&1
+		spec2scl ${SPECFILE}| sed "s#%install#%installLINEBREAKpython3 -m venv /opt/miracle/miracle-awxrpm/rootLINEBREAKsource /opt/miracle/miracle-awxrpm/root/bin/activate#"|sed "s/LINEBREAK/\n/g"  > ${SCLSPECFILE}
+
+		if [[ -f ${SCLSPECFILE} ]];
+		then
+        		echo "`date`: $PACKAGE OK: rpm sclfile created  " 
+		else
+        		echo "`date`: $PACKAGE ERROR: rpm sclfile creation failed " 
+		fi
+
+	    	cp ${PACKAGEDIR}/${PACKAGE}/${SRCFILE} ${TOPDIR}/SOURCES/${DSTFILE} >/dev/null 2>&1
 		if [[ $? == 0 ]];
 		then
         		echo "`date`: $PACKAGE OK: rpm scl build prep succeeded " 
 		else
-	    		ls -lrt
-			exit
+        		echo "`date`: $PACKAGE WARNING: rpm scl build prep failed " 
+			ls -1 |grep -i ${PACKAGEDIR}/${PACKAGE}/${SRCFILE} |grep [A-Z] >/dev/null 2>&1
+			if [[ $? == 0 ]]; then
+				REALNAME=`ls -1 |grep -i ${PACKAGEDIR}/${PACKAGE}/${SRCFILE} `
+	    			cp ${PACKAGEDIR}/${PACKAGE}/${REALNAME} ${TOPDIR}/SOURCES/${DSTFILE} 
+				if [[ $? == 0 ]];
+				then
+        				echo "`date`: $PACKAGE OK: rpm scl build prep 2.nd run succeeded " 
+				else
+        				echo "`date`: $PACKAGE OK: rpm scl build prep 2.nd run failed " 
+					exit
+				fi
+			else
+        				echo "`date`: $PACKAGE ERROR: Examine " 
+					echo                 cp ${PACKAGEDIR}/${PACKAGE}/${SRCFILE} ${TOPDIR}/SOURCES/${DSTFILE}
+					exit
+			fi
 		fi
 		cd ${TOPDIR}/SOURCES
 		tar xf ${TOPDIR}/SOURCES/${DSTFILE}  >/dev/null 2>&1
@@ -199,12 +306,14 @@ do
 		echo "rpmbuild -ba $SCLSPECFILE --define \"scl ${PREFIX}\" >/dev/null 2>/tmp/${NAME}.${VERS}.err  ">> /tmp/builder.sh
 		if [[ $? == 0 ]];
 		then
-        		echo "`date`: $PACKAGE OK: rpm scl build prep succeeded " 
+        		echo "`date`: $PACKAGE OK: rpm scl build succeeded " 
 		else
         		echo "`date`: $PACKAGE ERROR: rpm scl build failed " 
 		fi
 	else
         	echo "`date`: $PACKAGE ERROR: specfile missing" 
+		cat /tmp/$PACKAGE.bdist.err
+		exit
 	fi
 done
 
