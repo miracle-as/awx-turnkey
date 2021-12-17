@@ -1,0 +1,7 @@
+---
+- name: "awxrpm | install awx server"
+  hosts: awxserver
+  roles:
+    - role: miracle-ansible-role-awxrpm-scl-installer
+      version: "19.4.0"
+      
