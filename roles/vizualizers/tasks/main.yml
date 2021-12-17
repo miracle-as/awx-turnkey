@@ -1,6 +1,0 @@
-- name: prepare X server
-  import_tasks: xserver.yml
-  when: ansible_facts['os_family']|lower == 'debian'
-
-
-
