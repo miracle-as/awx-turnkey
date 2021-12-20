@@ -1,601 +1,673 @@
-## The AWX turnkey installer 
+# awx-turnkey
 
-###Tips
-sudo iptables -A POSTROUTING -o wlp3s0 -j MASQUERADE -t nat
+The Alpha release:
 
-kubectl exec --stdin --tty awx-miracle-bfc979bcb-g8fpv -c awx-miracle-web --  bash
 
-irpm.scl.spec
-[root@centos8scl SPECS]# history 
-    1  ls -rtl
-    2  cd /tmp/
-    3  ls -rlt
-    4  ls -rtl
-    5  ls -rlt
-    6  ls -rtl
-    7  python3 download.pip.py 
-    8  vi download.pip.py 
-    9  cat awxrpm.requirements.txt 
-   10  vi download.pip.py 
-   11  python3 download.pip.py 
-   12  vi +25 download.pip.py 
-   13  python3 download.pip.py 
-   14  vi +25 download.pip.py 
-   15  python3 download.pip.py 
-   16  vi +25 download.pip.py 
-   17  python3 download.pip.py 
-   18  pip install requirements-parser
-   19  yum install python3-pip
-   20  pip install requirements-parser
-   21  pip3 install requirements-parser
-   22  python3 download.pip.py 
-   23  vi +25 download.pip.py 
-   24  python3 download.pip.py 
-   25  vi +25 download.pip.py 
-   26  python3 download.pip.py 
-   27  vi +25 download.pip.py 
-   28  pip._internal
-   29  python -m pip install --upgrade pip
-   30  python3 -m pip install --upgrade pip
-   31  vi +25 download.pip.py 
-   32  python3 download.pip.py 
-   33  vi +25 download.pip.py 
-   34  python3 download.pip.py 
-   35  vi +25 download.pip.py 
-   36  python3 download.pip.py 
-   37  vi +25 download.pip.py 
-   38  python3 download.pip.py 
-   39  vi +25 download.pip.py 
-   40  python3 download.pip.py 
-   41  ls -rtlæ
-   42  ls -rtl
-   43  mkdir packages
-   44  ls -rtl
-   45  python3 download.pip.py 
-   46  ls -rlt
-   47  ls packages/
-   48  vi +25 download.pip.py 
-   49  python3 download.pip.py 
-   50  vi +25 download.pip.py 
-   51  cat awxrpm.requirements.txt 
-   52  vi +25 download.pip.py 
-   53  python3 download.pip.py 
-   54  vi +25 download.pip.py 
-   55  python3 download.pip.py 
-   56  vi +25 download.pip.py 
-   57  python3 download.pip.py 
-   58  vi +25 download.pip.py 
-   59  python3 download.pip.py 
-   60  python3 download.pip.py  fiule
-   61  vi +25 download.pip.py 
-   62  python3 download.pip.py  fiule
-   63  python3 download.pip.py  awxrpm.requirements.txt 
-   64  vi +25 download.pip.py 
-   65  python3 download.pip.py  awxrpm.requirements.txt 
-   66  vi +25 download.pip.py 
-   67  vi +50 download.pip.py 
-   68  vi +25 download.pip.py 
-   69  python3 download.pip.py  awxrpm.requirements.txt 
-   70  vi +25 download.pip.py 
-   71  python3 download.pip.py  awxrpm.requirements.txt 
-   72  vi +25 download.pip.py 
-   73  python3 download.pip.py  awxrpm.requirements.txt 
-   74  vi +25 download.pip.py 
-   75  python3 download.pip.py  awxrpm.requirements.txt 
-   76  vi +25 download.pip.py 
-   77  python3 download.pip.py  awxrpm.requirements.txt 
-   78  vi +25 download.pip.py 
-   79  python3 download.pip.py  awxrpm.requirements.txt 
-   80  vi +25 download.pip.py 
-   81  python3 download.pip.py  awxrpm.requirements.txt 
-   82  vi +25 download.pip.py 
-   83  vi +52 download.pip.py 
-   84  vi +25 download.pip.py 
-   85  vi +52 download.pip.py 
-   86  python3 download.pip.py  awxrpm.requirements.txt 
-   87  vi +52 download.pip.py 
-   88  python3 download.pip.py  awxrpm.requirements.txt 
-   89  vi +52 download.pip.py 
-   90  python3 download.pip.py  awxrpm.requirements.txt 
-   91  vi +52 download.pip.py 
-   92  python3 download.pip.py  awxrpm.requirements.txt 
-   93  vi +52 download.pip.py 
-   94  python3 download.pip.py  awxrpm.requirements.txt 
-   95  vi +52 download.pip.py 
-   96  python3 download.pip.py  awxrpm.requirements.txt 
-   97  vi +52 download.pip.py 
-   98  python3 download.pip.py  awxrpm.requirements.txt 
-   99  vi +52 download.pip.py 
-  100  python3 download.pip.py  awxrpm.requirements.txt 
-  101  vi +52 download.pip.py 
-  102  python3 download.pip.py  awxrpm.requirements.txt 
-  103  vi +52 download.pip.py 
-  104  python3 download.pip.py  awxrpm.requirements.txt 
-  105  vi +52 download.pip.py 
-  106  python3 download.pip.py  awxrpm.requirements.txt 
-  107  vi +52 download.pip.py 
-  108  python3 download.pip.py  awxrpm.requirements.txt 
-  109  vi +52 download.pip.py 
-  110  python3 download.pip.py  awxrpm.requirements.txt 
-  111  vi +52 download.pip.py 
-  112  python3 download.pip.py  awxrpm.requirements.txt 
-  113  vi +50 download.pip.py 
-  114  python3 download.pip.py  awxrpm.requirements.txt 
-  115  vi +50 download.pip.py 
-  116  python3 download.pip.py  awxrpm.requirements.txt 
-  117  mkdir packages/adal
-  118  cd packages/adal
-  119  ls
-  120  cd ..
-  121  d ..
-  122  cd ..
-  123  ls
-  124  vi download.pip.py 
-  125  vi awxrpm.requirements.txt 
-  126  vi download.pip.py 
-  127  python3 download.pip.py  awxrpm.requirements.txt 
-  128  vi download.pip.py 
-  129  python3 download.pip.py  awxrpm.requirements.txt 
-  130  vi download.pip.py 
-  131  python3 download.pip.py  awxrpm.requirements.txt 
-  132  ls
-  133  ls -rlt
-  134  cd packages/
-  135  ls
-  136  rm -r *
-  137  /usr/bin/rm -r *
-  138  vi download.pip.py 
-  139  cd ..
-  140  vi download.pip.py 
-  141  cd ..
-  142  cd tmp/
-  143  python3 download.pip.py  awxrpm.requirements.txt 
-  144  ls -lrt packages/
-  145  vi download.pip.py 
-  146  ls -lrt packages/
-  147  python3 download.pip.py  awxrpm.requirements.txt 
-  148  ls -rlt packages/
-  149  /usr/bin/rm -r *
-  150  ls
-  151  yum install extundelete
-  152  extundelete 
-  153  extundelete  .
-  154  df
-  155  extundelete  /dev/vda1
-  156  extundelete  /
-  157  extundelete  /dev/vda1
-  158  mount
-  159  mount -
-  160  xfsundelete  /dev/vda1
-  161  xfs_undelete  /dev/vda1
-  162  yum install xfs:'undelete
-  163  yum install xfs_undelete
-  164  git clone https://github.com/ianka/xfs_undelete.git
-  165  cd xfs_undelete/
-  166  ls
-  167  ./xfs_undelete 
-  168  ./xfs_undelete  /tmp
-  169  yum install tclsh
-  170  yum search  tclsh
-  171  vi xfs_undelete
-  172  tclsh
-  173  yum search  tclsh
-  174  cp /home/cloud-user/tclsh /usr/bin/
-  175  ls
-  176  ./xfs_undelete 
-  177  cp /home/cloud-user/tclsh /usr/lib
-  178  ./xfs_undelete 
-  179  cp /home/cloud-user/libtcl8.6.so /usr/lib
-  180  ./xfs_undelete 
-  181  find / |grep \.so$
-  182  cp /home/cloud-user/libtcl8.6.so /usr/lib64
-  183  ./xfs_undelete 
-  184  yum search tcl
-  185  yum install tcllib.noarch
-  186  ./xfs_undelete 
-  187  find / -name init.tcl
-  188  cp /usr/share/tcl8.6/init.tcl /usr/local/lib/tcl8.6
-  189  find / -name init.tcl
-  190  rm /usr/local/lib/tcl8.6
-  191  mkdir /usr/local/lib/tcl8.6
-  192  cp /usr/share/tcl8.6/init.tcl /usr/local/lib/tcl8.6
-  193  find / -name init.tcl
-  194  ./xfs_undelete 
-  195  find / -name init.tcl
-  196  vi /usr/local/lib/tcl8.6/init.tcl
-  197  find / -name init.tcl
-  198  ./xfs_undelete 
-  199  d
-  200  cd
-  201  cd /tmp/
-  202  ls
-  203  exit
-  204  ls -lrt /etc/rpm/macros.dist 
-  205  cat  /etc/rpm/macros.dist 
-  206  cd /tmp/awx
-  207  cd packages/
-  208  cd sc
-  209  cd scl/
-  210  ls
-  211  l s-rtl
-  212  ls -rtl
-  213   rpmbuild -ba zipp.scl.spec --define 'scl zipp' 
-  214  vi zipp.scl.spec 
-  215  scl
-  216  yum search scl
-  217  yum install scl-utils
-  218  yum install scl-utils-build
-  219   rpmbuild -ba zipp.scl.spec --define 'scl zipp' 
-  220   rpmbuild -ba miracle-awxrpm-19.1.1.spec 
-  221  vi miracle-awxrpm-19.1.1.spec 
-  222   rpmbuild -ba miracle-awxrpm-19.1.1.spec 
-  223   rpmbuild -ba miracle-awxrpm-19.1.1.spec  --define  'scl awxrpm'
-  224  vi miracle-awxrpm1.7 
-  225   rpmbuild -ba miracle-awxrpm-19.1.1.spec  --define  'scl awxrpm'
-  226   rpmbuild -ba zipp.scl.spec --define 'scl zipp' 
-  227  vi /root/rpmbuild/SOURCES/README
-  228   rpmbuild -ba zipp.scl.spec --define 'scl zipp' 
-  229  vi zipp.scl.spec 
-  230   rpmbuild -ba zipp.scl.spec --define 'scl zipp' 
-  231  python3 -m venv /tmp/awxrpm
-  232  source /tmp/awxrpm/bin/activate
-  233  python3 -m venv /tmp/awxrpm
-  234  source /tmp/awxrpm/bin/activate
-  235  pip install help2man
-  236  pip install --upgrade pip
-  237  pip install help2man
-  238  python3 -m venv /tmp/awxrpm
-  239   rpmbuild -ba zipp.scl.spec --define 'scl zipp' 
-  240  yum search help2man
-  241   dnf --enablerepo=powertools install help2man
-  242   rpmbuild -ba zipp.scl.spec --define 'scl zipp' 
-  243  touch  /root/rpmbuild/SOURCES/LICENSE
-  244   rpmbuild -ba zipp.scl.spec --define 'scl zipp' 
-  245  ls -rtl
-  246  cat miracle-awxrpm1.7 
-  247  cd 
-  248  cd rpmbuild/BUILD
-  249  ls
-  250  ls -rtl
-  251  cd awxrpm2014-1.0/
-  252  ls
-  253  cat filelist 
-  254  ls -lrt
-  255  pwd
-  256  ls
-  257  cd ..
-  258  ls
-  259  cd ..
-  260  ls
-  261  cd RPMS/
-  262  ls
-  263  cd x86_64/awxrpm2014-
-  264  ls -rtl
-  265  cd x86_64/
-  266  ls
-  267  ls -rtl
-  268  rpm --install awxrpm2014-1.0-1.el8.x86_64.rpm 
-  269  rpm --install awxrpm2014-1.0-1.el8.x86_64.rpm awxrpm2014-runtime-1.0-1.el8.x86_64.rpm 
-  270  cd /opt/rh/awxrpm2014/
-  271  ls
-  272  scl enable 
-  273  scl enable list-collections
-  274  scl list-collections
-  275  scl enable awxrpm2014
-  276  scl enable awxrpm2014 uptime
-  277  scl enable awxrpm2014 cd
-  278  cd /tmp/awx
-  279  ls
-  280  cd packages/
-  281  ls -rtl /usr/local/bin/
-  282  ls
-  283  ls -rtl /usr/local/bin/
-  284  /usr/local/bin/spec2scl 
-  285  ls
-  286  cd scl/
-  287  ls
-  288   rpmbuild -ba idna.scl.spec --define 'scl zipp' 
-  289   rpmbuild -ba idna.scl.spec --define 'scl idna' 
-  290  vi idna.scl.spec 
-  291   rpmbuild -ba idna.scl.spec --define 'scl idna' 
-  292  rpm --install awxrpm2014-1.0-1.el8.x86_64.rpm awxrpm2014-runtime-1.0-1.el8.x86_64.rpm
-  293  rpm --install ~/rpmbuild/RPMS/x86_64/awxrpm2014-*
-  294  opwd
-  295  pwd
-  296   rpmbuild -ba miracle-awxrpm-19.1.1.spec --define 'scl awxrpm
-  297   rpmbuild -ba miracle-awxrpm-19.1.1.spec --define 'scl awxrpm'
-  298   vi demp.spec
-  299  mv demp.spec demo.spex
-  300  mv demo.spex demo.spec
-  301   rpmbuild -ba demo.spec --define 'scl demo'
-  302   vi demp.spec
-  303  vi demo.spec 
-  304   vi demp.spec
-  305   rpmbuild -ba demo.spec --define 'scl demo'
-  306   vi demp.spec
-  307   vi demo.spec 
-  308  vi miracle-awxrpm-19.1.1.spec 
-  309  vi adal.scl.spec 
-  310   rpmbuild -ba idna.scl.spec --define 'scl idna' 
-  311  vi /usr/local/bin/spec2scl 
-  312  ls -rtl
-  313  which build.specfile.sh
-  314  cd /usr/local/bin/
-  315  ls
-  316  ls -rtl
-  317  cat build.specfile.sh 
-  318  ./build.specfile.sh 
-  319  pip install spec2scl
-  320  ./build.specfile.sh 
-  321  vi ./build.specfile.sh 
-  322  ./build.specfile.sh 
-  323  exit
-  324  ./build.specfile.sh 
-  325  build.specfile.sh 
-  326  bash -x build.specfile.sh 
-  327  vi /usr/local/bin/build.specfile.sh 
-  328  /usr/local/bin/build.specfile.sh
-  329  vi /usr/local/bin/build.specfile.sh
-  330  cd /tmp/awx
-  331  ls
-  332  cd packages/
-  333  ls
-  334  mv scl ..
-  335  ls -rtl
-  336  /usr/local/bin/build.specfile.sh
-  337  ls -rlt
-  338  /cat usr/local/bin/build.specfile.sh
-  339  cat /usr/local/bin/build.specfile.sh
-  340  cd /usr/
-  341  cd local/
-  342  cd bin/
-  343  ls
-  344  vi spec2scl 
-  345  vi build.specfile.sh 
-  346  pip install spec2scl
-  347  vi build.specfile.sh 
-  348  ls -rt ~/rpmbuild/SPECS/
-  349  vi build.specfile.sh 
-  350  ls -rt ~/rpmbuild/SPECS/
-  351  build.specfile.sh 
-  352  vi build.specfile.sh 
-  353  build.specfile.sh 
-  354  vi build.specfile.sh 
-  355  ls -l ~|grep rpm
-  356  vi build.specfile.sh 
-  357  ls -l ~|grep rpm
-  358  vi build.specfile.sh 
-  359  ls -l ~|grep rpm
-  360  build.specfile.sh 
-  361  vi +29 build.specfile.sh 
-  362  build.specfile.sh 
-  363  vi +26 build.specfile.sh 
-  364  build.specfile.sh 
-  365  vi +26 build.specfile.sh 
-  366  build.specfile.sh 
-  367  vi +26 build.specfile.sh 
-  368  build.specfile.sh 
-  369  vi +26 build.specfile.sh 
-  370  build.specfile.sh 
-  371  vi +26 build.specfile.sh 
-  372  build.specfile.sh 
-  373  vi +26 build.specfile.sh 
-  374  build.specfile.sh 
-  375  vi +26 build.specfile.sh 
-  376  spec2scl
-  377  vi +26 build.specfile.sh 
-  378  spec2scl 
-  379  spec2scl
-  380  build.specfile.sh 
-  381  vi +26 build.specfile.sh 
-  382  build.specfile.sh 
-  383  vi +26 build.specfile.sh 
-  384  build.specfile.sh 
-  385  vi +26 build.specfile.sh 
-  386  build.specfile.sh 
-  387  vi +26 build.specfile.sh 
-  388  build.specfile.sh 
-  389  vi +26 build.specfile.sh 
-  390  build.specfile.sh 
-  391  vi +26 build.specfile.sh 
-  392  build.specfile.sh 
-  393  vi +26 build.specfile.sh 
-  394  build.specfile.sh 
-  395  vi +26 build.specfile.sh 
-  396  build.specfile.sh 
-  397  vi +26 build.specfile.sh 
-  398  build.specfile.sh 
-  399  vi +26 build.specfile.sh 
-  400  build.specfile.sh 
-  401  vi +26 build.specfile.sh 
-  402  cd /tmp/scl/
-  403  ls
-  404  vi adal.scl.spec 
-  405  history |grep rpmbui
-  406  vi +26 build.specfile.sh 
-  407  vi +26 /usr/local/bin/build.specfile.sh 
-  408  vi +26 build.specfile.sh 
-  409  build.specfile.sh 
-  410  vi +26 build.specfile.sh 
-  411  vi +26 /usr/local/bin/build.specfile.sh 
-  412  Zspec2scl
-  413  spec2scl
-  414  vi +26 /usr/local/bin/build.specfile.sh 
-  415  spec2scl
-  416  build.specfile.sh 
-  417  vi +26 /usr/local/bin/build.specfile.sh 
-  418  build.specfile.sh 
-  419  vi +26 /usr/local/bin/build.specfile.sh 
-  420  build.specfile.sh 
-  421  spec2scl 
-  422  history |grep scl
-  423  vi +26 /usr/local/bin/build.specfile.sh 
-  424  history |grep scl
-  425  build.specfile.sh 
-  426  cd 
-  427  cd rpmbuild/
-  428  cd RPMS/
-  429  ls
-  430  cd x86_64/
-  431  ls
-  432  rm *
-  433  /usr/bin/rm *
-  434  cd
-  435  build.specfile.sh 
-  436  ls ~/rpmbuild/RPMS/
-  437  ls ~/rpmbuild/RPMS/x86_64/
-  438  vi +26 /usr/local/bin/build.specfile.sh 
-  439  ls -rtl /usr/local/bin/
-  440  cp /home/cloud-user/define_scl_dependcy.sh.j2 /usr/local/bin/define_scl_dependcy.sh
-  441  define_scl_dependcy.sh
-  442  sudo chmod 755 /usr/local/bin/define_scl_dependcy.sh
-  443  define_scl_dependcy.sh
-  444  build.specfile.sh 
-  445  vi /usr/local/bin/build.specfile.sh 
-  446  build.specfile.sh 
-  447  /usr/bin/rm -r /root/rpmbuild/*
-  448  define_scl_dependcy.sh
-  449  build.specfile.sh 
-  450  vi /usr/local/bin/build.specfile.sh 
-  451  build.specfile.sh 
-  452  vi /usr/local/bin/build.specfile.sh 
-  453  build.specfile.sh 
-  454  vi /usr/local/bin/build.specfile.sh 
-  455  build.specfile.sh |more
-  456  vi /usr/local/bin/build.specfile.sh 
-  457  build.specfile.sh |more
-  458  vi /usr/local/bin/build.specfile.sh 
-  459  build.specfile.sh |more
-  460  vi /usr/local/bin/build.specfile.sh 
-  461  build.specfile.sh |more
-  462  vi /usr/local/bin/build.specfile.sh 
-  463  build.specfile.sh |more
-  464  vi /usr/local/bin/build.specfile.sh 
-  465  build.specfile.sh |more
-  466  rm /tmp/scl/*
-  467  /usr/bin/rm /tmp/scl/*
-  468  rm /tmp/scl/*
-  469  build.specfile.sh |more
-  470  vi /usr/local/bin/build.specfile.sh 
-  471  build.specfile.sh |more
-  472  vi /usr/local/bin/build.specfile.sh 
-  473  build.specfile.sh |more
-  474  vi /usr/local/bin/build.specfile.sh 
-  475  build.specfile.sh |more
-  476  vi /usr/local/bin/build.specfile.sh 
-  477  build.specfile.sh |more
-  478  vi /usr/local/bin/build.specfile.sh 
-  479  build.specfile.sh |more
-  480  rpmbuild -ba /tmp/scl/daphne.scl.spec --define scl awxrpm
-  481  rpmbuild -ba /tmp/scl/daphne.scl.spec --define "scl awxrpm"
-  482  vi /tmp/scl/daphne.scl.spec
-  483  rpmbuild -ba /tmp/scl/daphne.scl.spec --define "scl awxrpm"
-  484  touch /root/rpmbuild/SOURCES/LICENSE
-  485  rpmbuild -ba /tmp/scl/daphne.scl.spec --define "scl awxrpm"
-  486  touch /root/rpmbuild/SOURCES/README:
-  487  rpmbuild -ba /tmp/scl/daphne.scl.spec --define "scl awxrpm"
-  488  touch /root/rpmbuild/SOURCES/README
-  489  rpmbuild -ba /tmp/scl/daphne.scl.spec --define "scl awxrpm"
-  490  cd /tmp/
-  491  cd sc
-  492  cd scl
-  493  ls
-  494  vi adal.scl.spec 
-  495  rpmbuild -ba /tmp/scl/ada1.scl.spec --define "scl awxrpm"
-  496  ls adal.scl.spec 
-  497  rpmbuild -ba /tmp/scl/ada1.scl.spec --define "scl awxrpm"
-  498  rpmbuild -ba /tmp/scl/adal.scl.spec 
-  499  rpmbuild -ba /tmp/scl/ada1.scl.spec --define "scl awxrpm"
-  500  rpmbuild -ba /tmp/scl/adal.scl.spec 
-  501  rpmbuild -ba /tmp/scl/adal.scl.spec  --define "scl awxrpm"
-  502  cd /root/rpmbuild/RPMS/
-  503  ls
-  504  cd x86_64/
-  505  ls
-  506  ls -rtl
-  507  rpm --instaææ awxrpm2014-runtime-1.0-1.el8.x86_64.rpm 
-  508  rpm --install awxrpm2014-runtime-1.0-1.el8.x86_64.rpm 
-  509  vi /usr/local/bin/build.specfile.sh 
-  510  pef
-  511  pwd
-  512  cd /tmp/scl/
-  513  ls
-  514  vi adal.scl.spec 
-  515  vi async-timeout.scl.spec 
-  516  vi /usr/local/bin/build.specfile.sh 
-  517  spec2scl 
-  518  cd /tmp/awx
-  519  cd packages/
-  520  ls
-  521  cd adal/
-  522  ls
-  523  cd adal-1.2.2
-  524  ls
-  525  cd 
-  526  '
-  527  ls 
-  528  ls
-  529  pwd
-  530  cat convertspecfiles 
-  531  ./convertspecfiles 
-  532  cd /tmp/scl
-  533  æls
-  534  ls
-  535  vi autobahn.scl.spec 
-  536  spec2scl 
-  537  cd 
-  538  cd rpmbuild/SPECS/
-  539  ls
-  540  vi adal.spec 
-  541  spec2scl adal.spec 
-  542  vi /usr/local/bin/build.specfile.sh 
-  543  spec2scl adal.spec   > test.scl.spec
-  544  rpmbuild -ba  test.scl.spec --define "scl awxrpm"
-  545  vi /usr/local/bin/build.specfile.sh 
-  546  build.specfile.sh 
-  547  vi /usr/local/bin/build.specfile.sh 
-  548  build.specfile.sh 
-  549  vi /usr/local/bin/build.specfile.sh 
-  550  build.specfile.sh 
-  551  vi /usr/local/bin/build.specfile.sh 
-  552  ls -rtl
-  553  vi test.scl.spec 
-  554  vi awxrpm.scl.spec
-  555  rpmbuild -ba  awxrpm.scl.spec 
-  556  vi awxrpm.scl.spec
-  557  rpmbuild -ba  awxrpm.scl.spec 
-  558  vi awxrpm.scl.spec
-  559  rpmbuild -ba  awxrpm.scl.spec 
-  560  vi awxrpm.scl.spec
-  561  rpmbuild -ba  awxrpm.scl.spec 
-  562  ls -rtl
-  563  rpmbuild -ba test.scl.spec
-  564  build.specfile.sh 
-  565  vi /usr/local/bin/build.specfile.sh 
-  566  build.specfile.sh 
-  567  vi /usr/local/bin/build.specfile.sh 
-  568  build.specfile.sh  |head
-  569  /root/rpmbuild/RPMS/x86_64/
-  570  cd /root/rpmbuild/RPMS/
-  571  ls
-  572  yum install createrepo
-  573  createrepo
-  574  createrepo .
-  575  ls -rtl
-  576  vi /etc/yum.repos.d/localdir.repo
-  577  build.specfile.sh  |head
-  578  yum-builddep /tmp/scl/adal.scl.spec 
-  579  build.specfile.sh  |head
-  580  rum install awxrpm-runtime
-  581  yum install awxrpm-runtime
-  582  build.specfile.sh  |head
-  583  define_scl_dependcy.sh 
-  584  ls -rlt /usr/local/bin/
-  585  exit
-  586  cd rpmbuild/
-  587  ls
-  588  cd SPECS/
-  589  ls
-  590  ls -rtl
-  591  history 
+prereqs: 
+
+A rhel8.4 server installed an ansible ready 
+
+You need to install the role with ansible-galaxy
+
+
+ansible-galaxy -fr roles/requirements.yml
+
+the file installes this:
+  - src: https://github.com/JakobHolstDK/miracle-ansible-role-awxrpm-scl-installer.git
+    scm: git
+    version: "master"
+    
+    
+Run the playbook 
+
+awxrpm.yml playbook
+
+
+---
+- name: "awxrpm | install awx server"
+  hosts: awxserver
+  roles:
+    - role: miracle-ansible-role-awxrpm-scl-installer
+      version: "19.4.0"
+      awx_db_password: "dsfsdfds"
+      awxpassword: "awx2know"
+      postgreshost: "awxserver"
+      nginx_disable_https: True
+      nginx_http_port: 80
+      nginx_disable_hsts: True
+      nodejsversion: v14.x
+      secret_key: werwerwer13dfdssdfsdfsdfsd32fds
+      CLUSTER_HOST_ID: 'localhost'
+      awx_install_pg_init_name: 'miracle'
+      awx_install_redis_init_name: 'miracle'
+
+
+
+
+The install output: 
+
+ansible-playbook -i inventory awxrpm.yml  
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current version: 3.6.8 (default, 
+Mar 19 2021, 05:13:41) [GCC 8.4.1 20200928 (Red Hat 8.4.1-1)]. This feature will be removed from ansible-core in version 2.12. Deprecation 
+warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+
+PLAY [awxrpm | install awx server] ***************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Enable EPEL Repository on CentOS 8] ************************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : depend | Ensure dependencies are installed.] ***************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Install add  packages] *************************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Add the group 'awx' with a specific gid and] ***************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Add the user 'awx' with a specific uid and a primary group of 'awx'] ***************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Create log dir] ********************************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Create  /var/lib/awx/rsyslog] ******************************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Recursively change ownership of the directory /etc/tower/conf.d] *******************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : set owner /run/tower] **************************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Enable SELinux in enforcing mode] **************************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : adding nginx to group awx] *********************************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Add pg12 repo] *********************************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : disable pg] ************************************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : install pg 12] *********************************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Stop service postgres, if not stopped] *********************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : destroy database] ******************************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : are we new] ************************************************************************************
+[WARNING]: Skipped '/var/lib/pgsql/12/data/' path due to this access issue: '/var/lib/pgsql/12/data/' is not a directory
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : run initdb] ************************************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Pause for 5 seconds to settle] *****************************************************************
+Pausing for 5 seconds
+(ctrl+C then 'C' = continue early, ctrl+C then 'A' = abort)
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Start service postgres, if not started] ********************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : run  create postgres user] *********************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : create postgress db] ***************************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : set password] **********************************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : create postgress access] ***********************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Restart service postgres, if not restarted] ****************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : create postgress credentials] ******************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : install redis] *********************************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : adding existing user cloud-user to group sudo] *************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : enable socket in redist] ***********************************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Start service redis, if not started] ***********************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Copy SSL certificate] **************************************************************************
+skipping: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Copy provided SSL private key] *****************************************************************
+skipping: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Create temporary directory for openssl config] *************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : copy openssl config] ***************************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : create self signed SSL certificates] ***********************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : set permissions on self-signed SSL certificate] ************************************************
+ok: [awxserver] => (item=/etc/tower/tower.cert)
+ok: [awxserver] => (item=/etc/tower/tower.key)
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Install awxrpm nginx.conf] *********************************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Stop nginx and set autostart] ******************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Start nginx and set autostart] *****************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Git checkout nodejs] ***************************************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Configure nodejs] ******************************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : compile nodejs] ********************************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Copy node binary] ******************************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Copy the build script] *************************************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : AWX RPM repo] **********************************************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Install the latest  miracle awxrpm] ************************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Creates tower] *********************************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Ensure awx is in the nginx group] **************************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Configure the Tower socket directory.] *********************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Configure the Tower socket directory for tmpfiles.d] *******************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : generate the secret key] ***********************************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Configure the awx settings file] ***************************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Configure the Tower system user's home directory.] *********************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Configure the Tower system user's .ssh directory.] *********************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Configure the Tower projects directory.] *******************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Configure the Tower job output directory.] *****************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Configure the Tower job public directory.] *****************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Add Towers `conf.d` directory.] ****************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : configure tower log directory] *****************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Update awx_supervisord logrotate config file] **************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Update hourly cron logrotate invocation] *******************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Update dependent service configuration] ********************************************************
+ok: [awxserver] => (item=nginx)
+ok: [awxserver] => (item=supervisord)
+ok: [awxserver] => (item=miracle)
+ok: [awxserver] => (item=miracle)
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Update dependent service configuration] ********************************************************
+ok: [awxserver] => (item=nginx)
+ok: [awxserver] => (item=supervisord)
+ok: [awxserver] => (item=miracle)
+ok: [awxserver] => (item=miracle)
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Reload systemd configuration] ******************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Check if this is a fresh installation] *********************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Configure the Rsyslog socket directory.] *******************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : Create tmpfiles.d entry for rsyslog socket directory] ******************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : create export script] **************************************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : create awx_preparescript] **********************************************************************
+changed: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : configure tower run socket dir] ****************************************************************
+ok: [awxserver]
+
+TASK [miracle-ansible-role-awxrpm-scl-installer : configure tower run socket dir] ****************************************************************
+changed: [awxserver]
+
+
+
+So far so good. 
+
+We have an database
+subsytems,
+users
+webserver, ssl keys etc.
+
+we can run ***********************************************************************************************************************************************************
+   scl enable miracle-awxrpm "python3 -m pip list"
+Package                  Version  
+------------------------ ---------
+adal                     1.2.2    
+aiohttp                  3.6.2    
+aioredis                 1.3.1    
+ansible-runner           2.0.0a2  
+ansiconv                 1.0.0    
+asciichartpy             1.5.25   
+asgiref                  3.2.5    
+async-timeout            3.0.1    
+attrs                    19.3.0   
+autobahn                 20.12.3  
+Automat                  20.2.0   
+awx                      19.4.0   
+azure-common             1.1.25   
+azure-keyvault           1.1.0    
+azure-nspkg              3.0.2    
+cachetools               4.0.0    
+certifi                  2021.10.8
+cffi                     1.14.0   
+channels                 2.4.0    
+channels-redis           3.1.0    
+chardet                  3.0.4    
+click                    7.1.2    
+constantly               15.1.0   
+coreapi                  2.3.3    
+coreschema               0.0.4    
+cryptography             2.9.2    
+Cython                   0.29.22  
+daphne                   2.4.1    
+dataclasses              0.6      
+defusedxml               0.6.0    
+dictdiffer               0.8.1    
+distro                   1.5.0    
+Django                   2.2.16   
+django-auth-ldap         2.1.0    
+django-cors-headers      3.7.0    
+django-crum              0.7.5    
+django-debug-toolbar     3.2.2    
+django-extensions        2.2.9    
+django-guid              2.2.0    
+django-jsonfield         1.2.0    
+django-oauth-toolkit     1.1.3    
+django-pglocks           1.0.4    
+django-polymorphic       2.1.2    
+django-qsstats-magic     1.1.0    
+django-radius            1.3.3    
+django-redis             4.5.0    
+django-rest-swagger      2.2.0    
+django-solo              1.1.3    
+django-split-settings    1.0.0    
+django-taggit            1.2.0    
+djangorestframework      3.12.1   
+djangorestframework-yaml 1.0.3    
+docutils                 0.16     
+future                   0.16.0   
+gitdb                    4.0.2    
+GitPython                3.1.7    
+google-auth              1.11.3   
+hiredis                  1.0.1    
+hyperlink                20.0.1   
+idna                     2.9      
+idna-ssl                 1.1.0    
+importlib-metadata       0.0.0    
+importlib-resources      0.0.0    
+incremental              17.5.0   
+irc                      18.0.0   
+isodate                  0.6.0    
+itypes                   1.2.0    
+jaraco.classes           3.1.0    
+jaraco.collections       3.0.0    
+jaraco.functools         3.0.0    
+jaraco.logging           3.0.0    
+jaraco.stream            3.0.0    
+jaraco.text              3.2.0    
+Jinja2                   2.11.2   
+JSON-log-formatter       0.3.0    
+jsonschema               3.2.0    
+kubernetes               11.0.0   
+lockfile                 0.12.2   
+lxml                     4.5.0    
+Markdown                 3.2.1    
+MarkupSafe               1.1.1    
+more-itertools           8.2.0    
+msgpack                  1.0.0    
+msrest                   0.6.11   
+msrestazure              0.6.3    
+multidict                4.7.5    
+netaddr                  0.7.19   
+oauthlib                 3.1.0    
+openapi-codec            1.3.2    
+openshift                0.11.0   
+pexpect                  4.7.0    
+pip                      19.3.1   
+pkgconfig                1.5.1    
+prometheus-client        0.7.1    
+psutil                   5.8.0    
+psycopg2                 2.8.4    
+ptyprocess               0.6.0    
+pyasn1                   0.4.8    
+pyasn1-modules           0.2.8    
+pycparser                2.20     
+pygerduty                0.38.2   
+PyHamcrest               2.0.2    
+PyJWT                    1.7.1    
+pyOpenSSL                19.1.0   
+pyparsing                2.4.6    
+pyrad                    2.3      
+pyrsistent               0.15.7   
+python-dateutil          2.8.1    
+python-dsv-sdk           1.0.1    
+python-ldap              3.3.1    
+python-string-utils      1.0.0    
+python3-openid           3.1.0    
+python3-saml             1.9.0    
+pytz                     2019.3   
+PyYAML                   5.4.1    
+receptorctl              0.9.7    
+redis                    3.4.1    
+requests                 2.23.0   
+requests-oauthlib        1.3.0    
+rsa                      4.0      
+ruamel.yaml              0.16.10  
+ruamel.yaml.clib         0.2.0    
+schedule                 0.6.0    
+service-identity         18.1.0   
+setuptools               41.6.0   
+simplejson               3.17.5   
+six                      1.14.0   
+slackclient              1.1.2    
+smmap                    3.0.1    
+social-auth-app-django   3.1.0    
+social-auth-core         3.3.1    
+sqlparse                 0.3.1    
+tacacs-plus              1.0      
+tempora                  2.1.0    
+twilio                   6.37.0   
+Twisted                  20.3.0   
+txaio                    20.12.1  
+typing-extensions        3.10.0.2 
+uritemplate              4.1.1    
+urllib3                  1.25.8   
+uWSGI                    2.0.18   
+uwsgitop                 0.11     
+websocket-client         0.57.0   
+xmlsec                   1.3.3    
+yarl                     1.4.2    
+zipp                     0.0.0    
+zope.interface           5.0.0    
+[root@awxserver ~]# 
+
+
+And all of this matches:
+
+[root@awxserver ~]# yum list installed |grep awxrpm
+miracle-awxrpm-Automat.noarch                  20.2.0-1                                            @miracleawxrpm                           
+miracle-awxrpm-Cython.x86_64                   0.29.22-1                                           @miracleawxrpm                           
+miracle-awxrpm-Django.noarch                   2.2.16-1                                            @miracleawxrpm                           
+miracle-awxrpm-GitPython.noarch                3.1.7-1                                             @miracleawxrpm                           
+miracle-awxrpm-JSON-log-formatter.noarch       0.3.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-Jinja2.noarch                   2.11.2-1                                            @miracleawxrpm                           
+miracle-awxrpm-Markdown.noarch                 3.2.1-1                                             @miracleawxrpm                           
+miracle-awxrpm-MarkupSafe.x86_64               1.1.1-1                                             @miracleawxrpm                           
+miracle-awxrpm-PyHamcrest.noarch               2.0.2-1                                             @miracleawxrpm                           
+miracle-awxrpm-PyJWT.noarch                    1.7.1-1                                             @miracleawxrpm                           
+miracle-awxrpm-PyYAML.x86_64                   5.4.1-1                                             @miracleawxrpm                           
+miracle-awxrpm-Twisted.x86_64                  20.3.0-1                                            @miracleawxrpm                           
+miracle-awxrpm-adal.noarch                     1.2.2-1                                             @miracleawxrpm                           
+miracle-awxrpm-aiohttp.x86_64                  3.6.2-1                                             @miracleawxrpm                           
+miracle-awxrpm-aioredis.noarch                 1.3.1-1                                             @miracleawxrpm                           
+miracle-awxrpm-ansible-runner.noarch           2.0.0a2-1                                           @miracleawxrpm                           
+miracle-awxrpm-ansiconv.noarch                 1.0.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-asciichartpy.noarch             1.5.25-1                                            @miracleawxrpm                           
+miracle-awxrpm-asgiref.noarch                  3.2.5-1                                             @miracleawxrpm                           
+miracle-awxrpm-async-timeout.noarch            3.0.1-1                                             @miracleawxrpm                           
+miracle-awxrpm-attrs.noarch                    19.3.0-1                                            @miracleawxrpm                           
+miracle-awxrpm-autobahn.noarch                 20.12.3-1                                           @miracleawxrpm                           
+miracle-awxrpm-awx.noarch                      19.4.0-1                                            @miracleawxrpm                           
+miracle-awxrpm-azure-common.noarch             1.1.25-1                                            @miracleawxrpm                           
+miracle-awxrpm-azure-keyvault.noarch           1.1.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-azure-nspkg.noarch              3.0.2-1                                             @miracleawxrpm                           
+miracle-awxrpm-cachetools.noarch               4.0.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-certifi.noarch                  2021.10.8-1                                         @miracleawxrpm                           
+miracle-awxrpm-cffi.x86_64                     1.14.0-1                                            @miracleawxrpm                           
+miracle-awxrpm-channels.noarch                 2.4.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-channels-redis.noarch           3.1.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-chardet.noarch                  3.0.4-1                                             @miracleawxrpm                           
+miracle-awxrpm-click.noarch                    7.1.2-1                                             @miracleawxrpm                           
+miracle-awxrpm-constantly.noarch               15.1.0-1                                            @miracleawxrpm                           
+miracle-awxrpm-coreapi.noarch                  2.3.3-1                                             @miracleawxrpm                           
+miracle-awxrpm-coreschema.noarch               0.0.4-1                                             @miracleawxrpm                           
+miracle-awxrpm-cryptography.x86_64             2.9.2-1                                             @miracleawxrpm                           
+miracle-awxrpm-daphne.noarch                   2.4.1-1                                             @miracleawxrpm                           
+miracle-awxrpm-defusedxml.noarch               0.6.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-dictdiffer.noarch               0.8.1-1                                             @miracleawxrpm                           
+miracle-awxrpm-distro.noarch                   1.5.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-django-auth-ldap.noarch         2.1.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-django-cors-headers.noarch      3.7.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-django-crum.noarch              0.7.5-1                                             @miracleawxrpm                           
+miracle-awxrpm-django-debug-toolbar.noarch     3.2.2-1                                             @miracleawxrpm                           
+miracle-awxrpm-django-extensions.noarch        2.2.9-1                                             @miracleawxrpm                           
+miracle-awxrpm-django-guid.noarch              2.2.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-django-jsonfield.noarch         1.2.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-django-oauth-toolkit.noarch     1.1.3-1                                             @miracleawxrpm                           
+miracle-awxrpm-django-pglocks.noarch           1.0.4-1                                             @miracleawxrpm                           
+miracle-awxrpm-django-polymorphic.noarch       2.1.2-1                                             @miracleawxrpm                           
+miracle-awxrpm-django-qsstats-magic.noarch     1.1.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-django-radius.noarch            1.3.3-1                                             @miracleawxrpm                           
+miracle-awxrpm-django-redis.noarch             4.5.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-django-rest-swagger.noarch      2.2.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-django-solo.noarch              1.1.3-1                                             @miracleawxrpm                           
+miracle-awxrpm-django-split-settings.noarch    1.0.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-django-taggit.noarch            1.2.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-djangorestframework.noarch      3.12.1-1                                            @miracleawxrpm                           
+miracle-awxrpm-djangorestframework-yaml.noarch 1.0.3-1                                             @miracleawxrpm                           
+miracle-awxrpm-docutils.noarch                 0.16-1                                              @miracleawxrpm                           
+miracle-awxrpm-future.noarch                   0.16.0-1                                            @miracleawxrpm                           
+miracle-awxrpm-gitdb.noarch                    4.0.2-1                                             @miracleawxrpm                           
+miracle-awxrpm-google-auth.noarch              1.11.3-1                                            @miracleawxrpm                           
+miracle-awxrpm-hiredis.x86_64                  1.0.1-1                                             @miracleawxrpm                           
+miracle-awxrpm-hyperlink.noarch                20.0.1-1                                            @miracleawxrpm                           
+miracle-awxrpm-idna.noarch                     2.9-1                                               @miracleawxrpm                           
+miracle-awxrpm-idna-ssl.noarch                 1.1.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-importlib-metadata.noarch       4.8.1-1                                             @miracleawxrpm                           
+miracle-awxrpm-importlib-resources.noarch      5.2.2-1                                             @miracleawxrpm                           
+miracle-awxrpm-incremental.noarch              17.5.0-1                                            @miracleawxrpm                           
+miracle-awxrpm-irc.noarch                      18.0.0-1                                            @miracleawxrpm                           
+miracle-awxrpm-isodate.noarch                  0.6.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-itypes.noarch                   1.2.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-jaraco.classes.noarch           3.1.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-jaraco.collections.noarch       3.0.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-jaraco.functools.noarch         3.0.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-jaraco.logging.noarch           3.0.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-jaraco.stream.noarch            3.0.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-jaraco.text.noarch              3.2.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-jsonschema.noarch               3.2.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-kubernetes.noarch               11.0.0-1                                            @miracleawxrpm                           
+miracle-awxrpm-lockfile.noarch                 0.12.2-1                                            @miracleawxrpm                           
+miracle-awxrpm-lxml.x86_64                     4.5.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-more-itertools.noarch           8.2.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-msgpack.x86_64                  1.0.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-msrest.noarch                   0.6.11-1                                            @miracleawxrpm                           
+miracle-awxrpm-msrestazure.noarch              0.6.3-1                                             @miracleawxrpm                           
+miracle-awxrpm-multidict.x86_64                4.7.5-1                                             @miracleawxrpm                           
+miracle-awxrpm-netaddr.noarch                  0.7.19-1                                            @miracleawxrpm                           
+miracle-awxrpm-oauthlib.noarch                 3.1.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-openapi-codec.noarch            1.3.2-1                                             @miracleawxrpm                           
+miracle-awxrpm-openshift.noarch                0.11.0-1                                            @miracleawxrpm                           
+miracle-awxrpm-pexpect.noarch                  4.7.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-pkgconfig.noarch                1.5.1-1                                             @miracleawxrpm                           
+miracle-awxrpm-prometheus-client.noarch        0.7.1-1                                             @miracleawxrpm                           
+miracle-awxrpm-psutil.x86_64                   5.8.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-psycopg2.x86_64                 2.8.4-1                                             @miracleawxrpm                           
+miracle-awxrpm-ptyprocess.noarch               0.6.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-pyOpenSSL.noarch                19.1.0-1                                            @miracleawxrpm                           
+miracle-awxrpm-pyasn1.noarch                   0.4.8-1                                             @miracleawxrpm                           
+miracle-awxrpm-pyasn1-modules.noarch           0.2.8-1                                             @miracleawxrpm                           
+miracle-awxrpm-pycparser.noarch                2.20-1                                              @miracleawxrpm                           
+miracle-awxrpm-pygerduty.noarch                0.38.2-1                                            @miracleawxrpm                           
+miracle-awxrpm-pyparsing.noarch                2.4.6-1                                             @miracleawxrpm                           
+miracle-awxrpm-pyrad.noarch                    2.3-1                                               @miracleawxrpm                           
+miracle-awxrpm-pyrsistent.x86_64               0.15.7-1                                            @miracleawxrpm                           
+miracle-awxrpm-python-dateutil.noarch          2.8.1-1                                             @miracleawxrpm                           
+miracle-awxrpm-python-ldap.x86_64              3.3.1-1                                             @miracleawxrpm                           
+miracle-awxrpm-python-string-utils.noarch      1.0.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-python3-openid.noarch           3.1.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-python3-saml.noarch             1.9.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-pytz.noarch                     2019.3-1                                            @miracleawxrpm                           
+miracle-awxrpm-receptorctl.noarch              0.9.7-1                                             @miracleawxrpm                           
+miracle-awxrpm-redis.noarch                    3.4.1-1                                             @miracleawxrpm                           
+miracle-awxrpm-requests.noarch                 2.23.0-1                                            @miracleawxrpm                           
+miracle-awxrpm-requests-oauthlib.noarch        1.3.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-rsa.noarch                      4.0-1                                               @miracleawxrpm                           
+miracle-awxrpm-ruamel.yaml.noarch              0.16.10-1                                           @miracleawxrpm                           
+miracle-awxrpm-ruamel.yaml.clib.x86_64         0.2.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-runtime.x86_64                  1.0.0-1.el8                                         @miracleawxrpm                           
+miracle-awxrpm-schedule.noarch                 0.6.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-service-identity.noarch         18.1.0-1                                            @miracleawxrpm                           
+miracle-awxrpm-simplejson.x86_64               3.17.5-1                                            @miracleawxrpm                           
+miracle-awxrpm-six.noarch                      1.14.0-1                                            @miracleawxrpm                           
+miracle-awxrpm-slackclient.noarch              1.1.2-1                                             @miracleawxrpm                           
+miracle-awxrpm-smmap.noarch                    3.0.1-1                                             @miracleawxrpm                           
+miracle-awxrpm-social-auth-app-django.noarch   3.1.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-social-auth-core.noarch         3.3.1-1                                             @miracleawxrpm                           
+miracle-awxrpm-sqlparse.noarch                 0.3.1-1                                             @miracleawxrpm                           
+miracle-awxrpm-tacacs-plus.noarch              1.0-1                                               @miracleawxrpm                           
+miracle-awxrpm-tempora.noarch                  2.1.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-twilio.noarch                   6.37.0-1                                            @miracleawxrpm                           
+miracle-awxrpm-txaio.noarch                    20.12.1-1                                           @miracleawxrpm                           
+miracle-awxrpm-typing-extensions.noarch        3.10.0.2-1                                          @miracleawxrpm                           
+miracle-awxrpm-uWSGI.x86_64                    2.0.18-1                                            @miracleawxrpm                           
+miracle-awxrpm-uritemplate.noarch              4.1.1-1                                             @miracleawxrpm                           
+miracle-awxrpm-urllib3.noarch                  1.25.8-1                                            @miracleawxrpm                           
+miracle-awxrpm-uwsgitop.noarch                 0.11-1                                              @miracleawxrpm                           
+miracle-awxrpm-websocket-client.noarch         0.57.0-1                                            @miracleawxrpm                           
+miracle-awxrpm-xmlsec.x86_64                   1.3.3-1                                             @miracleawxrpm                           
+miracle-awxrpm-yarl.x86_64                     1.4.2-1                                             @miracleawxrpm                           
+miracle-awxrpm-zipp.noarch                     3.6.0-1                                             @miracleawxrpm                           
+miracle-awxrpm-zope.interface.x86_64           5.0.0-1                                             @miracleawxrpm   
+
+This is really good.
+
+the scl environment is places where we want ad the pythonpath is ready
+scl first, then system and finally local
+
+[root@awxserver ~]# cat /opt/miracle/miracle-awxrpm/enable 
+export PATH=/opt/miracle/miracle-awxrpm/root/usr/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/opt/miracle/miracle-awxrpm/root/usr/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export MANPATH=/opt/miracle/miracle-awxrpm/root/usr/share/man:$MANPATH
+export PKG_CONFIG_PATH=/opt/miracle/miracle-awxrpm/root/usr/lib64/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}
+export XDG_DATA_DIRS="/opt/miracle/miracle-awxrpm/root/usr/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+export PYTHONPATH=/opt/miracle/miracle-awxrpm/root/lib/python3.8/site-packages:/opt/miracle/miracle-awxrpm/root/lib64/python3.8/site-packages:/usr/lib/python3.8/site-packages:/usr/local/lib/python3.8/site-packages:/usr/local/lib64/python3.8/site-packages
+
+
+
+
+***********************************************************************************************************************************************************
+
+HELP NEEDED
+
+***********************************************************************************************************************************************************
+
+  [root@awxserver ~]# cat /opt/miracle/miracle-awxrpm/enable 
+export PATH=/opt/miracle/miracle-awxrpm/root/usr/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/opt/miracle/miracle-awxrpm/root/usr/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export MANPATH=/opt/miracle/miracle-awxrpm/root/usr/share/man:$MANPATH
+export PKG_CONFIG_PATH=/opt/miracle/miracle-awxrpm/root/usr/lib64/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}
+export XDG_DATA_DIRS="/opt/miracle/miracle-awxrpm/root/usr/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+export PYTHONPATH=/opt/miracle/miracle-awxrpm/root/lib/python3.8/site-packages:/opt/miracle/miracle-awxrpm/root/lib64/python3.8/site-packages:/usr/lib/python3.8/site-packages:/usr/local/lib/python3.8/site-packages:/usr/local/lib64/python3.8/site-packages
+[root@awxserver ~]# scl enable miracle-awxrpm "awx-manage"
+Traceback (most recent call last):
+  File "/opt/miracle/miracle-awxrpm/root/usr/bin/awx-manage", line 11, in <module>
+    load_entry_point('awx==19.4.0', 'console_scripts', 'awx-manage')()
+  File "/opt/miracle/miracle-awxrpm/root/lib/python3.8/site-packages/awx/__init__.py", line 171, in manage
+    execute_from_command_line(sys.argv)
+  File "/opt/miracle/miracle-awxrpm/root/lib/python3.8/site-packages/django/core/management/__init__.py", line 381, in execute_from_command_line
+    utility.execute()
+  File "/opt/miracle/miracle-awxrpm/root/lib/python3.8/site-packages/django/core/management/__init__.py", line 357, in execute
+    django.setup()
+  File "/opt/miracle/miracle-awxrpm/root/lib/python3.8/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/opt/miracle/miracle-awxrpm/root/lib/python3.8/site-packages/django/apps/registry.py", line 114, in populate
+    app_config.import_models()
+  File "/opt/miracle/miracle-awxrpm/root/lib/python3.8/site-packages/django/apps/config.py", line 211, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib64/python3.8/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1014, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 783, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/miracle/miracle-awxrpm/root/lib/python3.8/site-packages/awx/conf/models.py", line 11, in <module>
+    from awx.main.models.base import CreatedModifiedModel, prevent_search
+  File "/opt/miracle/miracle-awxrpm/root/lib/python3.8/site-packages/awx/main/models/__init__.py", line 12, in <module>
+    from awx.main.models.credential import Credential, CredentialType, CredentialInputSource, ManagedCredentialType, build_safe_env  # noqa
+  File "/opt/miracle/miracle-awxrpm/root/lib/python3.8/site-packages/awx/main/models/credential/__init__.py", line 49, in <module>
+    credential_plugins = dict((ep.name, ep.load()) for ep in iter_entry_points('awx.credential_plugins'))
+  File "/opt/miracle/miracle-awxrpm/root/lib/python3.8/site-packages/awx/main/models/credential/__init__.py", line 49, in <genexpr>
+    credential_plugins = dict((ep.name, ep.load()) for ep in iter_entry_points('awx.credential_plugins'))
+  File "/usr/lib/python3.8/site-packages/pkg_resources/__init__.py", line 2443, in load
+    return self.resolve()
+  File "/usr/lib/python3.8/site-packages/pkg_resources/__init__.py", line 2449, in resolve
+    module = __import__(self.module_name, fromlist=['__name__'], level=0)
+  File "/opt/miracle/miracle-awxrpm/root/lib/python3.8/site-packages/awx/main/credential_plugins/tss.py", line 4, in <module>
+    from thycotic.secrets.server import PasswordGrantAuthorizer, SecretServer, ServerSecret
+ModuleNotFoundError: No module named 'thycotic.secrets.server'
+  
+  This is unexpected and I really would appreciate fresh eyes and bold ideas!
+  
+  
+  
+  
+  
+
+  
+
+
+
 

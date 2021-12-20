@@ -1,9 +1,0 @@
-- name: Copy git read key
-  ansible.builtin.copy:
-    src: ~/.ssh/github
-    dest: "/home/{{ user }}/.ssh/github"
-    owner: '{{ user }}'
-    group: '{{ user }}'
-    mode: '0600'
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-

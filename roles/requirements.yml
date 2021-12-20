@@ -1,0 +1,3 @@
+  - src: https://github.com/JakobHolstDK/miracle-ansible-role-awxrpm-scl-installer.git
+    scm: git
+    version: "master"
