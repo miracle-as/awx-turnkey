@@ -10,7 +10,7 @@ A rhel8.4 server installed an ansible ready
 You need to install the role with ansible-galaxy
 
 
-ansible-galaxy -fr roles/requirements.yml
+ansible-galaxy install -r roles/requirements.yml
 
 the file installes this:
   - src: https://github.com/JakobHolstDK/miracle-ansible-role-awxrpm-scl-installer.git
