@@ -5,12 +5,19 @@ The Alpha release:
 
 prereqs: 
 
-A rhel8.4 server installed an ansible ready 
+A RHEL8 server installed
+
+Install Ansible:
+
+`
+subscription-manager repos --enable ansible-2.9-for-rhel-8-x86_64-rpms
+yum install ansible
+
+` 
 
 You need to install the role with ansible-galaxy
 
-
-ansible-galaxy -fr roles/requirements.yml
+ansible-galaxy install -r roles/requirements.yml
 
 the file installes this:
   - src: https://github.com/JakobHolstDK/miracle-ansible-role-awxrpm-scl-installer.git
@@ -27,7 +34,8 @@ awxrpm.yml playbook
 - name: "awxrpm | install awx server"
   hosts: awxserver
   roles:
-    - role: miracle-ansible-role-awxrpm-scl-installer
+  - role: miracle-ansible-role-awxrpm-scl-installer
+    vars:  
       version: "19.4.0"
       awx_db_password: "dsfsdfds"
       awxpassword: "awx2know"
@@ -35,7 +43,8 @@ awxrpm.yml playbook
       nginx_disable_https: True
       nginx_http_port: 80
       nginx_disable_hsts: True
-      nodejsversion: v14.x
+      nodejsversion: 14
+      postgresqlversion: 12
       secret_key: werwerwer13dfdssdfsdfsdfsd32fds
       CLUSTER_HOST_ID: 'localhost'
       awx_install_pg_init_name: 'miracle'

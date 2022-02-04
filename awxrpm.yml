@@ -2,7 +2,8 @@
 - name: "awxrpm | install awx server"
   hosts: awxserver
   roles:
-    - role: miracle-ansible-role-awxrpm-scl-installer
+  - role: miracle-ansible-role-awxrpm-scl-installer
+    vars:    
       version: "19.4.0"
       awx_db_password: "dsfsdfds"
       awxpassword: "awx2know"
@@ -10,7 +11,8 @@
       nginx_disable_https: True
       nginx_http_port: 80
       nginx_disable_hsts: True
-      nodejsversion: v14.x
+      nodejsversion: 14
+      postgresqlversion: 12
       secret_key: werwerwer13dfdssdfsdfsdfsd32fds
       CLUSTER_HOST_ID: 'localhost'
       awx_install_pg_init_name: 'miracle'
