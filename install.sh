@@ -3,5 +3,5 @@ source venv/bin/activate
 pip install --upgrade pip
 pip install ansible
 sudo ansible-galaxy collection install ansible.posix
-ansible-galaxy -fr roles/requirements.yml
+ansible-galaxy role install -fr roles/requirements.yml
 
