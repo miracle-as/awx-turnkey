@@ -4,6 +4,7 @@
   roles:
     - role: awxvenv
       version: "19.4.0"
+      awx_user: "awx"
       awx_db_password: "dsfsdfds"
       awxpassword: "awx2know"
       postgreshost: "awxserver"
