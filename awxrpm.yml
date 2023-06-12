@@ -2,7 +2,7 @@
 - name: "awxrpm | install awx server"
   hosts: awxserver
   roles:
-    - role: miracle-ansible-role-awxrpm-scl-installer
+    - role: awx
       version: "19.4.0"
       awx_db_password: "dsfsdfds"
       awxpassword: "awx2know"

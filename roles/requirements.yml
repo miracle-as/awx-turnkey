@@ -1,3 +1,4 @@
   - src: https://github.com/JakobHolstDK/miracle-ansible-role-awxrpm-scl-installer.git
+    name: awxvenv
     scm: git
     version: "master"
