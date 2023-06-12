@@ -1,6 +1,6 @@
 ---
 - name: "awxrpm | install awx server"
-  hosts: awxserver
+  hosts: localhost
   roles:
     - role: awx
       version: "19.4.0"
