@@ -2,7 +2,7 @@
 - name: "awxrpm | install awx server"
   hosts: localhost
   roles:
-    - role: awx
+    - role: awxvenv
       version: "19.4.0"
       awx_db_password: "dsfsdfds"
       awxpassword: "awx2know"
