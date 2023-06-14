@@ -18,6 +18,8 @@
       awx_install_pg_init_name: 'miracle'
       awx_install_redis_init_name: 'miracle'
       awx_admin_user: 'admin'
+      awx_admin_email: 'admin@example.com'
+
 
 
 
