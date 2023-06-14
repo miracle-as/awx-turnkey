@@ -1,5 +1,6 @@
-python3 -m venv venv
-source venv/bin/activate
+python3 -m venv /usr/local/venv
+
+source /usr/local/venv/bin/activate
 pip install --upgrade pip
 pip install ansible
 pip install virtualenv
