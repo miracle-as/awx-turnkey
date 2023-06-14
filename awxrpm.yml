@@ -17,6 +17,8 @@
       CLUSTER_HOST_ID: 'localhost'
       awx_install_pg_init_name: 'miracle'
       awx_install_redis_init_name: 'miracle'
+      destination: '/opt/awx/current'
+      venv: '/usr/local/venv'
       awx_admin_user: 'admin'
       awx_admin_email: 'admin@example.com'
 
