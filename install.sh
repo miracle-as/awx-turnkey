@@ -1,11 +1,37 @@
+#!/usr/bin/env bash
+# Install Ansible AWX on RHEL 9
+# Author:
+#   - Red Hat, Inc.
+#   - Ansible, Inc.
+#   - Community Contributors
+# License: GPLv3
+# Reference:
+#   -
+#   -
+
+subscription-manager register --org $ORG --activationkey $activationkey
+subscription-manager attach 
+subscription-manager repos --enable ansible-2.9-for-rhel-9-x86_64-rpms
+subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
+
+# Install Python3 and Ansible
+sudo dnf install -y python3
+sudo dnf install -y python3-pip
+sudo dnf install -y python3-devel
+sudo dnf install -y gcc
+sudo dnf install -y git
+sudo dnf install -y openssl-devel
+sudo dnf install -y libselinux-python3
+sudo dnf install -y libffi-devel
+sudo dnf install -y redhat-rpm-config
+sudo dnf install -y libsemanage-python3
+
+# Create Python3 Virtual Environment
 python3 -m venv /usr/local/venv
-sudo subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
 
 # Install Ansible   
 source /usr/local/venv/bin/activate
 pip install --upgrade pip
-pip install ansible
-pip install ansible-lint
 pip install virtualenv
 # Install Ansible AWX
 ansible-galaxy collection install --force ansible.posix
