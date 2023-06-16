@@ -7,7 +7,7 @@
       awx_user: "awx"
       awx_db_password: "dsfsdfds"
       awxpassword: "awx2know"
-      postgreshost: "awxserver"
+      postgreshost: "127.0.0.1"
       postgresdata: "/var/lib/pgsql/data"
       nginx_disable_https: True
       nginx_http_port: 80
