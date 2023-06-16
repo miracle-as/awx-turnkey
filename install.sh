@@ -8,6 +8,24 @@
 # Reference:
 #   -
 #   -
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root"
+   exit 1
+fi
+if [[ ! -f /etc/redhat-release ]]; then
+   echo "This script only supports RHEL 9"
+   exit 1
+fi
+
+if [[ $ORG == "" ]]; then
+   echo "Please set the ORG environment variable"
+   exit 1
+fi
+
+if [[ $activationkey == "" ]]; then
+   echo "Please set the activationkey environment variable"
+   exit 1
+fi
 
 subscription-manager register --org $ORG --activationkey $activationkey
 subscription-manager attach 
