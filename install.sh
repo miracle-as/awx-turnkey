@@ -46,7 +46,6 @@ sudo dnf install -y libsemanage-python3
 sudo dnf install -y libxml2-devel
 sudo dnf install -y libxslt-devel
 sudo dnf install -y zlib-devel
-sudo dnf install -y ansible
 sudo dnf install -y nodejs
 sudo dnf install -y npm
 sudo dnf install -y gettext
@@ -59,6 +58,7 @@ python3 -m venv /usr/local/venv
 # Install Ansible   
 source /usr/local/venv/bin/activate
 pip install --upgrade pip
+pip install ansible
 pip install virtualenv
 # Install Ansible AWX
 ansible-galaxy collection install --force ansible.posix
