@@ -29,6 +29,10 @@ sudo dnf install -y libxml2-devel
 sudo dnf install -y libxslt-devel
 sudo dnf install -y zlib-devel
 sudo dnf install -y ansible
+sudo dnf install -y nodejs
+sudo dnf install -y npm
+sudo dnf install -y gettext
+
 
 
 # Create Python3 Virtual Environment
