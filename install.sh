@@ -25,6 +25,11 @@ sudo dnf install -y libselinux-python3
 sudo dnf install -y libffi-devel
 sudo dnf install -y redhat-rpm-config
 sudo dnf install -y libsemanage-python3
+sudo dnf install -y libxml2-devel
+sudo dnf install -y libxslt-devel
+sudo dnf install -y zlib-devel
+sudo dnf install -y ansible
+
 
 # Create Python3 Virtual Environment
 python3 -m venv /usr/local/venv
