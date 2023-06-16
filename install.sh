@@ -31,29 +31,31 @@ if [[  $1 !=  "--fast" ]]; then
   fi
 
   subscription-manager register --org $ORG --activationkey $activationkey
-  subscription-manager attach 
-  subscription-manager repos --enable ansible-2.9-for-rhel-9-x86_64-rpms
-  subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
+  if [[ $? -eq 64 ]]; then
+    echo "system already subscribed skipping registration"
+  else
+    subscription-manager attach 
+    subscription-manager repos --enable ansible-2.9-for-rhel-9-x86_64-rpms
+    subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
 
 # Install Python3 and Ansible
-  sudo dnf install -y python3
-  sudo dnf install -y python3-pip
-  sudo dnf install -y python3-devel
-  sudo dnf install -y gcc
-  sudo dnf install -y git
-  sudo dnf install -y openssl-devel
-  sudo dnf install -y libselinux-python3
-  sudo dnf install -y libffi-devel
-  sudo dnf install -y redhat-rpm-config
-  sudo dnf install -y libsemanage-python3
-  sudo dnf install -y libxml2-devel
-  sudo dnf install -y libxslt-devel
-  sudo dnf install -y zlib-devel
-  sudo dnf install -y nodejs
-  sudo dnf install -y npm
-  sudo dnf install -y gettext
-
-
+    sudo dnf install -y python3
+    sudo dnf install -y python3-pip
+    sudo dnf install -y python3-devel
+    sudo dnf install -y gcc
+    sudo dnf install -y git
+    sudo dnf install -y openssl-devel
+    sudo dnf install -y libselinux-python3
+    sudo dnf install -y libffi-devel
+    sudo dnf install -y redhat-rpm-config
+    sudo dnf install -y libsemanage-python3
+    sudo dnf install -y libxml2-devel
+    sudo dnf install -y libxslt-devel
+    sudo dnf install -y zlib-devel
+    sudo dnf install -y nodejs
+    sudo dnf install -y npm
+    sudo dnf install -y gettext
+  fi
 fi
 # Create Python3 Virtual Environment
 python3 -m venv /usr/local/venv
