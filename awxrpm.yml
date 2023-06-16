@@ -21,7 +21,7 @@
       venv: '/usr/local/venv'
       awx_admin_user: 'admin'
       awx_admin_email: 'admin@example.com'
-
+      awx_admin_password: 'changemetoasecurepassword'
 
 
 
